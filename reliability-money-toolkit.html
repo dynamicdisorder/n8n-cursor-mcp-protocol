@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="google-adsense-account" content="ca-pub-5341779159353455">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reliability Money Toolkit | TechImpact.online</title>
+    <meta name="description" content="Hub for TechImpact.online: free calculators and guides that turn SLA, downtime, RTO/RPO, and availability “nines” into clear money and time budgets. Start path for CTOs, SREs, and founders.">
+    <meta name="keywords" content="reliability money toolkit, downtime cost calculator, SLA penalty calculator, RTO RPO impact, allowed downtime, cost of nines, TechImpact">
+    <meta name="author" content="TechImpact.online">
+    <meta name="robots" content="index,follow,max-snippet:-1,max-image-preview:large">
+    <link rel="canonical" href="https://www.techimpact.online/reliability-money-toolkit.html">
+
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.techimpact.online/reliability-money-toolkit.html">
+    <meta property="og:title" content="Reliability Money Toolkit | TechImpact.online">
+    <meta property="og:description" content="One hub for SLA, downtime cost, RTO/RPO, allowed downtime, and cost-of-nines tools — plus references and shareable scenario URLs.">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Reliability Money Toolkit | TechImpact.online">
+    <meta name="twitter:description" content="Turn uptime promises and outage minutes into money and time budgets your team can debate.">
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "name": "Reliability Money Toolkit",
+        "description": "Hub page for TechImpact.online calculators and guides that quantify downtime, SLA, and RTO/RPO risk in money and time terms.",
+        "url": "https://www.techimpact.online/reliability-money-toolkit.html",
+        "datePublished": "2026-07-23",
+        "dateModified": "2026-07-23",
+        "isPartOf": {
+            "@type": "WebSite",
+            "name": "TechImpact.online",
+            "url": "https://www.techimpact.online/"
+        },
+        "about": [
+            "Service Level Agreement",
+            "Downtime cost",
+            "RTO",
+            "RPO",
+            "Availability"
+        ],
+        "publisher": {
+            "@type": "Organization",
+            "name": "TechImpact.online",
+            "url": "https://www.techimpact.online/"
+        }
+    }
+    </script>
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "ItemList",
+        "name": "TechImpact Reliability Money calculators",
+        "itemListElement": [
+            {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "SLA Penalty Calculator",
+                "url": "https://www.techimpact.online/index.html#sla-calculator"
+            },
+            {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Website Downtime Cost Calculator",
+                "url": "https://www.techimpact.online/website-downtime-cost-calculator.html"
+            },
+            {
+                "@type": "ListItem",
+                "position": 3,
+                "name": "RTO/RPO Impact Calculator",
+                "url": "https://www.techimpact.online/rto-rpo-impact-calculator.html"
+            },
+            {
+                "@type": "ListItem",
+                "position": 4,
+                "name": "Allowed Downtime Calculator",
+                "url": "https://www.techimpact.online/allowed-downtime-calculator.html"
+            },
+            {
+                "@type": "ListItem",
+                "position": 5,
+                "name": "Cost of Nines Calculator",
+                "url": "https://www.techimpact.online/nines-availability-cost-calculator.html"
+            }
+        ]
+    }
+    </script>
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {
+                "@type": "Question",
+                "name": "What is the Reliability Money Toolkit?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "It is the public hub for TechImpact.online calculators and guides that turn SLA promises, outage minutes, and RTO/RPO targets into money and time budgets you can debate in a meeting."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Which calculator should I open first after an outage?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Start with the Website Downtime Cost Calculator using the real duration and a realistic revenue-per-hour rate. Then check Allowed Downtime for your SLA period, and SLA Penalty only if a contract credit may apply."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Can I share the same scenario with my team?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Yes. Most calculators write inputs into the URL query string. Use Copy share link (or Share Link) so finance, SRE, and product open the same numbers."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Is an SLA credit the same as downtime cost?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "No. An SLA credit is usually a capped invoice reduction. Downtime cost is your business impact (revenue, refunds, productivity). Always model them as two separate columns."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Do you claim official vendor outage losses?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "No. Our recent-outages brief links public sources and shows illustrative calculator scenarios for your own numbers. We do not publish official AWS, Google, or Meta financial losses."
+                }
+            }
+        ]
+    }
+    </script>
+
+    <link rel="stylesheet" href="styles.css">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5341779159353455"
+        crossorigin="anonymous"></script>
+</head>
+<body>
+    <div id="header-placeholder"></div>
+
+    <section class="hero">
+        <div class="container">
+            <h1 class="hero-title">
+                <span>Reliability Money</span>
+                <span class="gradient-text">Toolkit</span>
+            </h1>
+            <p class="hero-subtitle">
+                One destination for TechImpact.online: free browser calculators and plain-English guides that turn
+                uptime promises, outage minutes, and recovery targets into numbers a meeting can use.
+            </p>
+            <div class="hero-actions">
+                <a href="#start-here" class="btn primary large">Start here</a>
+                <a href="#calculators" class="btn secondary large">All calculators</a>
+                <a href="guides/recent-outages-cost-brief.html" class="btn secondary large">Recent outages brief</a>
+            </div>
+        </div>
+    </section>
+
+    <main class="legal-main">
+        <div class="container">
+            <article class="legal-article">
+                <nav class="breadcrumbs">
+                    <a href="index.html">Home</a> &gt;
+                    <span>Reliability Money Toolkit</span>
+                </nav>
+
+                <nav class="ref-toc" aria-label="Toolkit contents">
+                    <strong>On this page</strong>
+                    <ol>
+                        <li><a href="#what-is">What this suite is for</a></li>
+                        <li><a href="#start-here">Start here by role</a></li>
+                        <li><a href="#choose">If you ask this → open that</a></li>
+                        <li><a href="#calculators">Calculators grid</a></li>
+                        <li><a href="#walkthrough">Worked walkthrough</a></li>
+                        <li><a href="#references">References &amp; briefs</a></li>
+                        <li><a href="#sharing">Shareable scenario URLs</a></li>
+                        <li><a href="#mistakes">Common mistakes</a></li>
+                        <li><a href="#methodology">Open methodology</a></li>
+                        <li><a href="#faq">FAQ</a></li>
+                        <li><a href="#about-contact">About / contact</a></li>
+                        <li><a href="#practice">Practice habit</a></li>
+                    </ol>
+                </nav>
+
+                <div class="article-content edu-inner">
+                    <section class="article-section edu-block" id="what-is">
+                        <div class="edu-inner">
+                            <h2>What this suite is for</h2>
+                            <p>
+                                Reliability talk fails when it stays abstract. “We need more nines,” “the SLA looks fine,”
+                                and “RTO is four hours” sound serious — until someone asks what that means in minutes or money.
+                                The Reliability Money Toolkit is the public map of every TechImpact tool that answers those questions
+                                without a black box.
+                            </p>
+                            <p>
+                                You type your numbers. The page calculates in the browser. You can share a URL so finance, SRE, and product
+                                argue about the <em>same</em> scenario. We show formulas in guides. We label examples as examples.
+                                We do not pretend a service credit equals your full business loss.
+                            </p>
+                            <p>
+                                This hub is the “god page” for the suite: start paths, the full calculator map, a worked money walkthrough,
+                                shareable URL parameter cheat sheets, and links into living outage briefs and open methodology.
+                                Built by <a href="https://dynamicdisorder.co" target="_blank" rel="noopener">DynamicDisorder.co</a>.
+                                Written in simple English for mixed teams and non-native speakers.
+                            </p>
+                        </div>
+                    </section>
+
+                    <section class="article-section" id="start-here">
+                        <h2>1. Start here (pick your role)</h2>
+                        <p>
+                            You do not need every calculator on day one. Use a short path, write the result in one slide,
+                            then deepen only where the decision is stuck.
+                        </p>
+
+                        <div class="steps-grid">
+                            <div class="step-card">
+                                <div class="step-number">CTO</div>
+                                <h3>Budget &amp; risk story</h3>
+                                <p>
+                                    Open <a href="website-downtime-cost-calculator.html">Downtime Cost</a> with a realistic peak-hour rate.
+                                    Then open <a href="nines-availability-cost-calculator.html">Cost of Nines</a> to see what the next nine buys in minutes.
+                                    Bring both numbers to the investment talk — not a slogan.
+                                </p>
+                            </div>
+                            <div class="step-card">
+                                <div class="step-number">SRE</div>
+                                <h3>Time budgets &amp; recovery</h3>
+                                <p>
+                                    Convert the promised % with
+                                    <a href="allowed-downtime-calculator.html">Allowed Downtime</a>.
+                                    Set or challenge targets with
+                                    <a href="rto-rpo-impact-calculator.html">RTO/RPO Impact</a>
+                                    and the
+                                    <a href="guides/rto-rpo-decision-matrix.html">decision matrix</a>.
+                                    After a real incident, re-run duration into Downtime Cost while memories are fresh.
+                                </p>
+                            </div>
+                            <div class="step-card">
+                                <div class="step-number">Founder</div>
+                                <h3>Vendor &amp; customer promises</h3>
+                                <p>
+                                    If you buy cloud, estimate credits with the
+                                    <a href="index.html#sla-calculator">SLA Penalty Calculator</a>
+                                    and learn the claim steps in
+                                    <a href="guides/how-to-file-sla-service-credit-claim.html">how to file a credit claim</a>.
+                                    If you sell uptime, model what you would owe customers before you market “99.99%.”
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="edu-example">
+                            <p><strong>Suggested 30-minute path (any role):</strong></p>
+                            <ol class="ref-steps">
+                                <li>Write last month’s revenue and the hours you were open → revenue per hour.</li>
+                                <li>Pick a duration you actually fear (or a recent outage length).</li>
+                                <li>Run Downtime Cost → copy the share URL into the ticket or doc.</li>
+                                <li>Check Allowed Downtime for your SLA % this month.</li>
+                                <li>If recovery design is the debate, run RTO/RPO Impact once with today’s targets and once with the proposed targets.</li>
+                            </ol>
+                        </div>
+                    </section>
+
+                    <section class="article-section" id="choose">
+                        <h2>2. If you ask this → open that</h2>
+                        <p>
+                            Use this table when the meeting question is clear but the tool name is not.
+                            One question, one primary tool, one optional follow-up.
+                        </p>
+                        <div class="ref-table-wrap">
+                            <table class="ref-table">
+                                <caption>Decision map for the Reliability Money Toolkit</caption>
+                                <thead>
+                                    <tr>
+                                        <th scope="col">You are asking…</th>
+                                        <th scope="col">Open first</th>
+                                        <th scope="col">Then (optional)</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <th scope="row">“What did this outage cost us?”</th>
+                                        <td><a href="website-downtime-cost-calculator.html">Downtime Cost</a></td>
+                                        <td><a href="guides/recent-outages-cost-brief.html">Recent outages brief</a> (for public duration context)</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">“How many minutes does 99.9% allow this month?”</th>
+                                        <td><a href="allowed-downtime-calculator.html">Allowed Downtime</a></td>
+                                        <td><a href="guides/calendar-month-sla-downtime-tables.html">Calendar-month tables</a></td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">“Is the next nine worth the spend?”</th>
+                                        <td><a href="nines-availability-cost-calculator.html">Cost of Nines</a></td>
+                                        <td>Downtime Cost with the minute delta as duration</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">“What credit might the contract produce?”</th>
+                                        <td><a href="index.html#sla-calculator">SLA Penalty</a></td>
+                                        <td><a href="guides/how-to-file-sla-service-credit-claim.html">How to file a credit claim</a></td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">“Is our RTO / RPO affordable?”</th>
+                                        <td><a href="rto-rpo-impact-calculator.html">RTO/RPO Impact</a></td>
+                                        <td><a href="guides/rto-rpo-decision-matrix.html">Decision matrix</a></td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">“Where do I start on this whole site?”</th>
+                                        <td>This page (Toolkit hub)</td>
+                                        <td><a href="guides/sla-uptime-downtime-reference.html">Open methodology</a></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </section>
+
+                    <section class="article-section" id="calculators">
+                        <h2>3. Calculators grid</h2>
+                        <p>
+                            Five specialized tools. Each has one job. Use the primary button when you know which question you are answering.
+                        </p>
+
+                        <div class="calculator-list">
+                            <div class="calculator-item">
+                                <h3>SLA Penalty Calculator</h3>
+                                <p>
+                                    Estimate service credits when actual uptime falls short of a promised percentage and tiered credit table —
+                                    useful for vendor claims and for understanding what you might owe if you sell an SLA.
+                                </p>
+                                <p><a class="btn primary" href="index.html#sla-calculator">Open SLA Penalty</a></p>
+                            </div>
+                            <div class="calculator-item">
+                                <h3>Website Downtime Cost Calculator</h3>
+                                <p>
+                                    Estimate business impact from revenue rate, outage length, refunds, conversion drop, and idle staff cost —
+                                    the default tool after any incident review.
+                                </p>
+                                <p><a class="btn primary" href="website-downtime-cost-calculator.html">Open Downtime Cost</a></p>
+                            </div>
+                            <div class="calculator-item">
+                                <h3>RTO / RPO Impact Calculator</h3>
+                                <p>
+                                    Translate Recovery Time Objective and Recovery Point Objective into yearly exposure so failover and backup spend have a money story.
+                                </p>
+                                <p><a class="btn primary" href="rto-rpo-impact-calculator.html">Open RTO/RPO Impact</a></p>
+                            </div>
+                            <div class="calculator-item">
+                                <h3>Allowed Downtime Calculator</h3>
+                                <p>
+                                    Convert an uptime percentage into allowed seconds, minutes, and hours for day, week, month, or year — the time budget behind the marketing number.
+                                </p>
+                                <p><a class="btn primary" href="allowed-downtime-calculator.html">Open Allowed Downtime</a></p>
+                            </div>
+                            <div class="calculator-item">
+                                <h3>Cost of Nines Calculator</h3>
+                                <p>
+                                    Compare two availability targets (for example 99.9% vs 99.99%) and see how the tighter target changes downtime budget and rough cost exposure.
+                                </p>
+                                <p><a class="btn primary" href="nines-availability-cost-calculator.html">Open Cost of Nines</a></p>
+                            </div>
+                        </div>
+
+                        <div class="formula-box">
+                            <p><strong>How the tools fit together (one sentence each):</strong></p>
+                            <p>Allowed Downtime / Cost of Nines → “How many minutes does this % allow?”</p>
+                            <p>Downtime Cost → “What does that minute budget cost if we burn it?”</p>
+                            <p>RTO/RPO Impact → “What does our recovery design imply per year?”</p>
+                            <p>SLA Penalty → “What credit might the contract produce?”</p>
+                        </div>
+                    </section>
+
+                    <section class="article-section edu-block" id="walkthrough">
+                        <div class="edu-inner">
+                            <h2>4. Worked walkthrough (CloudFront-length window)</h2>
+                            <p>
+                                This is a teaching scenario, not a claim about any vendor’s P&amp;L.
+                                Public reports put the 16 Jul 2026 AWS CloudFront VPC Origins disruption near
+                                <strong>3 hours 33 minutes</strong>. Use that duration to practice the suite end-to-end.
+                            </p>
+                            <ol class="ref-steps">
+                                <li>
+                                    <strong>Money impact.</strong> Open
+                                    <a href="website-downtime-cost-calculator.html?rev=10000&amp;h=3&amp;m=33&amp;refund=5&amp;conv=10&amp;emp=40&amp;cost=55&amp;inc=4&amp;cur=USD">
+                                        Downtime Cost with the illustrative $10k/hour scenario
+                                    </a>.
+                                    Replace <code>rev</code> with your peak-hour revenue. Copy the share link into the ticket.
+                                </li>
+                                <li>
+                                    <strong>Time budget.</strong> Open
+                                    <a href="allowed-downtime-calculator.html?up=99.9&amp;pd=30">Allowed Downtime at 99.9% / 30 days</a>.
+                                    Ask: does 3h33m already burn the whole month (yes — about 43 minutes allowed at 99.9%)?
+                                </li>
+                                <li>
+                                    <strong>Next nine debate.</strong> Open
+                                    <a href="nines-availability-cost-calculator.html?a=99.9&amp;b=99.99&amp;rev=10000&amp;cur=USD">Cost of Nines (99.9 vs 99.99)</a>
+                                    and decide if tighter availability is the investment story — or multi-AZ / origin design is.
+                                </li>
+                                <li>
+                                    <strong>Recovery design.</strong> If the real failure mode was “CDN path dead while app servers healthy,”
+                                    RTO may be about failover of the edge path, not VM restore. Still price current targets with
+                                    <a href="rto-rpo-impact-calculator.html">RTO/RPO Impact</a>.
+                                </li>
+                                <li>
+                                    <strong>Credits (separate column).</strong> If a paid AWS support / enterprise credit path applies to you,
+                                    estimate with <a href="index.html#sla-calculator">SLA Penalty</a> using <em>your</em> contract table —
+                                    never mix that number into the business-loss total without labeling it.
+                                </li>
+                            </ol>
+                            <p>
+                                Full source notes for this and other July 2026 incidents live in the
+                                <a href="guides/recent-outages-cost-brief.html">Recent outages → money impact brief</a>.
+                            </p>
+                        </div>
+                    </section>
+
+                    <section class="article-section" id="references">
+                        <h2>5. References &amp; briefs</h2>
+                        <p>
+                            Calculators answer “what if.” References answer “what is the table / the claim process / what just happened.”
+                            Cite these pages in tickets and RFCs when you need a stable URL.
+                        </p>
+
+                        <div class="ref-table-wrap">
+                            <table class="ref-table">
+                                <caption>Primary references in the suite</caption>
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Page</th>
+                                        <th scope="col">Use it when…</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <th scope="row"><a href="guides/sla-uptime-downtime-reference.html">SLA uptime → downtime reference</a></th>
+                                        <td>You need definitive tables and open formulas (day / week / month / year).</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row"><a href="guides/calendar-month-sla-downtime-tables.html">Calendar-month SLA tables</a></th>
+                                        <td>Your vendor uses a real calendar month (28–31 days), not a fixed 30-day month.</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row"><a href="guides/rto-rpo-decision-matrix.html">RTO / RPO decision matrix</a></th>
+                                        <td>You are choosing recovery targets by system type in plain English.</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row"><a href="guides/how-to-file-sla-service-credit-claim.html">How to file an SLA credit claim</a></th>
+                                        <td>You have logs and a deadline, and you need a clean evidence pack.</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row"><a href="guides/recent-outages-cost-brief.html">Recent outages → money impact</a></th>
+                                        <td>You want a living brief of major incidents (last 14 days) with illustrative calculator links.</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <p>
+                            Deeper reading also lives on
+                            <a href="guides.html">All guides</a>
+                            (SLA penalties, downtime cost why-it-matters, real-world examples, disaster recovery basics, and more)
+                            and the older
+                            <a href="resources.html">Resources hub</a>.
+                        </p>
+                    </section>
+
+                    <section class="article-section edu-block" id="sharing">
+                        <div class="edu-inner">
+                            <h2>6. How sharing works (scenario URLs)</h2>
+                            <p>
+                                Calculators write inputs into the query string so a colleague opens the same scenario.
+                                That is better than screenshots: people can edit one field and see the new total immediately.
+                                Use the <strong>Share Link</strong> / <strong>Copy share link</strong> button on each tool, or copy the address bar after you change inputs.
+                            </p>
+                            <p>
+                                Example — illustrative downtime at <strong>$10,000/hour</strong> for <strong>3 hours 33 minutes</strong>:
+                            </p>
+                            <div class="edu-example">
+                                <p>
+                                    <a href="website-downtime-cost-calculator.html?rev=10000&amp;h=3&amp;m=33&amp;refund=5&amp;conv=10&amp;emp=40&amp;cost=55&amp;inc=4&amp;cur=USD">
+                                        website-downtime-cost-calculator.html?rev=10000&amp;h=3&amp;m=33&amp;refund=5&amp;conv=10&amp;emp=40&amp;cost=55&amp;inc=4&amp;cur=USD
+                                    </a>
+                                </p>
+                            </div>
+
+                            <h3>Parameter cheat sheet</h3>
+                            <div class="ref-table-wrap">
+                                <table class="ref-table">
+                                    <caption>Query keys used by shareable scenarios</caption>
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Tool</th>
+                                            <th scope="col">Keys</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <th scope="row">Downtime Cost</th>
+                                            <td><code>rev</code> <code>h</code> <code>m</code> <code>refund</code> <code>conv</code> <code>emp</code> <code>cost</code> <code>inc</code> <code>cur</code></td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">SLA Penalty</th>
+                                            <td><code>cv</code> <code>up</code> <code>dt</code> <code>au</code> <code>pd</code> <code>cpd</code> <code>cur</code></td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">RTO / RPO Impact</th>
+                                            <td><code>rto</code> <code>rpo</code> <code>freq</code> <code>rev</code> <code>data</code> <code>cur</code></td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">Allowed Downtime</th>
+                                            <td><code>up</code> <code>upc</code> <code>pd</code> <code>pdc</code> <code>idt</code> <code>ipd</code></td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">Cost of Nines</th>
+                                            <td><code>a</code> <code>b</code> <code>ac</code> <code>bc</code> <code>rev</code> <code>exp</code> <code>cur</code></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <p class="edu-note">
+                                Always replace illustrative values with yours before a board decision.
+                                Paste the link into the incident ticket or the postmortem “Impact” section.
+                                If two teams disagree, they should disagree on an input — not on silent spreadsheet versions.
+                            </p>
+                        </div>
+                    </section>
+
+                    <section class="article-section" id="mistakes">
+                        <h2>7. Common mistakes (and the fix)</h2>
+                        <ul>
+                            <li>
+                                <strong>Using average revenue for a peak outage.</strong>
+                                Fix: use the same hour-of-day revenue band as the incident when you can.
+                            </li>
+                            <li>
+                                <strong>Treating a partial outage as 100% site-down.</strong>
+                                Fix: scale <code>rev</code> by the affected share of traffic or revenue.
+                            </li>
+                            <li>
+                                <strong>Mixing SLA credit into business loss.</strong>
+                                Fix: two columns — credit estimate vs business impact — never one blended fantasy number.
+                            </li>
+                            <li>
+                                <strong>Assuming the next nine is the only fix.</strong>
+                                Fix: Cost of Nines shows minute budgets; architecture (multi-AZ, origin type, tested failover) often moves risk more than a marketing nine.
+                            </li>
+                            <li>
+                                <strong>Setting RTO without a drill.</strong>
+                                Fix: price the target with RTO/RPO Impact, then time the slowest restore step in a real exercise.
+                            </li>
+                            <li>
+                                <strong>Citing “official vendor losses” from illustrative links.</strong>
+                                Fix: our outages brief labels scenarios ILLUSTRATIVE. Your numbers only become yours after you edit them.
+                            </li>
+                        </ul>
+                    </section>
+
+                    <section class="article-section" id="methodology">
+                        <h2>8. Open methodology</h2>
+                        <p>
+                            Every serious estimate needs a method you can rebuild in a spreadsheet.
+                            Our canonical explanation of allowed downtime math and related calculator formulas is:
+                        </p>
+                        <p>
+                            <a class="btn primary" href="guides/sla-uptime-downtime-reference.html">SLA Uptime → Downtime Reference + Open Methodology</a>
+                        </p>
+                        <div class="formula-box">
+                            <p><strong>Allowed downtime (core idea):</strong></p>
+                            <p>allowed_minutes ≈ period_minutes × (1 − uptime_target/100)</p>
+                            <p>Example: 30-day month ≈ 43,200 minutes. At 99.9%, downtime budget ≈ 43.2 minutes.</p>
+                        </div>
+                        <p>
+                            Honest limits we keep repeating:
+                        </p>
+                        <ul>
+                            <li>Estimates support planning; they are not legal or accounting advice.</li>
+                            <li>Contract text and monitoring evidence beat any calculator output in a credit dispute.</li>
+                            <li>We do not claim official vendor financial losses on incident briefs.</li>
+                            <li>Partial outages need a reduced revenue rate (affected share), not a fake full-site zero.</li>
+                        </ul>
+                    </section>
+
+                    <section class="article-section" id="faq">
+                        <h2>9. FAQ</h2>
+                        <div class="faq-list ref-faq">
+                            <div class="faq-item">
+                                <h3 class="faq-question">What is the Reliability Money Toolkit?</h3>
+                                <div class="faq-answer active">
+                                    <p>
+                                        The public hub for TechImpact calculators and guides that turn SLA promises, outage minutes,
+                                        and RTO/RPO targets into money and time budgets a meeting can use.
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="faq-item">
+                                <h3 class="faq-question">Which calculator should I open first after an outage?</h3>
+                                <div class="faq-answer active">
+                                    <p>
+                                        Downtime Cost with the real duration and a realistic revenue-per-hour rate.
+                                        Then Allowed Downtime for the period budget. SLA Penalty only if a contract credit may apply.
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="faq-item">
+                                <h3 class="faq-question">Can I share the same scenario with my team?</h3>
+                                <div class="faq-answer active">
+                                    <p>
+                                        Yes. Use Share Link / Copy share link on each calculator so finance, SRE, and product open the same query-string inputs.
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="faq-item">
+                                <h3 class="faq-question">Is an SLA credit the same as downtime cost?</h3>
+                                <div class="faq-answer active">
+                                    <p>
+                                        No. Credits are usually capped invoice reductions. Downtime cost is your business impact. Keep two columns.
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="faq-item">
+                                <h3 class="faq-question">Do you claim official vendor outage losses?</h3>
+                                <div class="faq-answer active">
+                                    <p>
+                                        No. The
+                                        <a href="guides/recent-outages-cost-brief.html">recent outages brief</a>
+                                        links public sources and shows illustrative scenarios for <em>your</em> numbers only.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="article-section" id="about-contact">
+                        <h2>10. About / contact</h2>
+                        <p>
+                            TechImpact.online is a free public toolkit from
+                            <a href="https://dynamicdisorder.co" target="_blank" rel="noopener">DynamicDisorder.co</a>.
+                            Core calculators run in your browser; we do not need your contract numbers on our servers to compute a result.
+                        </p>
+                        <p>
+                            Read who we are and how we write:
+                            <a href="about.html">About TechImpact.online</a>.
+                            Questions, corrections, or partnership notes:
+                            <a href="contact.html">Contact</a>
+                            (<a href="mailto:contact@techimpact.online">contact@techimpact.online</a>).
+                        </p>
+                        <p>
+                            Prefer a full inventory of URLs?
+                            <a href="site-map.html">Site map</a>.
+                            Prefer pricing / free access notes?
+                            <a href="start-trial.html">Get started</a>.
+                        </p>
+                    </section>
+
+                    <section class="article-section" id="practice">
+                        <h2>Practice: one page, three numbers</h2>
+                        <p>
+                            If you only take one habit from this hub, take this. After any meaningful incident — or before any reliability spend —
+                            write three numbers in the same document:
+                        </p>
+                        <ol class="ref-steps">
+                            <li><strong>Time burned</strong> (minutes) vs <strong>time allowed</strong> this period (from Allowed Downtime or calendar-month tables).</li>
+                            <li><strong>Business impact estimate</strong> (from Downtime Cost), with inputs listed.</li>
+                            <li><strong>Contract credit estimate</strong> (from SLA Penalty), if a vendor or customer SLA applies — kept separate from #2.</li>
+                        </ol>
+                        <p>
+                            Those three lines stop most confused debates. They also make the
+                            <a href="guides/recent-outages-cost-brief.html">recent outages brief</a>
+                            useful: you can compare your modeled impact to public incident lengths without pretending the vendor’s P&amp;L is your P&amp;L.
+                        </p>
+                        <p>
+                            When leadership asks “should we buy another nine?”, open Cost of Nines and answer with minutes and dollars,
+                            not with fear. When leadership asks “is our RTO real?”, open RTO/RPO Impact and the decision matrix,
+                            then schedule a drill for the slowest restore step.
+                        </p>
+                    </section>
+
+                    <section class="article-section ref-cta-block">
+                        <h2>Jump back in</h2>
+                        <p>
+                            <a class="btn primary" href="website-downtime-cost-calculator.html">Downtime Cost</a>
+                            <a class="btn secondary" href="index.html#sla-calculator">SLA Penalty</a>
+                            <a class="btn secondary" href="guides/recent-outages-cost-brief.html">Recent outages brief</a>
+                            <a class="btn secondary" href="guides/sla-uptime-downtime-reference.html">Methodology</a>
+                        </p>
+                    </section>
+                </div>
+            </article>
+        </div>
+    </main>
+
+    <div id="footer-placeholder"></div>
+    <script src="js/includes.js"></script>
+</body>
+</html>

@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="google-adsense-account" content="ca-pub-5341779159353455">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calendar Month SLA Downtime Tables (28–31 Days) | TechImpact.online</title>
+    <meta name="description" content="Exact allowed downtime in minutes and hours for SLA 99%–99.999% across 28, 29, 30, and 31-day calendar months. Why cloud SLAs use calendar months—and how to compute the budget yourself.">
+    <meta name="keywords" content="calendar month SLA, allowed downtime table, 28 day SLA, 31 day downtime, 99.9 uptime minutes, cloud SLA month length">
+    <meta name="author" content="TechImpact.online">
+    <meta name="robots" content="index,follow,max-snippet:-1,max-image-preview:large">
+    <link rel="canonical" href="https://www.techimpact.online/guides/calendar-month-sla-downtime-tables.html">
+
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://www.techimpact.online/guides/calendar-month-sla-downtime-tables.html">
+    <meta property="og:title" content="Calendar Month SLA Downtime Tables (28–31 Days)">
+    <meta property="og:description" content="Allowed downtime minutes for every common SLA tier across real calendar month lengths.">
+
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:title" content="Calendar Month SLA Downtime Tables (28–31 Days)">
+    <meta property="twitter:description" content="Exact SLA downtime budgets for 28, 29, 30, and 31-day months.">
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "TechArticle",
+        "headline": "Calendar Month SLA Downtime Tables (28–31 Days)",
+        "description": "Exact allowed downtime in minutes for SLA 99%–99.999% across 28, 29, 30, and 31-day calendar months, plus why cloud providers use calendar months.",
+        "url": "https://www.techimpact.online/guides/calendar-month-sla-downtime-tables.html",
+        "datePublished": "2026-07-22",
+        "dateModified": "2026-07-23",
+        "author": {
+            "@type": "Organization",
+            "name": "TechImpact.online",
+            "url": "https://www.techimpact.online/"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "TechImpact.online",
+            "url": "https://www.techimpact.online/"
+        },
+        "mainEntityOfPage": "https://www.techimpact.online/guides/calendar-month-sla-downtime-tables.html",
+        "about": ["Service Level Agreement", "Calendar Month", "Uptime", "Downtime"]
+    }
+    </script>
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {
+                "@type": "Question",
+                "name": "Why do cloud SLAs use calendar months instead of a fixed 30 days?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Billing and credit periods follow the real month on the calendar. February has 28 or 29 days. Other months have 30 or 31. The downtime budget changes with the number of minutes in that month."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "How many minutes are in a 28-day, 29-day, 30-day, and 31-day month?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "28 days = 40,320 minutes. 29 days = 41,760 minutes. 30 days = 43,200 minutes. 31 days = 44,640 minutes. Formula: days × 24 × 60."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "How much downtime does 99.9% allow in a 31-day month?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "44.64 minutes. Formula: 44,640 × (1 − 99.9/100) = 44,640 × 0.001 = 44.64 minutes."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Is a 30-day table wrong for SLA claims?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "A fixed 30-day table is useful for comparison. For a real credit claim, use the calendar month length in your contract period (28–31 days)."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "How do I convert allowed downtime minutes to hours?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Divide minutes by 60. Example: 43.2 minutes ÷ 60 = 0.72 hours. Use the hours table on this page for common SLA tiers."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "My monitoring tool shows different downtime than the vendor. What should I check?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Check the period window (calendar month vs rolling 30 days), time zone, what counts as unavailable, and whether maintenance or customer-caused issues are excluded. Align definitions before you file a claim."
+                }
+            }
+        ]
+    }
+    </script>
+
+    <link rel="stylesheet" href="../styles.css">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5341779159353455"
+        crossorigin="anonymous"></script>
+</head>
+<body>
+    <div id="header-placeholder"></div>
+
+    <main class="guide-main ref-main">
+        <div class="container">
+            <article class="guide-article ref-article">
+                <nav class="breadcrumbs">
+                    <a href="../index.html">Home</a> &gt;
+                    <a href="../guides.html">Guides</a> &gt;
+                    <span>Calendar Month SLA Tables</span>
+                </nav>
+
+                <header class="article-header">
+                    <h1>Calendar Month Allowed Downtime (28, 29, 30, 31 Days)</h1>
+                    <div class="article-meta">
+                        <span class="article-category">Reference</span>
+                        <span class="article-read-time">12 min read</span>
+                        <span class="article-date">Updated July 23, 2026</span>
+                    </div>
+                    <p class="ref-lede">
+                        Cloud SLAs often measure uptime over a <strong>calendar month</strong>, not a fixed 30-day block.
+                        This page gives exact allowed downtime in minutes and hours for common SLA tiers across every month length.
+                        Written in simple English so you can copy the right number into a ticket or spreadsheet.
+                    </p>
+                </header>
+
+                <nav class="ref-toc" aria-label="Table of contents">
+                    <strong>On this page</strong>
+                    <ol>
+                        <li><a href="#why-calendar">Why calendar months</a></li>
+                        <li><a href="#formula">Core formula</a></li>
+                        <li><a href="#period-minutes">Minutes in each month</a></li>
+                        <li><a href="#tables">Allowed downtime (minutes)</a></li>
+                        <li><a href="#tables-hours">Allowed downtime (hours)</a></li>
+                        <li><a href="#example">Worked example</a></li>
+                        <li><a href="#how-to-use">How to use these tables</a></li>
+                        <li><a href="#troubleshooting">Troubleshooting mismatches</a></li>
+                        <li><a href="#faq">FAQ</a></li>
+                    </ol>
+                </nav>
+
+                <section class="article-section" id="why-calendar">
+                    <h2>1. Why cloud SLAs use calendar months</h2>
+                    <p>
+                        An <strong>SLA</strong> (Service Level Agreement) is a promise about uptime.
+                        <strong>Uptime</strong> means the service is available.
+                        <strong>Downtime</strong> means it is not.
+                    </p>
+                    <p>
+                        Most major cloud providers settle credits on a <strong>calendar month</strong>:
+                        January has 31 days, February has 28 or 29, April has 30, and so on.
+                        Your “allowed downtime” budget is a share of the minutes in <em>that</em> month.
+                    </p>
+                    <p>
+                        Why not always use 30 days? Because invoices and credit periods follow the real calendar.
+                        Support teams and finance teams already think in “March” or “February,” not in abstract 30-day blocks.
+                        The math stays simple — only the day count changes.
+                    </p>
+                    <p>
+                        A fixed <strong>30-day</strong> table is still useful for quick comparison between vendors or slides.
+                        For a real claim, match the month length in the contract period.
+                        See also our
+                        <a href="sla-uptime-downtime-reference.html">SLA uptime → downtime reference</a>
+                        and the
+                        <a href="../allowed-downtime-calculator.html">Allowed Downtime Calculator</a>.
+                    </p>
+                    <p>
+                        If you are preparing a credit request, pair this page with
+                        <a href="how-to-file-sla-service-credit-claim.html">how to file an SLA service credit claim</a>
+                        and estimate exposure in the
+                        <a href="../index.html#sla-calculator">SLA Penalty Calculator</a>.
+                    </p>
+                </section>
+
+                <section class="article-section" id="formula">
+                    <h2>2. Core formula</h2>
+                    <div class="formula-box">
+                        <p><strong>allowed_minutes</strong> = days × 1440 × (1 − uptime / 100)</p>
+                        <p class="formula-sub">1440 = 24 hours × 60 minutes (minutes in one day)</p>
+                    </div>
+                    <p>
+                        Same idea in two steps:
+                    </p>
+                    <div class="formula-box">
+                        <p><strong>period_minutes</strong> = days × 24 × 60</p>
+                        <p><strong>allowed_minutes</strong> = period_minutes × (1 − uptime% / 100)</p>
+                    </div>
+                    <p>
+                        To show hours instead of minutes:
+                    </p>
+                    <div class="formula-box">
+                        <p><strong>allowed_hours</strong> = allowed_minutes ÷ 60</p>
+                    </div>
+                    <p>
+                        You can put this in a spreadsheet as
+                        <code>=days*24*60*(1-uptime/100)</code>.
+                        Change only <code>days</code> and <code>uptime</code>. The rest stays the same for every row in the tables below.
+                    </p>
+                </section>
+
+                <section class="article-section" id="period-minutes">
+                    <h2>3. Minutes in each month length</h2>
+                    <p>
+                        First lock the period length. Everything else is a percentage of these minutes.
+                    </p>
+                    <div class="ref-table-wrap">
+                        <table class="ref-table">
+                            <caption>Period length in minutes</caption>
+                            <thead>
+                                <tr>
+                                    <th scope="col">Days in month</th>
+                                    <th scope="col">Period minutes</th>
+                                    <th scope="col">Period hours</th>
+                                    <th scope="col">Typical use</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th scope="row">28</th>
+                                    <td>40,320</td>
+                                    <td>672</td>
+                                    <td>February (non-leap year)</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">29</th>
+                                    <td>41,760</td>
+                                    <td>696</td>
+                                    <td>February (leap year)</td>
+                                </tr>
+                                <tr class="ref-row-highlight">
+                                    <th scope="row">30</th>
+                                    <td>43,200</td>
+                                    <td>720</td>
+                                    <td>Comparison baseline; Apr, Jun, Sep, Nov</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">31</th>
+                                    <td>44,640</td>
+                                    <td>744</td>
+                                    <td>Jan, Mar, May, Jul, Aug, Oct, Dec</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <p>
+                        Notice February is special. In a leap year, February has one extra day (1,440 minutes).
+                        That slightly increases the downtime budget at the same uptime %.
+                        For example, 99.9% allows 40.32 minutes in a 28-day February and 41.76 minutes in a 29-day February.
+                    </p>
+                </section>
+
+                <section class="article-section" id="tables">
+                    <h2>4. Allowed downtime tables (exact minutes)</h2>
+                    <p>
+                        Values use the formula above. Units are minutes.
+                        Tiers: 99%, 99.5%, 99.9%, 99.95%, 99.99%, 99.999%.
+                        These numbers are exact for the percentages shown (no marketing rounding).
+                    </p>
+
+                    <h3>All SLAs × all month lengths (minutes)</h3>
+                    <div class="ref-table-wrap">
+                        <table class="ref-table">
+                            <caption>Allowed downtime in minutes by SLA and calendar month length</caption>
+                            <thead>
+                                <tr>
+                                    <th scope="col">SLA uptime</th>
+                                    <th scope="col">28 days</th>
+                                    <th scope="col">29 days</th>
+                                    <th scope="col">30 days</th>
+                                    <th scope="col">31 days</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th scope="row">99%</th>
+                                    <td>403.2</td>
+                                    <td>417.6</td>
+                                    <td>432</td>
+                                    <td>446.4</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">99.5%</th>
+                                    <td>201.6</td>
+                                    <td>208.8</td>
+                                    <td>216</td>
+                                    <td>223.2</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">99.9%</th>
+                                    <td>40.32</td>
+                                    <td>41.76</td>
+                                    <td><strong>43.2</strong></td>
+                                    <td>44.64</td>
+                                </tr>
+                                <tr class="ref-row-highlight">
+                                    <th scope="row">99.95%</th>
+                                    <td>20.16</td>
+                                    <td>20.88</td>
+                                    <td><strong>21.6</strong></td>
+                                    <td>22.32</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">99.99%</th>
+                                    <td>4.032</td>
+                                    <td>4.176</td>
+                                    <td><strong>4.32</strong></td>
+                                    <td>4.464</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">99.999%</th>
+                                    <td>0.4032</td>
+                                    <td>0.4176</td>
+                                    <td>0.432</td>
+                                    <td>0.4464</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <p>
+                        Notice the pattern: a longer month gives a slightly larger downtime budget at the same uptime %.
+                        Example: 99.9% allows 40.32 minutes in February (28 days) but 44.64 minutes in a 31-day month.
+                        That gap is 4.32 minutes — the same size as the entire 99.99% budget in a 30-day month.
+                    </p>
+                </section>
+
+                <section class="article-section" id="tables-hours">
+                    <h2>5. Same budgets in hours (human-readable)</h2>
+                    <p>
+                        Minutes are best for claims and spreadsheets.
+                        Hours are easier in executive summaries when the budget is large (for example 99% or 99.5%).
+                        Values below are minutes ÷ 60.
+                    </p>
+                    <div class="ref-table-wrap">
+                        <table class="ref-table">
+                            <caption>Allowed downtime in hours by SLA and calendar month length</caption>
+                            <thead>
+                                <tr>
+                                    <th scope="col">SLA uptime</th>
+                                    <th scope="col">28 days</th>
+                                    <th scope="col">29 days</th>
+                                    <th scope="col">30 days</th>
+                                    <th scope="col">31 days</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th scope="row">99%</th>
+                                    <td>6.72 h</td>
+                                    <td>6.96 h</td>
+                                    <td>7.2 h</td>
+                                    <td>7.44 h</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">99.5%</th>
+                                    <td>3.36 h</td>
+                                    <td>3.48 h</td>
+                                    <td>3.6 h</td>
+                                    <td>3.72 h</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">99.9%</th>
+                                    <td>0.672 h</td>
+                                    <td>0.696 h</td>
+                                    <td><strong>0.72 h</strong></td>
+                                    <td>0.744 h</td>
+                                </tr>
+                                <tr class="ref-row-highlight">
+                                    <th scope="row">99.95%</th>
+                                    <td>0.336 h</td>
+                                    <td>0.348 h</td>
+                                    <td><strong>0.36 h</strong></td>
+                                    <td>0.372 h</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">99.99%</th>
+                                    <td>0.0672 h</td>
+                                    <td>0.0696 h</td>
+                                    <td><strong>0.072 h</strong></td>
+                                    <td>0.0744 h</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">99.999%</th>
+                                    <td>0.00672 h</td>
+                                    <td>0.00696 h</td>
+                                    <td>0.0072 h</td>
+                                    <td>0.00744 h</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <p>
+                        For four and five nines, prefer minutes or seconds in conversation.
+                        Saying “0.072 hours” is correct but hard to feel; “4.32 minutes” is clearer for most teams.
+                    </p>
+                </section>
+
+                <section class="article-section" id="example">
+                    <h2>6. Worked example</h2>
+                    <div class="edu-example">
+                        <p><strong>Goal:</strong> Find allowed downtime for 99.95% in March (31 days).</p>
+                        <p>1. Period minutes = 31 × 1440 = <strong>44,640</strong></p>
+                        <p>2. Downtime share = 1 − 99.95/100 = <strong>0.0005</strong></p>
+                        <p>3. Allowed = 44,640 × 0.0005 = <strong>22.32 minutes</strong> (0.372 hours)</p>
+                        <p class="edu-note">
+                            If you only used a 30-day table (21.6 minutes), you would understate the March budget by 0.72 minutes.
+                        </p>
+                    </div>
+                    <div class="edu-example">
+                        <p><strong>Second goal:</strong> You measured 50 minutes of downtime in a 31-day month at a 99.9% SLA.</p>
+                        <p>1. Allowed budget = 44.64 minutes</p>
+                        <p>2. You are over budget by 50 − 44.64 = <strong>5.36 minutes</strong></p>
+                        <p>3. Actual uptime% = 100 × (1 − 50 / 44,640) ≈ <strong>99.888%</strong></p>
+                        <p>4. Next step: open the vendor credit table and estimate the claim (not automatic cash).</p>
+                    </div>
+                    <p>
+                        Need interactive conversion for any custom period?
+                        Open the <a href="../allowed-downtime-calculator.html">Allowed Downtime Calculator</a>
+                        or browse day/week/year tables on
+                        <a href="sla-uptime-downtime-reference.html">SLA uptime → downtime reference</a>.
+                    </p>
+                </section>
+
+                <section class="article-section" id="how-to-use">
+                    <h2>7. How to use these tables in real work</h2>
+                    <ol>
+                        <li>Find the month you care about (how many days?).</li>
+                        <li>Find the uptime % in your contract.</li>
+                        <li>Read the matching cell in the minutes table (use hours only for summaries).</li>
+                        <li>Compare that budget to downtime from your monitoring tool.</li>
+                        <li>If downtime is higher, open your SLA credit section and estimate the claim.</li>
+                        <li>Write the period clearly in your ticket: “March 2026, 31 days, 44,640 minutes.”</li>
+                    </ol>
+                    <p>
+                        Tip: keep a screenshot of the monitoring graph and the table row you used.
+                        Claims are easier when evidence is clear.
+                    </p>
+                    <div class="edu-example">
+                        <p><strong>Quick check for February (non-leap, 28 days) at 99.99%:</strong></p>
+                        <p>Allowed downtime = 4.032 minutes. That is only about 242 seconds for the whole month.</p>
+                        <p>So one short outage can use most of the budget. This is why “four nines” is hard in practice.</p>
+                    </div>
+                    <p>
+                        Another tip: do not mix rolling windows with calendar months.
+                        If your dashboard shows “last 30 days” but the SLA is “calendar March,” recalculate for March only before you escalate.
+                    </p>
+                </section>
+
+                <section class="article-section" id="troubleshooting">
+                    <h2>8. Troubleshooting mismatches</h2>
+                    <p>
+                        Teams often disagree about whether an SLA was missed.
+                        Before you argue with a vendor (or with your own finance team), check these common causes:
+                    </p>
+                    <ul>
+                        <li><strong>Wrong day count.</strong> Used 30 days for a 31-day month (or 28 for leap February).</li>
+                        <li><strong>Wrong window.</strong> Monitoring used UTC while the contract uses a different billing timezone — or used a rolling 30 days.</li>
+                        <li><strong>Different “down” definition.</strong> Your synthetic check failed, but the vendor only counts multi-AZ probe failures. Read the SLA definition.</li>
+                        <li><strong>Excluded time still counted.</strong> Planned maintenance, customer misconfiguration, or third-party network issues may be excluded. Remove them before computing uptime.</li>
+                        <li><strong>Partial degradation.</strong> Some SLAs require full unavailability; slow performance may not count. Others have separate performance SLOs.</li>
+                        <li><strong>Unit mix-up.</strong> Someone compared minutes of downtime to hours of budget (or the reverse).</li>
+                        <li><strong>Credit vs budget.</strong> Being over the downtime budget does not always mean a large credit. Tier tables and caps matter.</li>
+                    </ul>
+                    <p>
+                        A practical order of operations: (1) lock the calendar month and minute total,
+                        (2) apply exclusions,
+                        (3) compute actual uptime,
+                        (4) compare to the promise,
+                        (5) map to credit tiers,
+                        (6) file within the deadline with evidence.
+                    </p>
+                    <p>
+                        Step-by-step claim guidance:
+                        <a href="how-to-file-sla-service-credit-claim.html">How to file an SLA service credit claim</a>.
+                    </p>
+                </section>
+
+                <section class="article-section" id="faq">
+                    <h2>9. FAQ</h2>
+                    <div class="faq-list ref-faq">
+                        <div class="faq-item">
+                            <h3 class="faq-question">Why not always use 30 days?</h3>
+                            <div class="faq-answer active">
+                                <p>
+                                    Because the contract month is a real calendar month. Credits and uptime % are usually computed over that month’s minutes.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="faq-item">
+                            <h3 class="faq-question">How many minutes does 99.9% allow in 31 days?</h3>
+                            <div class="faq-answer active">
+                                <p>44.64 minutes (0.744 hours).</p>
+                            </div>
+                        </div>
+                        <div class="faq-item">
+                            <h3 class="faq-question">How many minutes does 99.95% allow in 28 days?</h3>
+                            <div class="faq-answer active">
+                                <p>20.16 minutes (0.336 hours).</p>
+                            </div>
+                        </div>
+                        <div class="faq-item">
+                            <h3 class="faq-question">How do I convert minutes to hours?</h3>
+                            <div class="faq-answer active">
+                                <p>Divide by 60. Example: 43.2 ÷ 60 = 0.72 hours. Use the hours table above for common tiers.</p>
+                            </div>
+                        </div>
+                        <div class="faq-item">
+                            <h3 class="faq-question">Do these numbers equal service credits?</h3>
+                            <div class="faq-answer active">
+                                <p>
+                                    No. These numbers are only the <em>uptime budget</em>. Credits depend on your vendor’s tier table, definitions, exclusions, and claim rules.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="faq-item">
+                            <h3 class="faq-question">What if my monitoring number and the vendor number disagree?</h3>
+                            <div class="faq-answer active">
+                                <p>
+                                    Check period length, time zone, exclusions, and the definition of “unavailable.” Align those first — then recalculate.
+                                    See <a href="#troubleshooting">Troubleshooting mismatches</a>.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="faq-item">
+                            <h3 class="faq-question">Does leap day change anything outside February?</h3>
+                            <div class="faq-answer active">
+                                <p>
+                                    For calendar-month SLAs, leap day only changes February (28 → 29 days). Other months keep 30 or 31 days.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="faq-item">
+                            <h3 class="faq-question">Can I use the 30-day column in a board slide?</h3>
+                            <div class="faq-answer active">
+                                <p>
+                                    Yes — label it clearly as a comparison baseline. For a live claim month, switch to 28/29/30/31 as needed.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="article-section ref-cta-block">
+                    <h2>Related tools</h2>
+                    <p>
+                        <a class="btn primary" href="../allowed-downtime-calculator.html">Allowed Downtime Calculator</a>
+                        <a class="btn secondary" href="sla-uptime-downtime-reference.html">Full SLA Reference</a>
+                        <a class="btn secondary" href="../index.html#sla-calculator">SLA Penalty Calculator</a>
+                        <a class="btn secondary" href="how-to-file-sla-service-credit-claim.html">File a Credit Claim</a>
+                    </p>
+                </section>
+            </article>
+        </div>
+    </main>
+
+    <div id="footer-placeholder"></div>
+    <script src="../js/includes.js"></script>
+</body>
+</html>

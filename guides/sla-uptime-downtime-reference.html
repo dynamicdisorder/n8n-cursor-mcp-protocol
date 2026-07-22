@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="google-adsense-account" content="ca-pub-5341779159353455">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SLA Uptime to Downtime Reference Table + Calculator Methodology | TechImpact.online</title>
+    <meta name="description" content="Definitive SLA uptime to downtime conversion tables for 99%–99.999% across day, week, month, and year—plus the exact formulas TechImpact.online uses for SLA credits, downtime cost, and RTO/RPO impact.">
+    <meta name="keywords" content="SLA downtime table, allowed downtime, 99.9 uptime minutes, 99.95 SLA downtime, uptime percentage to downtime, SLA calculator methodology, RTO RPO formula">
+    <meta name="author" content="TechImpact.online">
+    <meta name="robots" content="index,follow,max-snippet:-1,max-image-preview:large">
+    <link rel="canonical" href="https://www.techimpact.online/guides/sla-uptime-downtime-reference.html">
+
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://www.techimpact.online/guides/sla-uptime-downtime-reference.html">
+    <meta property="og:title" content="SLA Uptime to Downtime Reference + Open Methodology">
+    <meta property="og:description" content="Allowed downtime for every common SLA tier, plus the exact formulas behind our calculators.">
+
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:title" content="SLA Uptime to Downtime Reference + Open Methodology">
+    <meta property="twitter:description" content="Allowed downtime tables for 99%–99.999% and the math behind SLA, downtime, and RTO/RPO calculators.">
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "TechArticle",
+        "headline": "SLA Uptime to Downtime Reference Table and Calculator Methodology",
+        "description": "Reference tables converting SLA uptime percentages to allowed downtime, plus open formulas for SLA penalties, downtime cost, and RTO/RPO impact.",
+        "url": "https://www.techimpact.online/guides/sla-uptime-downtime-reference.html",
+        "datePublished": "2026-07-22",
+        "dateModified": "2026-07-23",
+        "author": {
+            "@type": "Organization",
+            "name": "TechImpact.online",
+            "url": "https://www.techimpact.online/"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "TechImpact.online",
+            "url": "https://www.techimpact.online/"
+        },
+        "mainEntityOfPage": "https://www.techimpact.online/guides/sla-uptime-downtime-reference.html",
+        "about": ["Service Level Agreement", "Uptime", "Downtime", "RTO", "RPO"]
+    }
+    </script>
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {
+                "@type": "Question",
+                "name": "How many minutes of downtime does 99.9% uptime allow in a 30-day month?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "43.2 minutes. Formula: allowed_minutes = period_days × 24 × 60 × (1 − uptime/100). For 99.9% over 30 days: 43,200 × 0.001 = 43.2 minutes."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "How many minutes of downtime does 99.95% uptime allow in a 30-day month?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "21.6 minutes. That is 43,200 × 0.0005 = 21.6 minutes."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "How many minutes of downtime does 99.99% uptime allow in a 30-day month?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "4.32 minutes (about 259 seconds)."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Is a month always 30 days in SLA calculations?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "No. Many cloud SLAs use calendar month length (28–31 days). Our reference tables include a standard 30-day month for comparison; the calculators let you set 28–31 days or a custom period."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Do these tables equal contractual service credits?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "No. Allowed downtime is only the uptime budget. Service credits depend on the provider’s tier table, definitions of unavailability, exclusions, and claim windows."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "How much downtime does 99.999% allow in a 30-day month?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Only 0.432 minutes — about 26 seconds. Five nines leaves almost no room for any outage in a month."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Do leap years change yearly SLA downtime budgets?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Slightly. A 365-day year has 525,600 minutes. A leap year has 366 days and 527,040 minutes. Most comparison tables use 365 days. For a calendar-year claim, use the day count your contract specifies."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "How should I cite this page?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Link to https://www.techimpact.online/guides/sla-uptime-downtime-reference.html and state the formula, uptime %, and period length (for example, 30 days) you used. Note the page update date if you need a fixed reference."
+                }
+            }
+        ]
+    }
+    </script>
+
+    <link rel="stylesheet" href="../styles.css">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5341779159353455"
+        crossorigin="anonymous"></script>
+</head>
+<body>
+    <div id="header-placeholder"></div>
+
+    <main class="guide-main ref-main">
+        <div class="container">
+            <article class="guide-article ref-article">
+                <nav class="breadcrumbs">
+                    <a href="../index.html">Home</a> &gt;
+                    <a href="../guides.html">Guides</a> &gt;
+                    <span>SLA Uptime Reference</span>
+                </nav>
+
+                <header class="article-header">
+                    <h1>SLA Uptime → Downtime Reference (and How Our Calculators Work)</h1>
+                    <div class="article-meta">
+                        <span class="article-category">Reference</span>
+                        <span class="article-read-time">14 min read</span>
+                        <span class="article-date">Updated July 23, 2026</span>
+                    </div>
+                    <p class="ref-lede">
+                        A single source for converting common SLA uptime targets into allowed downtime,
+                        plus the open formulas behind TechImpact’s SLA, downtime-cost, and RTO/RPO tools.
+                        Built for engineers, CTOs, and anyone (or any model) that needs a citable method—not a black box.
+                        Written in simple English so non-native speakers can follow every step.
+                    </p>
+                </header>
+
+                <nav class="ref-toc" aria-label="Table of contents">
+                    <strong>On this page</strong>
+                    <ol>
+                        <li><a href="#formula">Core formula</a></li>
+                        <li><a href="#lookup">Quick lookup</a></li>
+                        <li><a href="#tables">Full reference tables</a></li>
+                        <li><a href="#leap-years">Leap years note</a></li>
+                        <li><a href="#five-nines">99.999% reality check</a></li>
+                        <li><a href="#cloud-month">Cloud month confusion</a></li>
+                        <li><a href="#spreadsheet">Spreadsheet copy tips</a></li>
+                        <li><a href="#cite">How to cite this page</a></li>
+                        <li><a href="#methodology-sla">SLA credit methodology</a></li>
+                        <li><a href="#methodology-downtime">Downtime cost methodology</a></li>
+                        <li><a href="#methodology-rto">RTO/RPO methodology</a></li>
+                        <li><a href="#assumptions">Assumptions &amp; limits</a></li>
+                        <li><a href="#faq">FAQ</a></li>
+                    </ol>
+                </nav>
+
+                <section class="article-section" id="formula">
+                    <h2>1. Core formula</h2>
+                    <div class="formula-box">
+                        <p><strong>Allowed downtime</strong> = period_minutes × (1 − uptime% / 100)</p>
+                        <p class="formula-sub">period_minutes = period_days × 24 × 60</p>
+                    </div>
+                    <p>
+                        Example: <strong>99.95%</strong> over a <strong>30-day</strong> month →
+                        43,200 × 0.0005 = <strong>21.6 minutes</strong> of allowed downtime.
+                    </p>
+                    <p>
+                        Uptime achieved from measured downtime:
+                    </p>
+                    <div class="formula-box">
+                        <p><strong>Actual uptime%</strong> = 100 × (1 − downtime_minutes / period_minutes)</p>
+                    </div>
+                    <p>
+                        These two formulas are enough for most planning work.
+                        First you find the budget (allowed downtime). Then you compare it to what monitoring measured.
+                        If measured downtime is larger than the budget, your achieved uptime is below the SLA target.
+                    </p>
+                </section>
+
+                <section class="article-section" id="lookup">
+                    <h2>2. Quick lookup</h2>
+                    <p>Pick an SLA and period. Values use the same formula as the tables below and our SLA calculator.</p>
+                    <div class="ref-lookup card">
+                        <div class="ref-lookup-grid">
+                            <label>
+                                Promised uptime
+                                <select id="ref-uptime">
+                                    <option value="99">99%</option>
+                                    <option value="99.5">99.5%</option>
+                                    <option value="99.9">99.9%</option>
+                                    <option value="99.95" selected>99.95%</option>
+                                    <option value="99.99">99.99%</option>
+                                    <option value="99.999">99.999%</option>
+                                </select>
+                            </label>
+                            <label>
+                                Period
+                                <select id="ref-period">
+                                    <option value="1">1 day</option>
+                                    <option value="7">1 week</option>
+                                    <option value="28">28 days</option>
+                                    <option value="30" selected>30 days</option>
+                                    <option value="31">31 days</option>
+                                    <option value="365">365 days</option>
+                                </select>
+                            </label>
+                        </div>
+                        <div class="ref-lookup-result" id="ref-lookup-result" aria-live="polite">
+                            —
+                        </div>
+                        <p class="ref-lookup-cta">
+                            Need credits in currency?
+                            <a href="../index.html#sla-calculator">Open the SLA Penalty Calculator</a>
+                        </p>
+                    </div>
+                </section>
+
+                <section class="article-section" id="tables">
+                    <h2>3. Full reference tables</h2>
+                    <p>
+                        Values are exact from the formula above. Display units switch to seconds, minutes, or hours for readability.
+                        Cloud contracts often use calendar months (28–31 days); the <strong>30-day</strong> column is the industry comparison baseline.
+                        For every calendar month length in one view, see
+                        <a href="calendar-month-sla-downtime-tables.html">calendar-month SLA downtime tables</a>.
+                    </p>
+
+                    <h3>Allowed downtime by SLA (human-readable)</h3>
+                    <div class="ref-table-wrap">
+                        <table class="ref-table">
+                            <caption>Allowed downtime for common SLA uptime targets</caption>
+                            <thead>
+                                <tr>
+                                    <th scope="col">SLA uptime</th>
+                                    <th scope="col">1 day</th>
+                                    <th scope="col">1 week</th>
+                                    <th scope="col">30-day month</th>
+                                    <th scope="col">365-day year</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th scope="row">99%</th>
+                                    <td>14.4 min</td>
+                                    <td>1.68 h</td>
+                                    <td>7.2 h</td>
+                                    <td>87.6 h (3.65 d)</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">99.5%</th>
+                                    <td>7.2 min</td>
+                                    <td>50.4 min</td>
+                                    <td>3.6 h</td>
+                                    <td>43.8 h</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">99.9%</th>
+                                    <td>1.44 min</td>
+                                    <td>10.08 min</td>
+                                    <td><strong>43.2 min</strong></td>
+                                    <td>8.76 h</td>
+                                </tr>
+                                <tr class="ref-row-highlight">
+                                    <th scope="row">99.95%</th>
+                                    <td>43.2 s</td>
+                                    <td>5.04 min</td>
+                                    <td><strong>21.6 min</strong></td>
+                                    <td>4.38 h</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">99.99%</th>
+                                    <td>8.64 s</td>
+                                    <td>1.008 min</td>
+                                    <td><strong>4.32 min</strong></td>
+                                    <td>52.56 min</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">99.999%</th>
+                                    <td>0.864 s</td>
+                                    <td>6.048 s</td>
+                                    <td>25.92 s</td>
+                                    <td>5.256 min</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <h3>Same data in minutes (for spreadsheets &amp; models)</h3>
+                    <div class="ref-table-wrap">
+                        <table class="ref-table">
+                            <caption>Allowed downtime in minutes</caption>
+                            <thead>
+                                <tr>
+                                    <th scope="col">SLA uptime</th>
+                                    <th scope="col">1 day</th>
+                                    <th scope="col">7 days</th>
+                                    <th scope="col">30 days</th>
+                                    <th scope="col">365 days</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr><th scope="row">99%</th><td>14.4</td><td>100.8</td><td>432</td><td>5256</td></tr>
+                                <tr><th scope="row">99.5%</th><td>7.2</td><td>50.4</td><td>216</td><td>2628</td></tr>
+                                <tr><th scope="row">99.9%</th><td>1.44</td><td>10.08</td><td>43.2</td><td>525.6</td></tr>
+                                <tr class="ref-row-highlight"><th scope="row">99.95%</th><td>0.72</td><td>5.04</td><td>21.6</td><td>262.8</td></tr>
+                                <tr><th scope="row">99.99%</th><td>0.144</td><td>1.008</td><td>4.32</td><td>52.56</td></tr>
+                                <tr><th scope="row">99.999%</th><td>0.0144</td><td>0.1008</td><td>0.432</td><td>5.256</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <section class="article-section" id="leap-years">
+                    <h2>4. Leap years note</h2>
+                    <p>
+                        A normal year has <strong>365 days</strong> = 365 × 1,440 = <strong>525,600 minutes</strong>.
+                        A leap year has <strong>366 days</strong> = 366 × 1,440 = <strong>527,040 minutes</strong>.
+                        The difference is 1,440 minutes — one extra day.
+                    </p>
+                    <p>
+                        Our yearly column uses <strong>365 days</strong> because that is the common comparison baseline in blogs, decks, and vendor marketing.
+                        It is not always the length your contract uses for a full calendar year.
+                    </p>
+                    <ul>
+                        <li>If your SLA measures a <strong>calendar year</strong> that includes February 29, use 366 days (or ask your vendor how they count).</li>
+                        <li>If your SLA measures each <strong>calendar month</strong>, leap day only changes February (28 → 29 days). Other months stay the same.</li>
+                        <li>The percentage math does not change. Only the period length changes.</li>
+                    </ul>
+                    <div class="edu-example">
+                        <p><strong>Quick check:</strong> 99.9% over 365 days allows 525.6 minutes (~8.76 hours).</p>
+                        <p>Over 366 days: 527,040 × 0.001 = <strong>527.04 minutes</strong> (~8.78 hours).</p>
+                        <p>The gap is small for three nines, but it can matter when you compare yearly reports side by side.</p>
+                    </div>
+                    <p>
+                        Leap <em>seconds</em> are ignored on this site. They are tiny for SLA planning and almost never appear in cloud credit math.
+                    </p>
+                </section>
+
+                <section class="article-section" id="five-nines">
+                    <h2>5. 99.999% (“five nines”) reality check</h2>
+                    <p>
+                        <strong>99.999%</strong> sounds like a small step up from 99.99%. In practice it is a different world.
+                        Over a 30-day month you get only <strong>0.432 minutes</strong> of allowed downtime — about <strong>26 seconds</strong>.
+                    </p>
+                    <p>
+                        That is less time than many teams need to confirm an alert, open a bridge call, and decide what to do.
+                        A single failed deploy, a DNS blip, or a short regional issue can burn the whole monthly budget.
+                    </p>
+                    <ul>
+                        <li><strong>99.9%</strong> (three nines): ~43.2 minutes / 30 days — still tight, but some planned work can fit if the contract allows it.</li>
+                        <li><strong>99.99%</strong> (four nines): ~4.32 minutes / 30 days — one short outage can use most of the budget.</li>
+                        <li><strong>99.999%</strong> (five nines): ~26 seconds / 30 days — almost no room for any customer-visible failure.</li>
+                    </ul>
+                    <p>
+                        Five nines usually requires multi-region design, fast failover, careful change control, and clear definitions of what counts as “down.”
+                        Buying a higher SLA number without changing architecture rarely delivers five-nines outcomes.
+                        Use the tables to set expectations with leadership: the time budget is the real message, not the marketing label.
+                    </p>
+                    <p>
+                        Also remember: the SLA budget is not the same as a credit payout.
+                        You can miss five nines and still receive only a small credit if the vendor’s tier table caps it.
+                        See our guide on
+                        <a href="how-to-file-sla-service-credit-claim.html">how to file a service credit claim</a>
+                        and the <a href="../index.html#sla-calculator">SLA Penalty Calculator</a>.
+                    </p>
+                </section>
+
+                <section class="article-section" id="cloud-month">
+                    <h2>6. Common cloud month confusion</h2>
+                    <p>
+                        People mix three different “months” when they talk about SLA math. Keep them separate:
+                    </p>
+                    <ol>
+                        <li><strong>Fixed 30-day month</strong> — useful for comparison and textbooks. Period = 43,200 minutes. Easy to remember.</li>
+                        <li><strong>Calendar month</strong> — what many cloud SLAs actually use: 28, 29, 30, or 31 days. Budget changes with the month.</li>
+                        <li><strong>Billing month</strong> — sometimes aligned with invoice dates, which may not start on the 1st. Read your contract.</li>
+                    </ol>
+                    <p>
+                        A frequent mistake: take a 30-day table value and apply it to March (31 days) or February (28/29 days).
+                        For 99.9%, February (28 days) allows 40.32 minutes, while a 31-day month allows 44.64 minutes.
+                        That is more than four minutes of difference — enough to change whether you are over or under the budget after a short outage.
+                    </p>
+                    <p>
+                        Another frequent mistake: comparing “monthly uptime” from a monitoring tool that uses a rolling 30 days
+                        with a vendor SLA that uses a calendar month. Align the window before you argue about credits.
+                    </p>
+                    <p>
+                        Tip: when you file a claim, write the period in full: “Calendar month March 2026 (31 days = 44,640 minutes).”
+                        Clear period language reduces back-and-forth with support.
+                    </p>
+                </section>
+
+                <section class="article-section" id="spreadsheet">
+                    <h2>7. Spreadsheet copy tips</h2>
+                    <p>
+                        You can rebuild every cell on this page in Excel, Google Sheets, or LibreOffice.
+                        Use one formula and change the inputs.
+                    </p>
+                    <div class="formula-box">
+                        <p><strong>Sheets / Excel:</strong> = days * 24 * 60 * (1 - uptime/100)</p>
+                        <p class="formula-sub">Example: =30*24*60*(1-99.95/100) → 21.6</p>
+                    </div>
+                    <ul>
+                        <li>Put <code>days</code> in one cell and <code>uptime</code> in another. Reference those cells so you can switch from 30 to 31 days without rewriting math.</li>
+                        <li>Store uptime as <strong>99.95</strong> (percent) or as <strong>0.9995</strong> (fraction) — but do not mix styles in one sheet.</li>
+                        <li>For display, keep full precision in the calculation cell, then format to 2–4 decimal places for reading.</li>
+                        <li>When pasting our minutes table, paste as values first, then add a “source” note with this page URL and date.</li>
+                        <li>To convert minutes to hours: divide by 60. To convert to seconds: multiply by 60.</li>
+                    </ul>
+                    <p>
+                        If your sheet disagrees with our table by a tiny amount, check floating-point rounding.
+                        Values like 4.32 and 21.6 are exact for the common percentages above when you use decimal arithmetic as shown.
+                    </p>
+                </section>
+
+                <section class="article-section" id="cite">
+                    <h2>8. How to cite this page</h2>
+                    <p>
+                        You may cite these tables and formulas in tickets, runbooks, academic work, and internal reports.
+                        Please link the canonical URL and state your inputs so others can reproduce the number.
+                    </p>
+                    <div class="edu-example">
+                        <p><strong>Suggested citation (plain text):</strong></p>
+                        <p>
+                            TechImpact.online. “SLA Uptime → Downtime Reference.” Updated July 23, 2026.
+                            https://www.techimpact.online/guides/sla-uptime-downtime-reference.html
+                            Formula: allowed_minutes = days × 24 × 60 × (1 − uptime/100). Example used: 99.95% over 30 days = 21.6 minutes.
+                        </p>
+                    </div>
+                    <ul>
+                        <li>Always include the <strong>uptime %</strong> and <strong>period length</strong> you used.</li>
+                        <li>If your claim uses a calendar month, say 28/29/30/31 — do not only say “a month.”</li>
+                        <li>Save a screenshot or PDF if you need a fixed evidence pack for a vendor claim.</li>
+                        <li>This page is a methodology reference. It is not legal advice and not your vendor’s SLA text.</li>
+                    </ul>
+                </section>
+
+                <section class="article-section" id="methodology-sla">
+                    <h2>9. SLA credit methodology (open)</h2>
+                    <p>
+                        Our <a href="../index.html#sla-calculator">SLA Penalty Calculator</a> estimates service-credit exposure.
+                        It does <em>not</em> replace your vendor’s SLA text.
+                    </p>
+                    <h3>Steps</h3>
+                    <ol class="ref-steps">
+                        <li>Compute actual uptime from downtime minutes (or take achieved uptime as input).</li>
+                        <li>Compute <strong>shortfall</strong> = max(0, promised_uptime − actual_uptime), in percentage points.</li>
+                        <li>If shortfall = 0 → penalty = 0.</li>
+                        <li>Else map shortfall into an editable <strong>penalty tier</strong> (threshold → % of contract value).</li>
+                        <li><strong>Estimated credit</strong> = contract_value × (tier_percent / 100).</li>
+                    </ol>
+                    <div class="formula-box">
+                        <p><strong>shortfall_pp</strong> = max(0, promised% − actual%)</p>
+                        <p><strong>credit</strong> = contract_value × tier%(shortfall) / 100</p>
+                    </div>
+                    <p>
+                        Worked example: $1,000,000 contract, 99.95% promised, 99.72% actual → shortfall 0.23 pp.
+                        If that lands in a 10% tier → estimated credit = <strong>$100,000</strong>.
+                    </p>
+                    <p>
+                        For a practical claim checklist (logs, exclusions, deadlines, evidence pack), read
+                        <a href="how-to-file-sla-service-credit-claim.html">How to file an SLA service credit claim</a>.
+                    </p>
+                </section>
+
+                <section class="article-section" id="methodology-downtime">
+                    <h2>10. Downtime cost methodology (open)</h2>
+                    <p>
+                        The <a href="../website-downtime-cost-calculator.html">Website Downtime Cost Calculator</a>
+                        estimates business impact of an outage window—not contractual credits.
+                    </p>
+                    <div class="formula-box">
+                        <p><strong>duration_hours</strong> = hours + minutes/60 <em>or</em> (end − start)</p>
+                        <p><strong>revenue_loss</strong> = revenue_per_hour × duration_hours</p>
+                        <p><strong>refund_cost</strong> = revenue_loss × refund_rate%</p>
+                        <p><strong>productivity_loss</strong> = employees × hourly_cost × duration_hours</p>
+                        <p><strong>conversion_impact</strong> = revenue_loss × conversion_drop%</p>
+                        <p><strong>total</strong> ≈ sum of enabled cost components</p>
+                    </div>
+                    <p>
+                        Use your own revenue/hour and staffing numbers. Published “$X per minute” industry averages are
+                        context only—they are not universal constants.
+                    </p>
+                </section>
+
+                <section class="article-section" id="methodology-rto">
+                    <h2>11. RTO / RPO impact methodology (open)</h2>
+                    <p>
+                        The <a href="../rto-rpo-impact-calculator.html">RTO/RPO Impact Calculator</a>
+                        annualizes recovery and data-loss exposure.
+                    </p>
+                    <div class="formula-box">
+                        <p><strong>RTO annual loss</strong> = rto_hours × incidents_per_year × revenue_per_hour</p>
+                        <p><strong>RPO annual cost</strong> = rpo_hours × incidents_per_year × data_recreation_cost_per_hour</p>
+                        <p><strong>Total annualized impact</strong> = RTO annual loss + RPO annual cost</p>
+                    </div>
+                    <p>
+                        <strong>RTO</strong> (Recovery Time Objective) is how long systems may stay down.
+                        <strong>RPO</strong> (Recovery Point Objective) is how much data you can afford to lose,
+                        expressed as time since the last good recovery point.
+                    </p>
+                </section>
+
+                <section class="article-section" id="assumptions">
+                    <h2>12. Assumptions &amp; limits</h2>
+                    <ul>
+                        <li>Time math uses 24-hour days. Leap seconds are ignored.</li>
+                        <li>Reference tables use fixed period lengths (1 / 7 / 30 / 365). Real SLAs may use calendar months.</li>
+                        <li>Yearly comparison uses 365 days unless you explicitly switch to 366 for a leap year.</li>
+                        <li>“Unavailable” is defined by each contract (probe failures, partial degradation, maintenance windows, etc.).</li>
+                        <li>Credits are usually future invoice reductions, not cash refunds, and often require timely claims with evidence.</li>
+                        <li>All TechImpact outputs are <strong>estimates</strong> for planning and negotiation support—not legal or accounting advice.</li>
+                        <li>Calculations run in your browser; we do not store your contract inputs on a server.</li>
+                    </ul>
+                </section>
+
+                <section class="article-section" id="faq">
+                    <h2>13. FAQ</h2>
+                    <div class="faq-list ref-faq">
+                        <div class="faq-item">
+                            <h3 class="faq-question">How many minutes does 99.9% allow in 30 days?</h3>
+                            <div class="faq-answer active">
+                                <p>43.2 minutes.</p>
+                            </div>
+                        </div>
+                        <div class="faq-item">
+                            <h3 class="faq-question">How many minutes does 99.95% allow in 30 days?</h3>
+                            <div class="faq-answer active">
+                                <p>21.6 minutes.</p>
+                            </div>
+                        </div>
+                        <div class="faq-item">
+                            <h3 class="faq-question">How many minutes does 99.99% allow in 30 days?</h3>
+                            <div class="faq-answer active">
+                                <p>4.32 minutes (~259 seconds).</p>
+                            </div>
+                        </div>
+                        <div class="faq-item">
+                            <h3 class="faq-question">How much downtime does 99.999% allow in 30 days?</h3>
+                            <div class="faq-answer active">
+                                <p>0.432 minutes — about 26 seconds. Five nines leaves almost no room for any outage.</p>
+                            </div>
+                        </div>
+                        <div class="faq-item">
+                            <h3 class="faq-question">Is a month always 30 days?</h3>
+                            <div class="faq-answer active">
+                                <p>
+                                    No. Many cloud SLAs use calendar months (28–31 days). Use a 30-day table for comparison;
+                                    use the real month length for claims. See
+                                    <a href="calendar-month-sla-downtime-tables.html">calendar-month tables</a>.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="faq-item">
+                            <h3 class="faq-question">Do leap years change the yearly budget?</h3>
+                            <div class="faq-answer active">
+                                <p>
+                                    Slightly. 365 days = 525,600 minutes; 366 days = 527,040 minutes.
+                                    Our yearly column uses 365 unless you choose leap-year math on purpose.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="faq-item">
+                            <h3 class="faq-question">Do these tables equal contractual service credits?</h3>
+                            <div class="faq-answer active">
+                                <p>
+                                    No. Allowed downtime is only the uptime budget. Credits depend on tier tables, exclusions, definitions, and claim windows.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="faq-item">
+                            <h3 class="faq-question">Can I cite these tables?</h3>
+                            <div class="faq-answer active">
+                                <p>
+                                    Yes. Please link to
+                                    <a href="https://www.techimpact.online/guides/sla-uptime-downtime-reference.html">this page</a>
+                                    and note the formula and period length you used. See the
+                                    <a href="#cite">How to cite</a> section for a ready-made citation.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="faq-item">
+                            <h3 class="faq-question">How do I turn a shortfall into an estimated credit?</h3>
+                            <div class="faq-answer active">
+                                <p>
+                                    Compute actual uptime, find shortfall versus the promise, map it to your vendor’s credit tier, then multiply by eligible charges.
+                                    The <a href="../index.html#sla-calculator">SLA Penalty Calculator</a> walks through that path for planning.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="faq-item">
+                            <h3 class="faq-question">What should I put in a spreadsheet cell?</h3>
+                            <div class="faq-answer active">
+                                <p>
+                                    Use <code>=days*24*60*(1-uptime/100)</code> with days and uptime in separate cells.
+                                    See <a href="#spreadsheet">Spreadsheet copy tips</a>.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="article-section ref-cta-block">
+                    <h2>Use the calculators</h2>
+                    <p>
+                        <a class="btn primary" href="../index.html#sla-calculator">SLA Penalty Calculator</a>
+                        <a class="btn secondary" href="../website-downtime-cost-calculator.html">Downtime Cost</a>
+                        <a class="btn secondary" href="../rto-rpo-impact-calculator.html">RTO/RPO Impact</a>
+                        <a class="btn secondary" href="how-to-file-sla-service-credit-claim.html">File a Credit Claim</a>
+                    </p>
+                </section>
+            </article>
+        </div>
+    </main>
+
+    <div id="footer-placeholder"></div>
+    <script src="../js/includes.js"></script>
+    <script>
+        (function () {
+            const uptimeEl = document.getElementById('ref-uptime');
+            const periodEl = document.getElementById('ref-period');
+            const out = document.getElementById('ref-lookup-result');
+            if (!uptimeEl || !periodEl || !out) return;
+
+            function formatAllowed(minutes) {
+                const sec = minutes * 60;
+                if (sec < 60) return sec.toFixed(3).replace(/\.?0+$/, '') + ' seconds (' + minutes.toFixed(4).replace(/\.?0+$/, '') + ' min)';
+                if (minutes < 60) return minutes.toFixed(4).replace(/\.?0+$/, '') + ' minutes';
+                const hours = minutes / 60;
+                if (hours < 48) return hours.toFixed(4).replace(/\.?0+$/, '') + ' hours (' + minutes.toFixed(2).replace(/\.?0+$/, '') + ' min)';
+                return hours.toFixed(2) + ' hours (' + (hours / 24).toFixed(2) + ' days)';
+            }
+
+            function update() {
+                const uptime = parseFloat(uptimeEl.value);
+                const days = parseFloat(periodEl.value);
+                const periodMinutes = days * 24 * 60;
+                const allowed = periodMinutes * (1 - uptime / 100);
+                out.innerHTML =
+                    '<div class="ref-lookup-value">' + formatAllowed(allowed) + '</div>' +
+                    '<div class="ref-lookup-meta">' + uptime + '% over ' + days +
+                    ' day(s) · period = ' + periodMinutes.toLocaleString() + ' minutes</div>';
+            }
+
+            uptimeEl.addEventListener('change', update);
+            periodEl.addEventListener('change', update);
+            update();
+        })();
+    </script>
+</body>
+</html>

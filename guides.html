@@ -1,0 +1,636 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="google-adsense-account" content="ca-pub-5341779159353455">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tech Guides - SLA, Downtime & Disaster Recovery | TechImpact.online</title>
+    <meta name="description" content="Comprehensive guides on SLA penalties, downtime cost calculation, and disaster recovery planning. Learn best practices for CTOs, DevOps teams, and IT managers.">
+    <meta name="keywords" content="SLA guide, downtime cost guide, disaster recovery guide, RTO RPO guide, IT best practices, CTO resources, DevOps guides">
+    <meta name="author" content="TechImpact.online">
+    <link rel="canonical" href="https://www.techimpact.online/guides.html">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.techimpact.online/guides.html">
+    <meta property="og:title" content="Tech Guides - SLA, Downtime & Disaster Recovery | TechImpact.online">
+    <meta property="og:description" content="Comprehensive guides on SLA penalties, downtime cost calculation, and disaster recovery planning for modern tech teams.">
+    <meta property="og:image" content="https://www.techimpact.online/assets/og/guides-og-image.jpg">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://www.techimpact.online/guides.html">
+    <meta property="twitter:title" content="Tech Guides - SLA, Downtime & Disaster Recovery | TechImpact.online">
+    <meta property="twitter:description" content="Comprehensive guides on SLA penalties, downtime cost calculation, and disaster recovery planning for modern tech teams.">
+    <meta property="twitter:image" content="https://www.techimpact.online/assets/og/guides-twitter-image.jpg">
+
+    <!-- JSON-LD Schema -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "CollectionPage",
+        "name": "Tech Guides - SLA, Downtime & Disaster Recovery",
+        "description": "Comprehensive guides on SLA penalties, downtime cost calculation, and disaster recovery planning for modern tech teams",
+        "url": "https://www.techimpact.online/guides.html",
+        "mainEntity": {
+            "@type": "ItemList",
+            "itemListElement": [
+                {
+                    "@type": "Article",
+                    "position": 1,
+                    "name": "Recent Outages → Money Impact (Last 14 Days)",
+                    "url": "https://www.techimpact.online/guides/recent-outages-cost-brief.html",
+                    "description": "Living brief of major outages with source links and illustrative downtime-cost modeling — no official vendor loss claims"
+                },
+                {
+                    "@type": "Article",
+                    "position": 2,
+                    "name": "How to File an SLA Service Credit Claim",
+                    "url": "https://www.techimpact.online/guides/how-to-file-sla-service-credit-claim.html",
+                    "description": "Step-by-step guide to gathering logs, checking exclusions, calculating shortfall, meeting deadlines, and escalating a service credit claim"
+                },
+                {
+                    "@type": "Article",
+                    "position": 3,
+                    "name": "SLA Uptime to Downtime Reference + Open Methodology",
+                    "url": "https://www.techimpact.online/guides/sla-uptime-downtime-reference.html",
+                    "description": "Allowed downtime tables for 99%–99.999% and open formulas for SLA, downtime cost, and RTO/RPO calculators"
+                },
+                {
+                    "@type": "Article",
+                    "position": 4,
+                    "name": "Calendar Month SLA Downtime Tables (28–31 Days)",
+                    "url": "https://www.techimpact.online/guides/calendar-month-sla-downtime-tables.html",
+                    "description": "Exact allowed downtime minutes for SLA tiers across 28, 29, 30, and 31-day calendar months"
+                },
+                {
+                    "@type": "Article",
+                    "position": 5,
+                    "name": "RTO vs RPO Decision Matrix",
+                    "url": "https://www.techimpact.online/guides/rto-rpo-decision-matrix.html",
+                    "description": "Plain-language matrix for choosing RTO and RPO targets by system type, with yearly cost formulas"
+                },
+                {
+                    "@type": "Article",
+                    "position": 6,
+                    "name": "Ultimate Guide to SLA Penalties",
+                    "url": "https://www.techimpact.online/guides/ultimate-guide-to-sla-penalties.html",
+                    "description": "Complete guide to understanding, calculating, and managing SLA penalties and service credits"
+                },
+                {
+                    "@type": "Article",
+                    "position": 7,
+                    "name": "Downtime Cost Calculator: Why It Matters",
+                    "url": "https://www.techimpact.online/guides/downtime-cost-calculator-why-it-matters.html",
+                    "description": "Learn how to calculate downtime costs and why accurate cost modeling is crucial for business decisions"
+                },
+                {
+                    "@type": "Article",
+                    "position": 8,
+                    "name": "Disaster Recovery Basics: RTO vs RPO",
+                    "url": "https://www.techimpact.online/guides/disaster-recovery-basics-rto-vs-rpo.html",
+                    "description": "Master the fundamentals of disaster recovery planning with RTO and RPO objectives"
+                },
+                {
+                    "@type": "Article",
+                    "position": 9,
+                    "name": "Business Continuity Consulting: Starlink Outage Lessons",
+                    "url": "https://www.techimpact.online/guides/business-continuity-consulting-downtime-sla-rto.html",
+                    "description": "Learn from the September 15, 2025 Starlink outage about SLA limitations, downtime costs, and practical business continuity planning"
+                },
+                {
+                    "@type": "Article",
+                    "position": 10,
+                    "name": "How to Build an n8n Watchdog to Monitor Landing Pages and Auto-Pause Ads",
+                    "url": "https://www.techimpact.online/guides/n8n-watchdog.html",
+                    "description": "Learn how to build a practical n8n watchdog that monitors landing pages for errors, automatically pauses failing ads, and protects your advertising budget"
+                },
+                {
+                    "@type": "Article",
+                    "position": 11,
+                    "name": "Downtime Cost Calculator: Real Incidents, Real Money, Real ROI",
+                    "url": "https://www.techimpact.online/guides/downtime-cost-calculator-real-world-examples.html",
+                    "description": "Real-world case studies of downtime costs using actual incidents from Azure, Cloudflare, and other major providers. Learn how to calculate ROI for resilience investments"
+                }
+            ]
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "TechImpact.online",
+            "url": "https://www.techimpact.online/"
+        }
+    }
+    </script>
+
+    <link rel="stylesheet" href="styles.css">
+    <!-- Google AdSense -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5341779159353455"
+        crossorigin="anonymous"></script>    
+</head>
+<body>
+    <!-- Header Placeholder -->
+    <div id="header-placeholder"></div>
+
+    <!-- Main Content -->
+    <main class="guides-main">
+        <div class="container">
+            <!-- Hero Section -->
+            <section class="guides-hero">
+                <h1 class="hero-title">Tech Guides & Best Practices</h1>
+                <p class="hero-subtitle">Comprehensive guides for CTOs, DevOps teams, and IT managers on SLA management, downtime cost calculation, and disaster recovery planning.</p>
+            </section>
+
+            <!-- Breadcrumbs -->
+            <nav class="breadcrumbs">
+                <a href="index.html">Home</a> > 
+                <span>Guides</span>
+            </nav>
+
+            <!-- Guides Grid -->
+            <section class="guides-grid">
+                <article class="guide-card">
+                    <div class="guide-image">
+                        <div class="guide-icon">⚡</div>
+                    </div>
+                    <div class="guide-content">
+                        <h2 class="guide-title">
+                            <a href="guides/recent-outages-cost-brief.html">Recent Outages → Money Impact (Last 14 Days)</a>
+                        </h2>
+                        <p class="guide-description">Living brief updated July 23, 2026: AWS CloudFront VPC Origins, Google Cloud europe-west4-a, and Meta apps — what broke, who felt it, and how to model YOUR loss with labeled illustrative calculator links. No official vendor loss claims.</p>
+                        <div class="guide-meta">
+                            <span class="guide-category">Living reference</span>
+                            <span class="guide-read-time">14 min read</span>
+                        </div>
+                        <div class="guide-topics">
+                            <span class="topic-tag">Outages</span>
+                            <span class="topic-tag">Cost Modeling</span>
+                            <span class="topic-tag">CloudFront</span>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="guide-card">
+                    <div class="guide-image">
+                        <div class="guide-icon">🧾</div>
+                    </div>
+                    <div class="guide-content">
+                        <h2 class="guide-title">
+                            <a href="guides/how-to-file-sla-service-credit-claim.html">How to File an SLA Service Credit Claim</a>
+                        </h2>
+                        <p class="guide-description">Step-by-step in simple English: gather logs, check exclusions, calculate shortfall, meet deadlines, build an evidence pack, and escalate. Includes a worked example and links to the SLA calculator.</p>
+                        <div class="guide-meta">
+                            <span class="guide-category">SLA Management</span>
+                            <span class="guide-read-time">12 min read</span>
+                        </div>
+                        <div class="guide-topics">
+                            <span class="topic-tag">Service Credits</span>
+                            <span class="topic-tag">Claims</span>
+                            <span class="topic-tag">Evidence</span>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="guide-card">
+                    <div class="guide-image">
+                        <div class="guide-icon">📐</div>
+                    </div>
+                    <div class="guide-content">
+                        <h2 class="guide-title">
+                            <a href="guides/sla-uptime-downtime-reference.html">SLA Uptime → Downtime Reference + Open Methodology</a>
+                        </h2>
+                        <p class="guide-description">Definitive allowed-downtime tables for 99%–99.999% (day, week, month, year), plus the exact formulas behind our SLA, downtime-cost, and RTO/RPO calculators. Built to be cited.</p>
+                        <div class="guide-meta">
+                            <span class="guide-category">Reference</span>
+                            <span class="guide-read-time">8 min read</span>
+                        </div>
+                        <div class="guide-topics">
+                            <span class="topic-tag">SLA Tables</span>
+                            <span class="topic-tag">Formulas</span>
+                            <span class="topic-tag">Methodology</span>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="guide-card">
+                    <div class="guide-image">
+                        <div class="guide-icon">📅</div>
+                    </div>
+                    <div class="guide-content">
+                        <h2 class="guide-title">
+                            <a href="guides/calendar-month-sla-downtime-tables.html">Calendar Month SLA Downtime Tables (28–31 Days)</a>
+                        </h2>
+                        <p class="guide-description">Exact allowed downtime in minutes for real calendar months. Useful when your cloud SLA does not use a fixed 30-day month.</p>
+                        <div class="guide-meta">
+                            <span class="guide-category">Reference</span>
+                            <span class="guide-read-time">6 min read</span>
+                        </div>
+                        <div class="guide-topics">
+                            <span class="topic-tag">Calendar Month</span>
+                            <span class="topic-tag">SLA</span>
+                            <span class="topic-tag">Tables</span>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="guide-card">
+                    <div class="guide-image">
+                        <div class="guide-icon">🧭</div>
+                    </div>
+                    <div class="guide-content">
+                        <h2 class="guide-title">
+                            <a href="guides/rto-rpo-decision-matrix.html">RTO vs RPO Decision Matrix</a>
+                        </h2>
+                        <p class="guide-description">Simple guidance for choosing recovery time and data-loss targets by system type, with yearly cost formulas and examples in plain English.</p>
+                        <div class="guide-meta">
+                            <span class="guide-category">Disaster Recovery</span>
+                            <span class="guide-read-time">7 min read</span>
+                        </div>
+                        <div class="guide-topics">
+                            <span class="topic-tag">RTO</span>
+                            <span class="topic-tag">RPO</span>
+                            <span class="topic-tag">Decision Matrix</span>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="guide-card">
+                    <div class="guide-image">
+                        <div class="guide-icon">📋</div>
+                    </div>
+                    <div class="guide-content">
+                        <h2 class="guide-title">
+                            <a href="guides/ultimate-guide-to-sla-penalties.html">Ultimate Guide to SLA Penalties</a>
+                        </h2>
+                        <p class="guide-description">Master SLA penalty calculations, understand service credit structures, and learn how to negotiate better contract terms. This comprehensive guide covers everything from basic calculations to advanced risk management strategies.</p>
+                        <div class="guide-meta">
+                            <span class="guide-category">SLA Management</span>
+                            <span class="guide-read-time">12 min read</span>
+                        </div>
+                        <div class="guide-topics">
+                            <span class="topic-tag">Service Credits</span>
+                            <span class="topic-tag">Contract Negotiation</span>
+                            <span class="topic-tag">Risk Management</span>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="guide-card">
+                    <div class="guide-image">
+                        <div class="guide-icon">💰</div>
+                    </div>
+                    <div class="guide-content">
+                        <h2 class="guide-title">
+                            <a href="guides/downtime-cost-calculator-why-it-matters.html">Downtime Cost Calculator: Why It Matters</a>
+                        </h2>
+                        <p class="guide-description">Learn how to accurately calculate downtime costs and understand why precise cost modeling is crucial for making informed infrastructure investment decisions. Includes real-world examples and ROI calculations.</p>
+                        <div class="guide-meta">
+                            <span class="guide-category">Cost Analysis</span>
+                            <span class="guide-read-time">15 min read</span>
+                        </div>
+                        <div class="guide-topics">
+                            <span class="topic-tag">Revenue Impact</span>
+                            <span class="topic-tag">ROI Analysis</span>
+                            <span class="topic-tag">Business Metrics</span>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="guide-card">
+                    <div class="guide-image">
+                        <div class="guide-icon">🔄</div>
+                    </div>
+                    <div class="guide-content">
+                        <h2 class="guide-title">
+                            <a href="guides/disaster-recovery-basics-rto-vs-rpo.html">Disaster Recovery Basics: RTO vs RPO</a>
+                        </h2>
+                        <p class="guide-description">Understand the fundamentals of disaster recovery planning with Recovery Time Objectives (RTO) and Recovery Point Objectives (RPO). Learn how to set realistic targets and calculate the financial impact of your recovery strategy.</p>
+                        <div class="guide-meta">
+                            <span class="guide-category">Disaster Recovery</span>
+                            <span class="guide-read-time">18 min read</span>
+                        </div>
+                        <div class="guide-topics">
+                            <span class="topic-tag">RTO/RPO Planning</span>
+                            <span class="topic-tag">Business Continuity</span>
+                            <span class="topic-tag">Risk Assessment</span>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="guide-card">
+                    <div class="guide-image">
+                        <div class="guide-icon">🚀</div>
+                    </div>
+                    <div class="guide-content">
+                        <h2 class="guide-title">
+                            <a href="guides/business-continuity-consulting-downtime-sla-rto.html">Business Continuity Consulting: Starlink Outage Lessons</a>
+                        </h2>
+                        <p class="guide-description">Learn from the September 15, 2025 Starlink outage what it teaches about business continuity consulting, SLA limitations, downtime costs, and practical RTO/RPO planning for single-provider dependencies.</p>
+                        <div class="guide-meta">
+                            <span class="guide-category">Business Continuity</span>
+                            <span class="guide-read-time">22 min read</span>
+                        </div>
+                        <div class="guide-topics">
+                            <span class="topic-tag">Business Continuity Consulting</span>
+                            <span class="topic-tag">SLA Limitations</span>
+                            <span class="topic-tag">Single Provider Risk</span>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="guide-card">
+                    <div class="guide-image">
+                        <div class="guide-icon">🤖</div>
+                    </div>
+                    <div class="guide-content">
+                        <h2 class="guide-title">
+                            <a href="guides/n8n-watchdog.html">How to Build an n8n Watchdog to Monitor Landing Pages and Auto-Pause Ads</a>
+                        </h2>
+                        <p class="guide-description">Learn how to build a practical n8n watchdog that monitors landing pages for errors, checks DOM elements, automatically pauses failing ads, and alerts your team with context and screenshots to protect your advertising budget.</p>
+                        <div class="guide-meta">
+                            <span class="guide-category">Marketing Automation</span>
+                            <span class="guide-read-time">18 min read</span>
+                        </div>
+                        <div class="guide-topics">
+                            <span class="topic-tag">n8n Automation</span>
+                            <span class="topic-tag">Ad Monitoring</span>
+                            <span class="topic-tag">Landing Page QA</span>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="guide-card">
+                    <div class="guide-image">
+                        <div class="guide-icon">📊</div>
+                    </div>
+                    <div class="guide-content">
+                        <h2 class="guide-title">
+                            <a href="guides/downtime-cost-calculator-real-world-examples.html">Downtime Cost Calculator: Real Incidents, Real Money, Real ROI</a>
+                        </h2>
+                        <p class="guide-description">Real-world case studies of downtime costs using actual incidents from Azure, Cloudflare, and other major providers. Learn how to calculate ROI for resilience investments with concrete examples and industry benchmarks.</p>
+                        <div class="guide-meta">
+                            <span class="guide-category">Cost Analysis</span>
+                            <span class="guide-read-time">18 min read</span>
+                        </div>
+                        <div class="guide-topics">
+                            <span class="topic-tag">Real-World Examples</span>
+                            <span class="topic-tag">Azure Outages</span>
+                            <span class="topic-tag">ROI Analysis</span>
+                        </div>
+                    </div>
+                </article>
+            </section>
+
+            <!-- CTA Section -->
+            <section class="guides-cta">
+                <div class="cta-content">
+                    <h2>Ready to Apply These Concepts?</h2>
+                    <p>Use our calculators to put these guides into practice with your own data and scenarios.</p>
+                    <div class="cta-buttons">
+                        <a href="index.html" class="btn btn-primary">Try SLA Calculator</a>
+                        <a href="website-downtime-cost-calculator.html" class="btn btn-secondary">Try Downtime Calculator</a>
+                        <a href="rto-rpo-impact-calculator.html" class="btn btn-secondary">Try RTO/RPO Calculator</a>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+
+    <style>
+        .guides-main {
+            padding: 2rem 0;
+            min-height: 80vh;
+        }
+
+        .guides-hero {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding: 2rem 0;
+        }
+
+        .guides-hero .hero-title {
+            font-size: 3rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            color: #ffffff;
+            background: linear-gradient(135deg, #4a9eff, #66b3ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .guides-hero .hero-subtitle {
+            font-size: 1.2rem;
+            color: #e0e0e0;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .breadcrumbs {
+            margin-bottom: 2rem;
+            font-size: 0.9rem;
+            color: #ccc;
+        }
+
+        .breadcrumbs a {
+            color: #4a9eff;
+            text-decoration: none;
+        }
+
+        .breadcrumbs a:hover {
+            color: #66b3ff;
+        }
+
+        .guides-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .guide-card {
+            background: #1a1a1a;
+            border-radius: 12px;
+            padding: 2rem;
+            border: 1px solid #333;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .guide-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(74, 158, 255, 0.2);
+        }
+
+        .guide-image {
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .guide-icon {
+            font-size: 3rem;
+            display: inline-block;
+            padding: 1rem;
+            background: linear-gradient(135deg, #4a9eff, #66b3ff);
+            border-radius: 50%;
+            width: 80px;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto;
+        }
+
+        .guide-content {
+            text-align: left;
+        }
+
+        .guide-title {
+            margin-bottom: 1rem;
+        }
+
+        .guide-title a {
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 1.5rem;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+
+        .guide-title a:hover {
+            color: #4a9eff;
+        }
+
+        .guide-description {
+            color: #e0e0e0;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .guide-meta {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+        }
+
+        .guide-category {
+            background: #4a9eff;
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-weight: 500;
+        }
+
+        .guide-read-time {
+            color: #ccc;
+            display: flex;
+            align-items: center;
+        }
+
+        .guide-topics {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .topic-tag {
+            background: #2a2a2a;
+            color: #e0e0e0;
+            padding: 0.25rem 0.75rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            border: 1px solid #444;
+        }
+
+        .guides-cta {
+            background: #1a1a1a;
+            border-radius: 12px;
+            padding: 3rem 2rem;
+            text-align: center;
+            border: 1px solid #333;
+        }
+
+        .cta-content h2 {
+            color: #ffffff;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .cta-content p {
+            color: #e0e0e0;
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background: #4a9eff;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #66b3ff;
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: #4a9eff;
+            border: 2px solid #4a9eff;
+        }
+
+        .btn-secondary:hover {
+            background: #4a9eff;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 768px) {
+            .guides-hero .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .guides-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .guide-card {
+                padding: 1.5rem;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .btn {
+                width: 100%;
+                max-width: 300px;
+            }
+        }
+    </style>
+
+    <!-- Footer Placeholder -->
+    <div id="footer-placeholder"></div>
+
+    <!-- Include System -->
+    <script src="js/includes.js"></script>
+</body>
+</html>

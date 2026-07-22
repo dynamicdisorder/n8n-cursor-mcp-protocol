@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="google-adsense-account" content="ca-pub-5341779159353455">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cost of Extra Nines Calculator – SLA Availability | TechImpact.online</title>
+    <meta name="description" content="Compare two SLA uptime targets (e.g. 99.9 vs 99.99). See downtime budget differences and estimate yearly revenue exposure if you use the full budget. Free browser tool.">
+    <meta name="keywords" content="cost of nines, availability calculator, 99.9 vs 99.99, SLA comparison, uptime cost, five nines">
+    <meta name="author" content="TechImpact.online">
+    <meta name="robots" content="index,follow">
+
+    <meta property="og:title" content="Cost of Extra Nines Calculator | TechImpact.online">
+    <meta property="og:description" content="Compare two SLA targets. See allowed downtime difference and yearly revenue exposure if you consume the full budget.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.techimpact.online/nines-availability-cost-calculator.html">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Cost of Extra Nines Calculator | TechImpact.online">
+    <meta name="twitter:description" content="Compare SLA uptime targets and estimate the money risk of downtime budgets.">
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "Cost of Extra Nines Calculator",
+        "description": "Compare two SLA uptime targets, show allowed downtime differences, and estimate yearly downtime cost exposure from revenue per hour.",
+        "url": "https://www.techimpact.online/nines-availability-cost-calculator.html",
+        "applicationCategory": "BusinessApplication",
+        "operatingSystem": "Web Browser",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        },
+        "creator": {
+            "@type": "Organization",
+            "name": "TechImpact.online"
+        }
+    }
+    </script>
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {
+                "@type": "Question",
+                "name": "What does “nines” mean in availability?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "“Nines” is shorthand for uptime percentage. Three nines means 99.9%. Four nines means 99.99%. Five nines means 99.999%. Each extra nine usually cuts allowed downtime by about 10×."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "How does this calculator estimate cost?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "It computes allowed downtime for each SLA over 30 and 365 days, then multiplies yearly allowed hours by your revenue per hour. That is a full-budget exposure estimate, not a prediction of real outages."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "When is a higher SLA worth paying for?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "When the money risk of the extra downtime budget (or expected outage difference) is larger than the extra price of the higher SLA, and your team can actually use the tighter budget."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "What are diminishing returns for nines?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Each extra nine cuts downtime budget by about 10×, but cost and complexity often rise faster. The jump from four to five nines is usually much harder than from two to three nines."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Should I use full-budget exposure or expected outage minutes?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Use full-budget for an upper-bound planning view. Use expected outage minutes when you have history. Many teams show both numbers in the same business case."
+                }
+            }
+        ]
+    }
+    </script>
+
+    <link rel="stylesheet" href="styles.css">
+    <link rel="canonical" href="https://www.techimpact.online/nines-availability-cost-calculator.html">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5341779159353455"
+        crossorigin="anonymous"></script>
+</head>
+<body>
+    <div id="header-placeholder"></div>
+
+    <section class="hero">
+        <div class="container">
+            <h1 class="hero-title">
+                <span>Is the Next Nine</span>
+                <span class="gradient-text">Worth the Cost?</span>
+            </h1>
+            <p class="hero-subtitle">Compare two SLA targets. See how much less downtime the higher “nine” buys — and what that budget is worth in yearly revenue terms.</p>
+            <div class="hero-actions">
+                <a href="#nines-calculator" class="btn primary large">Compare SLAs</a>
+                <a href="allowed-downtime-calculator.html" class="btn secondary large">Allowed Downtime Tool</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="calculator-tabs">
+        <div class="container">
+            <div class="tab-nav">
+                <a href="index.html#sla-calculator" class="tab-link">SLA Penalty</a>
+                <a href="website-downtime-cost-calculator.html" class="tab-link">Downtime Cost</a>
+                <a href="rto-rpo-impact-calculator.html" class="tab-link">RTO/RPO Impact</a>
+                <a href="allowed-downtime-calculator.html" class="tab-link">Allowed Downtime</a>
+                <a href="nines-availability-cost-calculator.html" class="tab-link active">Cost of Nines</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="calculator-section" id="nines-calculator">
+        <div class="container">
+            <div class="calculator-grid">
+                <div class="calculator-form">
+                    <div class="card">
+                        <h2 class="card-title">Compare Two SLA Targets</h2>
+                        <p class="input-hint" style="margin-bottom:1rem;">Pick SLA A and SLA B. Enter revenue per hour to estimate full-budget yearly exposure.</p>
+
+                        <div class="form-group">
+                            <label for="sla-a">SLA A — lower / current (%)</label>
+                            <select id="sla-a" class="form-input">
+                                <option value="99">99%</option>
+                                <option value="99.5">99.5%</option>
+                                <option value="99.9" selected>99.9%</option>
+                                <option value="99.95">99.95%</option>
+                                <option value="99.99">99.99%</option>
+                                <option value="99.999">99.999%</option>
+                                <option value="custom">Custom…</option>
+                            </select>
+                        </div>
+                        <div class="form-group" id="sla-a-custom-group" hidden>
+                            <label for="sla-a-custom">Custom SLA A (%)</label>
+                            <input type="number" id="sla-a-custom" class="form-input" value="99.9" min="0" max="100" step="0.001">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="sla-b">SLA B — higher / upgrade (%)</label>
+                            <select id="sla-b" class="form-input">
+                                <option value="99">99%</option>
+                                <option value="99.5">99.5%</option>
+                                <option value="99.9">99.9%</option>
+                                <option value="99.95">99.95%</option>
+                                <option value="99.99" selected>99.99%</option>
+                                <option value="99.999">99.999%</option>
+                                <option value="custom">Custom…</option>
+                            </select>
+                        </div>
+                        <div class="form-group" id="sla-b-custom-group" hidden>
+                            <label for="sla-b-custom">Custom SLA B (%)</label>
+                            <input type="number" id="sla-b-custom" class="form-input" value="99.99" min="0" max="100" step="0.001">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="revenue-per-hour">Revenue per hour</label>
+                            <div class="input-group">
+                                <select id="currency" class="currency-select">
+                                    <option value="USD">USD</option>
+                                    <option value="EUR">EUR</option>
+                                </select>
+                                <input type="number" id="revenue-per-hour" class="form-input" value="5000" min="0" step="100">
+                            </div>
+                            <span class="input-hint">Used for full-budget yearly exposure: (allowed year minutes ÷ 60) × revenue/hour</span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="expected-delta-minutes">Optional: expected outage difference (minutes / year)</label>
+                            <input type="number" id="expected-delta-minutes" class="form-input" value="" min="0" step="1" placeholder="Leave blank to use budget delta">
+                            <span class="input-hint">If you expect SLA B to cut outages by N minutes/year, we also show that money delta.</span>
+                        </div>
+
+                        <div class="form-actions">
+                            <button type="button" class="btn primary" id="calc-nines-btn">Compare</button>
+                            <button type="button" class="btn secondary" id="reset-nines-btn">Reset</button>
+                            <button type="button" class="btn secondary" id="share-nines-btn">Copy share link</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="calculator-results">
+                    <div class="card">
+                        <h2 class="card-title">Downtime Budget Difference</h2>
+                        <div class="result-main">
+                            <div class="annualized-loss">
+                                <span class="loss-amount" id="delta-year-minutes">—</span>
+                                <span class="loss-label">Extra minutes allowed by A vs B (per year)</span>
+                            </div>
+                        </div>
+
+                        <div class="cost-breakdown">
+                            <h4>Allowed downtime — 30 days</h4>
+                            <div class="breakdown-item">
+                                <span class="breakdown-label" id="label-a-30">SLA A:</span>
+                                <span class="breakdown-value" id="allowed-a-30">—</span>
+                            </div>
+                            <div class="breakdown-item">
+                                <span class="breakdown-label" id="label-b-30">SLA B:</span>
+                                <span class="breakdown-value" id="allowed-b-30">—</span>
+                            </div>
+                            <div class="breakdown-item breakdown-total">
+                                <span class="breakdown-label">Difference (A − B):</span>
+                                <span class="breakdown-value" id="delta-30">—</span>
+                            </div>
+                        </div>
+
+                        <div class="cost-breakdown" style="margin-top:1rem;">
+                            <h4>Allowed downtime — 365 days</h4>
+                            <div class="breakdown-item">
+                                <span class="breakdown-label" id="label-a-365">SLA A:</span>
+                                <span class="breakdown-value" id="allowed-a-365">—</span>
+                            </div>
+                            <div class="breakdown-item">
+                                <span class="breakdown-label" id="label-b-365">SLA B:</span>
+                                <span class="breakdown-value" id="allowed-b-365">—</span>
+                            </div>
+                            <div class="breakdown-item breakdown-total">
+                                <span class="breakdown-label">Difference (A − B):</span>
+                                <span class="breakdown-value" id="delta-365">—</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card" style="margin-top:1.5rem;">
+                        <h2 class="card-title">Yearly Money Exposure (estimate)</h2>
+                        <p class="input-hint" style="margin-bottom:1rem;">If you used the <em>full</em> yearly downtime budget as outage time:</p>
+                        <div class="cost-breakdown">
+                            <div class="breakdown-item">
+                                <span class="breakdown-label">SLA A full-budget exposure:</span>
+                                <span class="breakdown-value" id="cost-a">—</span>
+                            </div>
+                            <div class="breakdown-item">
+                                <span class="breakdown-label">SLA B full-budget exposure:</span>
+                                <span class="breakdown-value" id="cost-b">—</span>
+                            </div>
+                            <div class="breakdown-item breakdown-total">
+                                <span class="breakdown-label">Delta (A − B):</span>
+                                <span class="breakdown-value" id="cost-delta">—</span>
+                            </div>
+                        </div>
+                        <div class="cost-breakdown" id="expected-block" style="margin-top:1rem;" hidden>
+                            <h4>Using your expected outage difference</h4>
+                            <div class="breakdown-item breakdown-total">
+                                <span class="breakdown-label">Expected yearly cost delta:</span>
+                                <span class="breakdown-value" id="expected-cost-delta">—</span>
+                            </div>
+                        </div>
+                        <div class="formula-box" style="margin-top:1rem;">
+                            <p>exposure ≈ (allowed_year_minutes / 60) × revenue_per_hour</p>
+                            <p class="formula-sub">This is a planning estimate, not a forecast of real outages.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="edu-block" id="learn-nines">
+        <div class="container">
+            <div class="edu-inner">
+                <h2>What “nines” means</h2>
+                <p>
+                    People say “three nines” or “four nines” when they talk about uptime.
+                    It is shorthand for how many nines appear in an availability target.
+                </p>
+                <ul>
+                    <li><strong>Two nines</strong> → 99%</li>
+                    <li><strong>Three nines</strong> → 99.9%</li>
+                    <li><strong>Four nines</strong> → 99.99%</li>
+                    <li><strong>Five nines</strong> → 99.999%</li>
+                </ul>
+                <p>
+                    Each extra nine usually shrinks the allowed downtime by about <strong>10×</strong>.
+                    That sounds small on paper. In operations, it is a big jump in engineering effort and cost.
+                </p>
+                <p>
+                    An <strong>SLA</strong> (Service Level Agreement) is the written promise.
+                    “Nines” are a short way to say the uptime part of that promise.
+                    Credits, exclusions, and measurement rules still live in the contract text.
+                </p>
+
+                <div class="edu-example">
+                    <p><strong>Simple example: 99.9% vs 99.99% over 30 days</strong></p>
+                    <p>99.9% allows <strong>43.2 minutes</strong>.</p>
+                    <p>99.99% allows <strong>4.32 minutes</strong>.</p>
+                    <p>Difference ≈ <strong>38.88 minutes</strong> less downtime budget in one month.</p>
+                    <p>Over a year, 99.9% allows about 8.76 hours; 99.99% allows about 52.56 minutes.</p>
+                </div>
+
+                <h3>Diminishing returns: why the next nine gets expensive</h3>
+                <p>
+                    Moving from 99% to 99.9% removes a lot of allowed downtime.
+                    Moving from 99.99% to 99.999% removes only a tiny slice more — but often needs multi-region design, fast failover, and strict change control.
+                </p>
+                <p>
+                    Think of it like noise-cancelling headphones at higher prices:
+                    the first big step helps a lot; each later step costs more for a smaller gain.
+                </p>
+                <ul>
+                    <li><strong>99% → 99.9%:</strong> often reachable with solid basics (backups, monitoring, on-call).</li>
+                    <li><strong>99.9% → 99.99%:</strong> usually needs redundancy and practiced recovery.</li>
+                    <li><strong>99.99% → 99.999%:</strong> rare for whole products; often limited to a critical path.</li>
+                </ul>
+                <p>
+                    Diminishing returns also apply to <em>money</em>.
+                    If you almost never use your current downtime budget, paying for a tighter budget may buy peace of mind you will not use.
+                    If last year you burned most of a 99.9% budget, the next nine may be worth a hard look.
+                </p>
+
+                <h3>How this calculator thinks about money</h3>
+                <p>
+                    We do <strong>not</strong> claim you will have that much downtime.
+                    We show what the <em>budget</em> is worth if you treat it as possible exposure:
+                </p>
+                <div class="formula-box">
+                    <p>yearly exposure ≈ (allowed minutes in 365 days ÷ 60) × revenue per hour</p>
+                </div>
+                <p>
+                    Then we subtract SLA B from SLA A.
+                    The delta is a rough upper-bound view of how much less revenue risk the higher SLA “buys” in budget terms.
+                </p>
+                <p>
+                    You can also enter an <strong>expected outage difference</strong> (minutes per year).
+                    That path is better when you have history: “we think the upgrade would cut about 120 minutes of outage per year.”
+                </p>
+
+                <h3>When paying for a higher SLA is worth it</h3>
+                <p>A higher SLA is often worth considering when:</p>
+                <ul>
+                    <li>Your revenue or penalty risk per hour is high.</li>
+                    <li>The price gap between plans is smaller than the exposure delta you care about.</li>
+                    <li>Your team can actually operate inside the tighter budget (monitoring, failover, runbooks).</li>
+                    <li>Customer trust or regulated uptime obligations matter as much as raw revenue.</li>
+                    <li>You have clear history of outages that would have fit inside the lower plan’s budget but hurt you.</li>
+                </ul>
+                <p>A higher SLA may <em>not</em> be worth it when:</p>
+                <ul>
+                    <li>You already stay well inside a lower budget most years.</li>
+                    <li>The expensive plan only covers one region, but your real risk is elsewhere.</li>
+                    <li>You need architecture work first — buying a number without reliability work wastes money.</li>
+                    <li>The “higher SLA” still excludes the failure modes you fear (DNS, identity, a single SaaS dependency).</li>
+                </ul>
+                <p>
+                    A practical test: estimate the yearly price delta of the upgrade.
+                    Compare it to (a) the full-budget money delta from this tool, and (b) your expected outage-minutes delta × revenue per hour.
+                    If (b) is much smaller than the price delta, pause.
+                    If (b) is larger <em>and</em> your team can use the tighter target, the upgrade is easier to defend.
+                </p>
+
+                <h3>Worked money example (USD)</h3>
+                <div class="edu-example">
+                    <p>Revenue = $5,000 per hour.</p>
+                    <p>SLA A = 99.9% → ~525.6 minutes/year → ~8.76 hours → exposure ≈ <strong>$43,800</strong>.</p>
+                    <p>SLA B = 99.99% → ~52.56 minutes/year → ~0.876 hours → exposure ≈ <strong>$4,380</strong>.</p>
+                    <p>Budget delta ≈ <strong>$39,420</strong> per year.</p>
+                    <p>If the higher plan costs $8,000/year more, the budget math favors the upgrade — if you believe you would otherwise use much of that downtime.</p>
+                </div>
+
+                <h3>Worked money example (EUR)</h3>
+                <div class="edu-example">
+                    <p>Same math, euro inputs. Switch the calculator currency to EUR and set revenue per hour to <strong>€3,200</strong>.</p>
+                    <p>SLA A = 99.9% → ~8.76 hours/year → exposure ≈ 8.76 × 3,200 ≈ <strong>€28,032</strong>.</p>
+                    <p>SLA B = 99.99% → ~0.876 hours/year → exposure ≈ 0.876 × 3,200 ≈ <strong>€2,803</strong>.</p>
+                    <p>Budget delta ≈ <strong>€25,229</strong> per year.</p>
+                    <p>
+                        Suppose the higher plan costs <strong>€6,000/year</strong> more.
+                        On full-budget math, the upgrade still looks attractive.
+                        Now add a reality check: your ops log shows only about <strong>90 minutes</strong> of avoidable outage per year if you stayed on 99.9%.
+                    </p>
+                    <p>
+                        Expected cost delta ≈ (90 ÷ 60) × 3,200 = <strong>€4,800</strong>.
+                        That is <em>less</em> than the €6,000 price gap.
+                        In that case, the honest answer may be “keep 99.9% and spend on monitoring,” not “buy four nines.”
+                    </p>
+                    <p>
+                        Change the story: if history suggests ~<strong>300 minutes</strong>/year of avoidable outage,
+                        expected delta ≈ 5 × 3,200 = <strong>€16,000</strong>, which is above the €6,000 premium.
+                        Then the higher SLA (plus the engineering to use it) is easier to justify.
+                    </p>
+                </div>
+
+                <h3>Caveats (read before you buy)</h3>
+                <ul>
+                    <li>
+                        <strong>Budget ≠ forecast.</strong>
+                        Allowed downtime is a ceiling in the math, not a prediction that you will be down that long.
+                    </li>
+                    <li>
+                        <strong>Contract exclusions matter.</strong>
+                        Planned maintenance, customer-side errors, and third-party networks may not count the way you hope.
+                    </li>
+                    <li>
+                        <strong>Scope matters.</strong>
+                        A high SLA on one region does not protect a single global DNS or identity dependency.
+                    </li>
+                    <li>
+                        <strong>Credits ≠ full business loss.</strong>
+                        Service credits usually refund part of the vendor bill. They rarely repay your lost sales.
+                        Pair this tool with
+                        <a href="website-downtime-cost-calculator.html">Downtime Cost</a>
+                        and the
+                        <a href="index.html#sla-calculator">SLA Penalty Calculator</a>.
+                    </li>
+                    <li>
+                        <strong>Leap years and calendar months.</strong>
+                        This page uses 30-day and 365-day windows for clear comparison.
+                        Your vendor may use real calendar months. Cross-check with
+                        <a href="allowed-downtime-calculator.html">Allowed Downtime</a>
+                        and the
+                        <a href="guides/calendar-month-sla-downtime-tables.html">calendar-month tables</a>.
+                    </li>
+                    <li>
+                        <strong>People and process.</strong>
+                        A tighter SLA without runbooks, paging, and practiced failover is a sticker on a risky system.
+                    </li>
+                </ul>
+
+                <h3>Related tools</h3>
+                <p>
+                    Convert one uptime target into exact minutes with the
+                    <a href="allowed-downtime-calculator.html">Allowed Downtime Calculator</a>.
+                    See full tables on the
+                    <a href="guides/sla-uptime-downtime-reference.html">SLA reference guide</a>.
+                    Model a single incident’s dollar impact with
+                    <a href="website-downtime-cost-calculator.html">Downtime Cost</a>,
+                    or credits with the
+                    <a href="index.html#sla-calculator">SLA Penalty Calculator</a>.
+                </p>
+                <p>
+                    All figures are estimates for planning. Check your contract and your real outage history before buying.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section class="faq">
+        <div class="container">
+            <h2 class="section-title">Frequently Asked Questions</h2>
+            <div class="faq-list">
+                <div class="faq-item">
+                    <div class="faq-question">What does “nines” mean in availability?</div>
+                    <div class="faq-answer">“Nines” is shorthand for uptime percentage. Three nines = 99.9%. Four nines = 99.99%. Five nines = 99.999%. Each extra nine usually cuts allowed downtime by about 10×.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">How does this calculator estimate cost?</div>
+                    <div class="faq-answer">It computes allowed downtime for each SLA over 30 and 365 days, then multiplies yearly allowed hours by your revenue per hour. That is a full-budget exposure estimate, not a prediction of real outages.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">When is a higher SLA worth paying for?</div>
+                    <div class="faq-answer">When the money risk of the extra downtime budget (or your expected outage difference) is larger than the extra price of the higher SLA — and your team can actually use the tighter budget.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">What are diminishing returns for nines?</div>
+                    <div class="faq-answer">Each extra nine cuts downtime budget by about 10×, but cost and complexity often rise faster. The jump from four to five nines is usually much harder than from two to three nines.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">Should I use full-budget exposure or expected outage minutes?</div>
+                    <div class="faq-answer">Use full-budget for an upper-bound planning view. Use expected outage minutes when you have history. Many teams show both numbers in the same business case.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">Do vendor credits cover my full loss?</div>
+                    <div class="faq-answer">Usually no. Credits often refund part of the service fee. Lost sales and staff time are separate. Model those with the Downtime Cost calculator.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div id="ad-slot-bottom" class="ad-slot"></div>
+    <div id="footer-placeholder"></div>
+
+    <script src="js/includes.js"></script>
+    <script src="utils/scenarioUrl.js"></script>
+<script>
+(function () {
+    var scenarioMap = {
+        a: 'sla-a',
+        b: 'sla-b',
+        ac: 'sla-a-custom',
+        bc: 'sla-b-custom',
+        rev: 'revenue-per-hour',
+        exp: 'expected-delta-minutes',
+        cur: 'currency'
+    };
+
+    function formatNumber(n, digits) {
+        if (!isFinite(n)) return '—';
+        var d = (digits == null) ? 3 : digits;
+        var s = n.toFixed(d).replace(/\.?0+$/, '');
+        return s;
+    }
+
+    function formatMoney(n, currency) {
+        if (!isFinite(n)) return '—';
+        var symbol = currency === 'EUR' ? '€' : '$';
+        var abs = Math.abs(n);
+        var formatted = abs.toLocaleString(undefined, { maximumFractionDigits: 0 });
+        return (n < 0 ? '-' : '') + symbol + formatted;
+    }
+
+    function formatMinutes(m) {
+        if (!isFinite(m)) return '—';
+        if (Math.abs(m) >= 60) {
+            return formatNumber(m, 2) + ' min (' + formatNumber(m / 60, 3) + ' h)';
+        }
+        return formatNumber(m, 3) + ' min';
+    }
+
+    function allowedMinutes(uptime, days) {
+        return days * 24 * 60 * (1 - uptime / 100);
+    }
+
+    function getSla(selectId, customId) {
+        var v = document.getElementById(selectId).value;
+        if (v === 'custom') return parseFloat(document.getElementById(customId).value);
+        return parseFloat(v);
+    }
+
+    function toggleCustoms() {
+        document.getElementById('sla-a-custom-group').hidden = document.getElementById('sla-a').value !== 'custom';
+        document.getElementById('sla-b-custom-group').hidden = document.getElementById('sla-b').value !== 'custom';
+    }
+
+    function calculate() {
+        var a = getSla('sla-a', 'sla-a-custom');
+        var b = getSla('sla-b', 'sla-b-custom');
+        var revenue = parseFloat(document.getElementById('revenue-per-hour').value);
+        var currency = document.getElementById('currency').value;
+        var expectedDelta = parseFloat(document.getElementById('expected-delta-minutes').value);
+
+        if (!isFinite(a) || !isFinite(b) || a < 0 || a > 100 || b < 0 || b > 100) {
+            document.getElementById('delta-year-minutes').textContent = 'Invalid SLA';
+            return;
+        }
+        if (!isFinite(revenue) || revenue < 0) revenue = 0;
+
+        var a30 = allowedMinutes(a, 30);
+        var b30 = allowedMinutes(b, 30);
+        var a365 = allowedMinutes(a, 365);
+        var b365 = allowedMinutes(b, 365);
+        var d30 = a30 - b30;
+        var d365 = a365 - b365;
+
+        document.getElementById('label-a-30').textContent = 'SLA A (' + formatNumber(a, 4) + '%):';
+        document.getElementById('label-b-30').textContent = 'SLA B (' + formatNumber(b, 4) + '%):';
+        document.getElementById('label-a-365').textContent = 'SLA A (' + formatNumber(a, 4) + '%):';
+        document.getElementById('label-b-365').textContent = 'SLA B (' + formatNumber(b, 4) + '%):';
+
+        document.getElementById('allowed-a-30').textContent = formatMinutes(a30);
+        document.getElementById('allowed-b-30').textContent = formatMinutes(b30);
+        document.getElementById('delta-30').textContent = formatMinutes(d30);
+        document.getElementById('allowed-a-365').textContent = formatMinutes(a365);
+        document.getElementById('allowed-b-365').textContent = formatMinutes(b365);
+        document.getElementById('delta-365').textContent = formatMinutes(d365);
+        document.getElementById('delta-year-minutes').textContent = formatNumber(d365, 2) + ' min';
+
+        var costA = (a365 / 60) * revenue;
+        var costB = (b365 / 60) * revenue;
+        var costDelta = costA - costB;
+
+        document.getElementById('cost-a').textContent = formatMoney(costA, currency);
+        document.getElementById('cost-b').textContent = formatMoney(costB, currency);
+        document.getElementById('cost-delta').textContent = formatMoney(costDelta, currency);
+
+        var expectedBlock = document.getElementById('expected-block');
+        if (isFinite(expectedDelta) && expectedDelta >= 0 && document.getElementById('expected-delta-minutes').value !== '') {
+            expectedBlock.hidden = false;
+            document.getElementById('expected-cost-delta').textContent =
+                formatMoney((expectedDelta / 60) * revenue, currency);
+        } else {
+            expectedBlock.hidden = true;
+        }
+
+        if (window.ScenarioUrl) {
+            ScenarioUrl.writeFromForm(scenarioMap, { clearHash: true });
+        }
+    }
+
+    function reset() {
+        document.getElementById('sla-a').value = '99.9';
+        document.getElementById('sla-b').value = '99.99';
+        document.getElementById('sla-a-custom').value = '99.9';
+        document.getElementById('sla-b-custom').value = '99.99';
+        document.getElementById('revenue-per-hour').value = '5000';
+        document.getElementById('expected-delta-minutes').value = '';
+        document.getElementById('currency').value = 'USD';
+        toggleCustoms();
+        calculate();
+    }
+
+    ['sla-a', 'sla-b'].forEach(function (id) {
+        document.getElementById(id).addEventListener('change', function () {
+            toggleCustoms();
+            calculate();
+        });
+    });
+    ['sla-a-custom', 'sla-b-custom', 'revenue-per-hour', 'expected-delta-minutes', 'currency'].forEach(function (id) {
+        document.getElementById(id).addEventListener('input', calculate);
+        document.getElementById(id).addEventListener('change', calculate);
+    });
+    document.getElementById('calc-nines-btn').addEventListener('click', calculate);
+    document.getElementById('reset-nines-btn').addEventListener('click', reset);
+    document.getElementById('share-nines-btn').addEventListener('click', async function () {
+        var btn = document.getElementById('share-nines-btn');
+        if (!window.ScenarioUrl) return;
+        var ok = await ScenarioUrl.copyShareUrl(scenarioMap);
+        btn.textContent = ok ? 'Link copied!' : 'Copy failed';
+        setTimeout(function () { btn.textContent = 'Copy share link'; }, 2000);
+    });
+
+    if (window.ScenarioUrl) {
+        ScenarioUrl.applyFromLocation(scenarioMap);
+    }
+    toggleCustoms();
+    calculate();
+})();
+    </script>
+</body>
+</html>

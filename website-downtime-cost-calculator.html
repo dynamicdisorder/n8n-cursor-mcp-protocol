@@ -1,0 +1,600 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="google-adsense-account" content="ca-pub-5341779159353455">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Website Downtime Cost Calculator – TechImpact.online</title>
+    <meta name="description" content="Calculate the financial impact of website downtime and outages. Estimate revenue loss, refund costs, and productivity impact with our precision downtime calculator.">
+    <meta name="keywords" content="outage calculator, downtime business loss estimator, website downtime cost, revenue loss calculator, business impact assessment">
+    <meta name="author" content="TechImpact.online">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Website Downtime Cost Calculator – TechImpact.online">
+    <meta property="og:description" content="Calculate the financial impact of website downtime and outages. Estimate revenue loss, refund costs, and productivity impact.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.techimpact.online/website-downtime-cost-calculator.html">
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Website Downtime Cost Calculator – TechImpact.online">
+    <meta name="twitter:description" content="Calculate the financial impact of website downtime and outages.">
+    
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "Website Downtime Cost Calculator",
+        "description": "Calculate the financial impact of website downtime and outages",
+        "url": "https://www.techimpact.online/website-downtime-cost-calculator.html",
+        "applicationCategory": "BusinessApplication",
+        "operatingSystem": "Web Browser",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        },
+        "creator": {
+            "@type": "Organization",
+            "name": "TechImpact.online"
+        }
+    }
+    </script>
+    
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {
+                "@type": "Question",
+                "name": "What factors affect downtime cost?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Key factors include hourly revenue rate, outage duration, refund percentage, conversion drop rate, and employee productivity costs."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "How do I calculate annualized downtime impact?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Multiply the single incident cost by the expected number of similar outages per year to get annualized impact."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Should I include employee costs in downtime calculations?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Yes, include employee costs when staff cannot work effectively during outages, including support team overtime and lost productivity."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "How should ecommerce and SaaS teams pick different inputs?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Ecommerce teams should start with checkout revenue per hour for the same time of day, then add refunds and support overtime. SaaS teams should separate immediate cash impact from delayed pipeline or signup value, and scale by the share of users affected when the outage is partial."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Should I include reputational damage in the total?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Only as a clearly labeled add-on. Keep a base case with revenue, refunds, and productivity. Then add a separate stress case with a reputation amount and one sentence explaining why."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "What does annualizing a downtime incident mean?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Annualizing means multiplying one typical incident cost by how many similar incidents you expect in a year, then comparing that yearly figure to the cost of reliability improvements."
+                }
+            }
+        ]
+    }
+    </script>
+    
+    <link rel="stylesheet" href="styles.css">
+    <link rel="canonical" href="https://www.techimpact.online/website-downtime-cost-calculator.html">
+    <!-- Google AdSense -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5341779159353455"
+        crossorigin="anonymous"></script>
+</head>
+<body>
+    <!-- Header Placeholder -->
+    <div id="header-placeholder"></div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1 class="hero-title">
+                <span data-i18n="hero.title1">Calculate the True Cost of</span>
+                <span class="gradient-text" data-i18n="hero.title2">Website Downtime</span>
+            </h1>
+            <p class="hero-subtitle" data-i18n="hero.subtitle">Assess the financial impact of outages with precision. Calculate revenue loss, refund costs, and productivity impact to make informed decisions about your infrastructure investments.</p>
+            <div class="hero-actions">
+                <a href="#downtime-calculator" class="btn primary large">Try the Calculator</a>
+                <a href="guides/downtime-cost-calculator-why-it-matters.html" class="btn secondary large">Read the Guide</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Language Toggle -->
+    <div class="language-toggle-container">
+        <div class="language-toggle">
+            <button class="lang-btn active" data-lang="en">EN</button>
+            <button class="lang-btn" data-lang="es">ES</button>
+        </div>
+    </div>
+
+    <!-- Calculator Tabs -->
+    <section class="calculator-tabs">
+        <div class="container">
+            <div class="tab-nav">
+                <a href="index.html" class="tab-link" data-i18n="tabs.sla">SLA Penalty</a>
+                <a href="website-downtime-cost-calculator.html" class="tab-link active" data-i18n="tabs.downtime">Downtime Cost</a>
+                <a href="rto-rpo-impact-calculator.html" class="tab-link" data-i18n="tabs.rto-rpo">RTO/RPO</a>
+                <a href="allowed-downtime-calculator.html" class="tab-link">Allowed Downtime</a>
+                <a href="nines-availability-cost-calculator.html" class="tab-link">Cost of Nines</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Calculator Section -->
+    <section class="calculator-section" id="downtime-calculator">
+        <div class="container">
+            <div class="calculator-grid">
+                <!-- Calculator Form -->
+                <div class="calculator-form">
+                    <div class="card">
+                        <h2 class="card-title" data-i18n="form.title">Downtime Cost Calculator</h2>
+                        
+                        <div class="form-group">
+                            <label for="revenue-per-hour" data-i18n="form.revenue-per-hour">Revenue per Hour</label>
+                            <div class="input-group">
+                                <select id="currency" class="currency-select">
+                                    <option value="USD">USD</option>
+                                    <option value="EUR">EUR</option>
+                                </select>
+                                <input type="number" id="revenue-per-hour" class="form-input" value="10000" min="0" step="100">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="outage-duration" data-i18n="form.outage-duration">Outage Duration</label>
+                            <div class="duration-inputs">
+                                <input type="number" id="outage-hours" class="form-input" value="2" min="0" step="0.5" placeholder="Hours">
+                                <input type="number" id="outage-minutes" class="form-input" value="30" min="0" max="59" step="1" placeholder="Minutes">
+                            </div>
+                            <div class="alternative-input">
+                                <label for="timestamp-start" data-i18n="form.timestamp-start">Or Start Time</label>
+                                <input type="datetime-local" id="timestamp-start" class="form-input">
+                            </div>
+                            <div class="alternative-input">
+                                <label for="timestamp-end" data-i18n="form.timestamp-end">End Time</label>
+                                <input type="datetime-local" id="timestamp-end" class="form-input">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="refund-rate" data-i18n="form.refund-rate">Refund Rate (%)</label>
+                            <input type="number" id="refund-rate" class="form-input" value="5" min="0" max="100" step="0.1">
+                            <span class="input-hint" data-i18n="form.refund-rate-hint">Percentage of affected customers who request refunds</span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="conversion-drop" data-i18n="form.conversion-drop">Conversion Drop (%)</label>
+                            <input type="number" id="conversion-drop" class="form-input" value="15" min="0" max="100" step="0.1">
+                            <span class="input-hint" data-i18n="form.conversion-drop-hint">Expected decrease in conversions during/after outage</span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="affected-employees" data-i18n="form.affected-employees">Affected Employees</label>
+                            <input type="number" id="affected-employees" class="form-input" value="50" min="0" step="1">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="hourly-cost-per-employee" data-i18n="form.hourly-cost-per-employee">Hourly Cost per Employee</label>
+                            <div class="input-group">
+                                <select id="employee-currency" class="currency-select">
+                                    <option value="USD">USD</option>
+                                    <option value="EUR">EUR</option>
+                                </select>
+                                <input type="number" id="hourly-cost-per-employee" class="form-input" value="50" min="0" step="1">
+                            </div>
+                        </div>
+
+                        <div class="form-actions">
+                            <button class="btn primary" id="calculate-btn" data-i18n="form.calculate">Calculate Impact</button>
+                            <button class="btn secondary" id="reset-btn" data-i18n="form.reset">Reset</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Results -->
+                <div class="calculator-results">
+                    <div class="card">
+                        <h2 class="card-title" data-i18n="results.title">Impact Analysis</h2>
+                        
+                        <div class="result-main">
+                            <div class="total-loss">
+                                <span class="loss-amount" id="total-loss-amount">$25,750</span>
+                                <span class="loss-label" data-i18n="results.total-loss">Total Loss</span>
+                            </div>
+                        </div>
+
+                        <!-- Sparkline Chart -->
+                        <div class="sparkline-container">
+                            <canvas id="loss-sparkline" width="300" height="60"></canvas>
+                            <span class="sparkline-label" data-i18n="results.cumulative-loss">Cumulative Loss Over Time</span>
+                        </div>
+
+                        <div class="result-breakdown">
+                            <h4 data-i18n="results.breakdown">Cost Breakdown</h4>
+                            <div class="breakdown-item">
+                                <span class="breakdown-label" data-i18n="results.revenue-loss">Revenue Loss:</span>
+                                <span class="breakdown-value" id="revenue-loss">$25,000</span>
+                            </div>
+                            <div class="breakdown-item">
+                                <span class="breakdown-label" data-i18n="results.refund-costs">Refund Costs:</span>
+                                <span class="breakdown-value" id="refund-costs">$1,250</span>
+                            </div>
+                            <div class="breakdown-item">
+                                <span class="breakdown-label" data-i18n="results.productivity-loss">Productivity Loss:</span>
+                                <span class="breakdown-value" id="productivity-loss">$5,000</span>
+                            </div>
+                            <div class="breakdown-item">
+                                <span class="breakdown-label" data-i18n="results.conversion-drop">Conversion Drop Impact:</span>
+                                <span class="breakdown-value" id="conversion-drop-impact">$3,000</span>
+                            </div>
+                        </div>
+
+                        <div class="annualized-impact">
+                            <div class="impact-card">
+                                <h4 data-i18n="results.annualized-impact">Annualized Impact</h4>
+                                <div class="impact-input">
+                                    <label for="incidents-per-year" data-i18n="form.incidents-per-year">Incidents per Year:</label>
+                                    <input type="number" id="incidents-per-year" class="form-input" value="12" min="1" step="1">
+                                </div>
+                                <div class="impact-result">
+                                    <span class="annual-loss" id="annual-loss">$309,000</span>
+                                    <span class="annual-label" data-i18n="results.annual-loss">Annual Loss</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="result-actions">
+                            <button class="btn secondary" id="copy-summary-btn">
+                                <span class="btn-icon">📋</span>
+                                <span data-i18n="results.copy-summary">Copy Summary</span>
+                            </button>
+                            <button class="btn secondary" id="download-csv-btn">
+                                <span class="btn-icon">📊</span>
+                                <span data-i18n="results.download-csv">Download CSV</span>
+                            </button>
+                            <button class="btn secondary" id="share-link-btn">
+                                <span class="btn-icon">🔗</span>
+                                <span data-i18n="results.share-link">Share Link</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section class="how-it-works">
+        <div class="container">
+            <h2 class="section-title" data-i18n="how-it-works.title">How It Works</h2>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3 class="step-title" data-i18n="how-it-works.step1.title">Input Your Metrics</h3>
+                    <p class="step-description" data-i18n="how-it-works.step1.description">Enter your hourly revenue rate, outage duration, and any additional costs like refunds or employee impact.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3 class="step-title" data-i18n="how-it-works.step2.title">Calculate Direct Losses</h3>
+                    <p class="step-description" data-i18n="how-it-works.step2.description">We calculate revenue loss, refund costs, and productivity impact based on your specific parameters.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3 class="step-title" data-i18n="how-it-works.step3.title">Analyze Cumulative Impact</h3>
+                    <p class="step-description" data-i18n="how-it-works.step3.description">View the cumulative loss over time with our visual sparkline chart and breakdown analysis.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <h3 class="step-title" data-i18n="how-it-works.step4.title">Export and Share</h3>
+                    <p class="step-description" data-i18n="how-it-works.step4.description">Copy summaries, download CSV reports, or share links with stakeholders for informed decision-making.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="edu-block" id="learn-downtime">
+        <div class="container">
+            <div class="edu-inner">
+                <h2>What does “downtime cost” mean?</h2>
+                <p><strong>Downtime</strong> means your website or service is not working for users. The <strong>cost</strong> is the money you lose while it is down — and sometimes after it is back.</p>
+                <p>This calculator adds common cost parts:</p>
+                <ul>
+                    <li><strong>Lost revenue</strong> — sales or billable use you did not get.</li>
+                    <li><strong>Refunds</strong> — money you return to customers.</li>
+                    <li><strong>Lost productivity</strong> — staff who cannot work normally.</li>
+                    <li><strong>Conversion drop</strong> — fewer users complete a purchase or signup.</li>
+                </ul>
+
+                <h3>Simple formula</h3>
+                <div class="edu-example">
+                    <p><strong>Duration (hours)</strong> = hours + (minutes ÷ 60)</p>
+                    <p><strong>Revenue loss</strong> = revenue per hour × duration</p>
+                    <p><strong>Total estimate</strong> = revenue loss + refunds + productivity loss + other selected costs</p>
+                </div>
+
+                <h3>Worked example</h3>
+                <div class="edu-example">
+                    <p>Your site earns about <strong>$8,000 per hour</strong>.</p>
+                    <p>It is down for <strong>45 minutes</strong> (0.75 hours).</p>
+                    <p>Revenue loss ≈ 8,000 × 0.75 = <strong>$6,000</strong>.</p>
+                    <p>If 10% of that leads to refunds, add <strong>$600</strong>.</p>
+                    <p>If 20 support staff cannot work well at $40/hour, add 20 × 40 × 0.75 = <strong>$600</strong>.</p>
+                    <p><strong>Rough total:</strong> about $7,200 for this one outage.</p>
+                    <p class="edu-note">Use your real numbers. Industry averages are only a starting point.</p>
+                </div>
+
+                <h3>When this estimate is weak</h3>
+                <ul>
+                    <li>You do not know revenue per hour for this product.</li>
+                    <li>The outage was partial (slow pages, not full down).</li>
+                    <li>Brand damage lasts weeks and is hard to measure in one form.</li>
+                </ul>
+
+                <h3>Next steps</h3>
+                <p>
+                    Compare allowed SLA downtime in the
+                    <a href="guides/sla-uptime-downtime-reference.html">uptime reference</a>.
+                    Or estimate vendor credits with the
+                    <a href="index.html#sla-calculator">SLA Penalty Calculator</a>.
+                </p>
+
+                <h3>How to choose revenue per hour</h3>
+                <p>If you sell online, take last month’s revenue and divide by the number of hours your store was open. If you are B2B SaaS, use average revenue that depends on the product being online (new signups, usage billing, support capacity).</p>
+                <p>If you are not sure, use a low, medium, and high value. Run the calculator three times. Show the range to your manager. A range is more honest than one fake exact number.</p>
+
+                <h3>Partial outages</h3>
+                <p>Sometimes only one region or one feature fails. Then full “site down” math is too high. Reduce revenue per hour to the share of traffic that was hurt. Example: if 30% of users were affected, use 30% of normal revenue per hour.</p>
+                <p>Also write what “affected” means. Were pages slow, or fully broken? Could users still browse but not pay? A browse-only failure may lose conversions even when the home page still loads. In that case, model the conversion drop instead of pretending revenue was zero.</p>
+
+                <h3>After you have a number</h3>
+                <ol>
+                    <li>Compare it to the yearly cost of better hosting, failover, or monitoring.</li>
+                    <li>Check if a vendor SLA credit also applies (separate calculator).</li>
+                    <li>Write down assumptions so the next incident uses the same method.</li>
+                </ol>
+
+                <h3>Ecommerce vs SaaS examples</h3>
+                <p>Not every business loses money the same way. Two common patterns help you pick inputs.</p>
+                <p><strong>Ecommerce (online store)</strong></p>
+                <p>Money usually stops when checkout stops. If the store makes $120,000 in a 30-day month and runs 24 hours a day, revenue per hour ≈ 120,000 ÷ (30 × 24) ≈ <strong>$167 per hour</strong> on average. Peak hours (evenings, campaigns) can be much higher. For a flash sale, use the sale-hour rate, not the quiet Tuesday rate.</p>
+                <div class="edu-example">
+                    <p><strong>Ecommerce worked sketch</strong></p>
+                    <p>Peak revenue ≈ <strong>$4,000/hour</strong>. Outage = <strong>30 minutes</strong> (0.5 hours).</p>
+                    <p>Revenue loss ≈ 4,000 × 0.5 = <strong>$2,000</strong>.</p>
+                    <p>Refunds on failed orders: add <strong>$300</strong>.</p>
+                    <p>Support overtime (4 people × $35/hour × 0.5): add <strong>$70</strong>.</p>
+                    <p>Rough incident total ≈ <strong>$2,370</strong> before brand effects.</p>
+                </div>
+                <p><strong>SaaS (subscription software)</strong></p>
+                <p>Monthly subscription fees often continue even during a short outage. So “lost revenue” is not always the full MRR (monthly recurring revenue) divided by hours. Better inputs are:</p>
+                <ul>
+                    <li>New signups or upgrades you missed during the outage.</li>
+                    <li>Usage-based billing you could not collect.</li>
+                    <li>Credits or refunds you promise in your own customer SLA.</li>
+                    <li>Churn risk if the outage was long or public.</li>
+                </ul>
+                <div class="edu-example">
+                    <p><strong>SaaS worked sketch</strong></p>
+                    <p>You normally close <strong>$2,500/hour</strong> in new annual contracts during business hours (pipeline that needs the product demo and signup flow).</p>
+                    <p>Outage = <strong>2 hours</strong> on a weekday.</p>
+                    <p>Missed pipeline ≈ 2,500 × 2 = <strong>$5,000</strong> (not the same as cash today, but useful for planning).</p>
+                    <p>You also issue <strong>$1,200</strong> in goodwill credits to angry customers.</p>
+                    <p>Eight engineers lose focus at ~$75/hour fully loaded × 2 hours = <strong>$1,200</strong>.</p>
+                    <p>Rough total for this model ≈ <strong>$7,400</strong>.</p>
+                    <p class="edu-note">SaaS leaders should label “pipeline” and “cash” separately so finance does not treat them as the same thing.</p>
+                </div>
+
+                <h3>How to estimate revenue per hour</h3>
+                <p>Use the simplest method that matches your business. Short sentences help teams agree.</p>
+                <ol>
+                    <li><strong>Store or marketplace:</strong> last 30 days of revenue ÷ hours the store was open.</li>
+                    <li><strong>Peak-aware store:</strong> take revenue from similar peak hours only, then average those hours.</li>
+                    <li><strong>Lead-gen site:</strong> (leads per hour × close rate × average deal value).</li>
+                    <li><strong>SaaS signup funnel:</strong> (signups per hour × activation rate × average first-year value).</li>
+                    <li><strong>Usage billing:</strong> average billable usage value per hour when the API is healthy.</li>
+                </ol>
+                <p>If you only know monthly revenue and you run 24×7:</p>
+                <div class="edu-example">
+                    <p>Revenue per hour ≈ monthly revenue ÷ (days in month × 24)</p>
+                    <p>Example: €90,000 ÷ (30 × 24) ≈ <strong>€125 per hour</strong>.</p>
+                </div>
+                <p>If the outage hit only part of the product, multiply by the affected share of traffic or revenue. Example: 40% of users on the broken checkout → use 40% of the normal hourly rate.</p>
+
+                <h3>Reputational cost caveat</h3>
+                <p><strong>Reputation</strong> means trust. Trust is real. It is also hard to put in one form field.</p>
+                <p>A short outage may cost only the hours you can measure. A public outage during a big launch may cost weeks of sales conversations, press questions, and renewals. That longer tail is <em>reputational cost</em>.</p>
+                <p>This calculator can hold a manual “other cost” number if you want. Treat it as a judgment call, not a precise science. Good practice:</p>
+                <ul>
+                    <li>Keep a base case with only measured costs (revenue, refunds, overtime).</li>
+                    <li>Keep a stress case that adds a reputation add-on (for example 1× or 2× the base).</li>
+                    <li>Write why you chose that add-on in one sentence.</li>
+                </ul>
+                <p>Do not let a huge reputation guess hide weak inputs. Fix revenue-per-hour first. Then discuss brand risk with marketing or customer success.</p>
+
+                <h3>Annualizing incidents</h3>
+                <p><strong>Annualizing</strong> means turning one incident into a yearly picture. It helps budgeting.</p>
+                <p>Simple method:</p>
+                <div class="edu-example">
+                    <p><strong>Yearly impact</strong> ≈ cost of one typical incident × expected similar incidents per year</p>
+                    <p>Example: one incident ≈ $7,200. You expect about 4 similar events per year.</p>
+                    <p>Annualized ≈ 7,200 × 4 = <strong>$28,800 per year</strong>.</p>
+                </div>
+                <p>Use history when you have it. If last year had two major outages and six small ones, model them as two different incident types. Do not multiply a rare “worst day” by 12 unless you truly expect that every month.</p>
+                <p>Compare the annualized number to the yearly price of fixes: better monitoring, multi-zone hosting, status page process, or on-call training. If fixes cost $10,000/year and annualized loss is $28,800, the investment case is easier to explain.</p>
+
+                <h3>Sample low / mid / high scenario table</h3>
+                <p>When inputs are uncertain, show a range. Managers trust a range more than one fake exact dollar.</p>
+                <div class="edu-example">
+                    <p><strong>Same 45-minute outage, three honesty levels</strong></p>
+                    <table class="ref-table">
+                        <thead>
+                            <tr>
+                                <th>Scenario</th>
+                                <th>Revenue/hour</th>
+                                <th>Extra costs</th>
+                                <th>Rough total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Low</td>
+                                <td>$3,000</td>
+                                <td>$400</td>
+                                <td>~$2,650</td>
+                            </tr>
+                            <tr>
+                                <td>Mid</td>
+                                <td>$8,000</td>
+                                <td>$1,200</td>
+                                <td>~$7,200</td>
+                            </tr>
+                            <tr>
+                                <td>High</td>
+                                <td>$15,000</td>
+                                <td>$3,000</td>
+                                <td>~$14,250</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <p class="edu-note">Totals ≈ (revenue/hour × 0.75) + extra costs. Extra costs = refunds + productivity + small reputation add-on. Replace with your numbers before you present.</p>
+                </div>
+                <p>Run the calculator three times. Save or screenshot each run. Label them Low / Mid / High. That habit prevents endless debate about one “perfect” input.</p>
+
+                <h3>Related guides and calculators</h3>
+                <p>
+                    Real-world walkthroughs:
+                    <a href="guides/downtime-cost-calculator-real-world-examples.html">Downtime cost calculator — real-world examples</a>.
+                </p>
+                <p>
+                    Why the estimate matters for planning:
+                    <a href="guides/downtime-cost-calculator-why-it-matters.html">Why a downtime cost calculator matters</a>.
+                </p>
+                <p>
+                    Allowed minutes by uptime target:
+                    <a href="guides/sla-uptime-downtime-reference.html">SLA uptime → downtime reference</a>.
+                </p>
+                <p>
+                    Vendor credit estimate:
+                    <a href="index.html#sla-calculator">SLA Penalty Calculator</a>.
+                </p>
+                <p>
+                    Recovery targets after disasters:
+                    <a href="rto-rpo-impact-calculator.html">RTO/RPO Impact Calculator</a>.
+                </p>
+                <p>Keep language simple when you share results: what happened, how long, which revenue rate you used, and what you excluded. Clear assumptions beat fancy charts.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="statistics">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-number">Free</div>
+                    <div class="stat-label">No signup needed</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">Local</div>
+                    <div class="stat-label">Runs in your browser</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">USD/EUR</div>
+                    <div class="stat-label">Currency options</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">PNG/CSV</div>
+                    <div class="stat-label">Easy to share</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq">
+        <div class="container">
+            <h2 class="section-title" data-i18n="faq.title">Frequently Asked Questions</h2>
+            <div class="faq-list">
+                <div class="faq-item">
+                    <div class="faq-question" data-i18n="faq.q1.question">What factors affect downtime cost?</div>
+                    <div class="faq-answer" data-i18n="faq.q1.answer">Key factors include hourly revenue rate, outage duration, refund percentage, conversion drop rate, and employee productivity costs. Each factor can significantly impact the total financial loss.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" data-i18n="faq.q2.question">How do I calculate annualized downtime impact?</div>
+                    <div class="faq-answer" data-i18n="faq.q2.answer">Multiply the single incident cost by the expected number of similar outages per year to get annualized impact. This helps budget for infrastructure improvements.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" data-i18n="faq.q3.question">Should I include employee costs in downtime calculations?</div>
+                    <div class="faq-answer" data-i18n="faq.q3.answer">Yes, include employee costs when staff cannot work effectively during outages, including support team overtime and lost productivity from system unavailability.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" data-i18n="faq.q4.question">What's the difference between revenue loss and refund costs?</div>
+                    <div class="faq-answer" data-i18n="faq.q4.answer">Revenue loss is the direct income you miss during the outage. Refund costs are additional expenses when customers demand their money back due to the service disruption.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" data-i18n="faq.q5.question">How accurate are these downtime cost estimates?</div>
+                    <div class="faq-answer" data-i18n="faq.q5.answer">Our calculations provide reliable estimates based on standard business metrics. Accuracy depends on the quality of your input data, particularly revenue rates and employee costs.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">How should ecommerce and SaaS teams pick different inputs?</div>
+                    <div class="faq-answer">Ecommerce teams should start with checkout revenue per hour for the same time of day as the outage, then add refunds and support overtime. SaaS teams should separate cash that stops immediately from pipeline or signup value that is delayed. Add customer credits if you offer them. If only part of the product failed, scale revenue per hour by the share of users affected. When unsure, run low, mid, and high cases instead of one false exact number.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">Should I include reputational damage in the total?</div>
+                    <div class="faq-answer">Only as a clearly labeled add-on. Reputation (lost trust, slower renewals, bad press) can be larger than the outage hours themselves, but it is hard to measure precisely. Keep a base case with revenue, refunds, and productivity only. Then add a separate stress case with a reputation amount and one sentence explaining why. Do not bury a huge guess inside “revenue per hour,” or your team will argue about the wrong input.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">What does annualizing a downtime incident mean?</div>
+                    <div class="faq-answer">Annualizing means multiplying one typical incident cost by how many similar incidents you expect in a year. Example: $7,200 × 4 events ≈ $28,800 per year. Use that yearly figure to compare against the yearly cost of better hosting, monitoring, or failover. Do not annualize a once-in-a-decade worst case as if it happens monthly. Split rare major outages and common small ones into different models when you can.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Ad Slot - Bottom -->
+    <div id="ad-slot-bottom" class="ad-slot">
+        <!-- Ad content will be inserted here -->
+    </div>
+
+    <!-- Footer Placeholder -->
+    <div id="footer-placeholder"></div>
+
+    <!-- Include System -->
+    <script src="js/includes.js"></script>
+
+    <!-- Utility Modules -->
+    <script src="utils/downtimeMath.js"></script>
+    <script src="utils/format.js"></script>
+    <script src="utils/scenarioUrl.js"></script>
+    <script src="utils/sparkline.js"></script>
+    <script src="utils/tests.js"></script>
+    
+    <!-- Main Application Script -->
+    <script src="website-downtime-calculator.js"></script>
+</body>
+</html>

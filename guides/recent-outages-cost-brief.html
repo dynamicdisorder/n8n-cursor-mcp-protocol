@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="google-adsense-account" content="ca-pub-5341779159353455">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recent Outages → Money Impact (Last 14 Days) | TechImpact.online</title>
+    <meta name="description" content="Living brief: major outages in the last 14 days and how to estimate YOUR business money impact with TechImpact tools. AWS CloudFront VPC Origins, Google Cloud europe-west4-a, Meta apps — sources linked, estimates labeled illustrative.">
+    <meta name="keywords" content="recent outages cost, CloudFront outage July 2026, Google Cloud europe-west4 outage, Meta outage July 2026, downtime cost estimate, SLA impact">
+    <meta name="author" content="TechImpact.online">
+    <meta name="robots" content="index,follow,max-snippet:-1,max-image-preview:large">
+    <link rel="canonical" href="https://www.techimpact.online/guides/recent-outages-cost-brief.html">
+
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://www.techimpact.online/guides/recent-outages-cost-brief.html">
+    <meta property="og:title" content="Recent Outages → Money Impact (Last 14 Days)">
+    <meta property="og:description" content="What broke, how long it lasted, who felt it, and how to model your own dollar impact — without claiming official vendor losses.">
+
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:title" content="Recent Outages → Money Impact (Last 14 Days)">
+    <meta property="twitter:description" content="Living reference for major outages and illustrative money-impact modeling with TechImpact calculators.">
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "TechArticle",
+        "headline": "Recent Outages → Money Impact (Last 14 Days)",
+        "description": "Living brief of major cloud and consumer-platform outages with honest duration notes, source links, and illustrative downtime-cost modeling using TechImpact tools.",
+        "url": "https://www.techimpact.online/guides/recent-outages-cost-brief.html",
+        "datePublished": "2026-07-23",
+        "dateModified": "2026-07-23",
+        "author": {
+            "@type": "Organization",
+            "name": "TechImpact.online",
+            "url": "https://www.techimpact.online/"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "TechImpact.online",
+            "url": "https://www.techimpact.online/"
+        },
+        "mainEntityOfPage": "https://www.techimpact.online/guides/recent-outages-cost-brief.html",
+        "about": ["Cloud outages", "Downtime cost", "SLA", "AWS CloudFront", "Google Cloud", "Meta"]
+    }
+    </script>
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {
+                "@type": "Question",
+                "name": "Does TechImpact claim official AWS, Google, or Meta financial losses?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "No. This brief summarizes public incident reports and shows how a team can estimate ITS OWN loss with labeled illustrative assumptions. We do not publish or claim official vendor loss figures."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "How often is this recent-outages brief updated?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Manually, when a major outage happens that is useful for planning lessons. The page title says “last 14 days” as a living window; the article meta shows the last refresh date."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "What should I change in the sample downtime calculator links?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Replace revenue per hour, refund rate, conversion drop, employee count, hourly employee cost, and incidents per year with your numbers. Keep duration close to the reported outage window when you want a scenario for that incident length."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Why include a Meta consumer outage next to cloud incidents?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Because many products depend on login, support, ads, or messaging that sit outside your VPC. A consumer blast radius is a dependency-risk lesson even when your own servers stayed healthy."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Is SLA credit the same as business downtime cost?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "No. An SLA credit is usually a capped invoice reduction from a vendor. Business downtime cost is your lost revenue, productivity, refunds, and other impacts. Model both separately."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Which TechImpact tools should I open after reading an incident?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Start with the Website Downtime Cost Calculator for money impact, Allowed Downtime and Cost of Nines for time budgets, the SLA Penalty Calculator for credit estimates, and the RTO/RPO Impact Calculator for recovery targets."
+                }
+            }
+        ]
+    }
+    </script>
+
+    <link rel="stylesheet" href="../styles.css">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5341779159353455"
+        crossorigin="anonymous"></script>
+</head>
+<body>
+    <div id="header-placeholder"></div>
+
+    <main class="guide-main ref-main">
+        <div class="container">
+            <article class="guide-article ref-article">
+                <nav class="breadcrumbs">
+                    <a href="../index.html">Home</a> &gt;
+                    <a href="../guides.html">Guides</a> &gt;
+                    <span>Recent outages → money impact</span>
+                </nav>
+
+                <header class="article-header">
+                    <h1>Recent Outages → Money Impact (Last 14 Days)</h1>
+                    <div class="article-meta">
+                        <span class="article-category">Living reference</span>
+                        <span class="article-read-time">14 min read</span>
+                        <span class="article-date">Updated July 23, 2026</span>
+                    </div>
+                    <p class="ref-lede">
+                        A short living brief for CTOs, SREs, and founders: what broke, how long it lasted, who felt it,
+                        and how to estimate <em>your</em> money impact with TechImpact tools.
+                        Simple English. Source links. No fake “official vendor losses.”
+                        Hub:
+                        <a href="../reliability-money-toolkit.html">Reliability Money Toolkit</a>.
+                    </p>
+                </header>
+
+                <nav class="ref-toc" aria-label="Table of contents">
+                    <strong>On this page</strong>
+                    <ol>
+                        <li><a href="#how-to-read">How to read this brief</a></li>
+                        <li><a href="#summary-table">14-day snapshot</a></li>
+                        <li><a href="#aws-cloudfront">AWS CloudFront VPC Origins (16 Jul 2026)</a></li>
+                        <li><a href="#gcp-europe-west4">Google Cloud europe-west4-a (15–16 Jul 2026)</a></li>
+                        <li><a href="#meta-apps">Meta apps (19 &amp; 22 Jul 2026)</a></li>
+                        <li><a href="#skipped">What we skipped this window</a></li>
+                        <li><a href="#methodology">Methodology (what we do not claim)</a></li>
+                        <li><a href="#update-policy">Update policy</a></li>
+                        <li><a href="#related-tools">Related tools</a></li>
+                        <li><a href="#faq">FAQ</a></li>
+                    </ol>
+                </nav>
+
+                <section class="article-section edu-block" id="how-to-read">
+                    <div class="edu-inner">
+                        <h2>1. How to read this brief</h2>
+                        <p>
+                            Outage news often mixes three different numbers: vendor status-page duration, user-report spikes,
+                            and your private business loss. This page keeps those separate on purpose.
+                        </p>
+                        <ul>
+                            <li><strong>Facts:</strong> timing, services, and root-cause notes from public reports (linked).</li>
+                            <li><strong>Blast radius:</strong> who felt it downstream (education apps, identity, AI platforms, and so on).</li>
+                            <li><strong>Money model:</strong> an <strong>ILLUSTRATIVE</strong> scenario you can open in our calculators and then replace with your inputs.</li>
+                        </ul>
+                        <p>
+                            If you only need the suite map, start at the
+                            <a href="../reliability-money-toolkit.html">Reliability Money Toolkit</a>.
+                            If you need formulas and allowed-downtime tables, use the
+                            <a href="sla-uptime-downtime-reference.html">SLA uptime → downtime reference</a>.
+                        </p>
+                    </div>
+                </section>
+
+                <section class="article-section" id="summary-table">
+                    <h2>2. 14-day snapshot (as of 23 Jul 2026)</h2>
+                    <div class="ref-table-wrap">
+                        <table class="ref-table">
+                            <caption>Major incidents covered in this refresh</caption>
+                            <thead>
+                                <tr>
+                                    <th scope="col">Incident</th>
+                                    <th scope="col">When (UTC / noted)</th>
+                                    <th scope="col">Duration (reported)</th>
+                                    <th scope="col">Confidence</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th scope="row">AWS CloudFront VPC Origins</th>
+                                    <td>16 Jul 2026, ~07:45–11:18 UTC</td>
+                                    <td>~3 h 33 m</td>
+                                    <td>High (AWS + secondary reports)</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Google Cloud europe-west4-a</th>
+                                    <td>15–16 Jul 2026</td>
+                                    <td>~14 h 55 m (zone / listed services)</td>
+                                    <td>High (Google incident page)</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Meta (Facebook / Instagram / WhatsApp)</th>
+                                    <td>19 Jul and 22 Jul 2026 (GMT afternoon spikes reported)</td>
+                                    <td>Less certain — user reports; no clear Meta post-mortem at writing</td>
+                                    <td>Medium (public user reports)</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <p>
+                        Duration confidence matters for money models. A clean vendor timeline is easier to plug into a calculator.
+                        A messy consumer-report spike needs a low / mid / high range instead of one false exact number.
+                    </p>
+                    <p>
+                        <strong>Most relevant for reliability planning this window:</strong>
+                        (1) CloudFront VPC Origins — narrow control-plane failure, wide cascade;
+                        (2) GCP europe-west4-a — long zone / facility power+cooling event;
+                        (3) Meta — dependency risk outside your VPC (ads, support, messaging).
+                    </p>
+                </section>
+
+                <section class="article-section" id="aws-cloudfront">
+                    <h2>3. AWS CloudFront VPC Origins — 16 Jul 2026</h2>
+
+                    <h3>What happened</h3>
+                    <p>
+                        On 16 July 2026, Amazon CloudFront customers using <strong>VPC Origins</strong> saw elevated global
+                        <strong>5xx</strong> errors for roughly <strong>3 hours 33 minutes</strong>
+                        (about <strong>07:45–11:18 UTC</strong>, matching common public timelines).
+                        Distributions that did <em>not</em> use VPC Origins were generally not in the same failure path.
+                    </p>
+                    <p>
+                        Public summaries describe a control-plane / routing-capacity problem tied to the connection-management
+                        fleet for private VPC origins. Capacity stress in a Frankfurt availability zone
+                        (<code>euc1-az2</code> / <code>eu-central-1</code>) interfered with loading and distributing routing
+                        configuration to CloudFront’s global edge processors. The technical footprint was narrow (one origin type);
+                        the user footprint was wide because many products put CloudFront in front of private backends.
+                    </p>
+
+                    <h3>Who felt it</h3>
+                    <p>
+                        Downstream reports named education and collaboration platforms (for example Canvas and Blackboard),
+                        AI and ML platforms (for example Hugging Face), identity and access tooling (for example Frontegg),
+                        networking vendor cloud services (for example Ubiquiti), and other internet-facing apps.
+                        Cascade risk is the lesson: if your identity provider or CDN path fails, healthy application servers
+                        can still look “down” to end users.
+                    </p>
+
+                    <h3>Sources</h3>
+                    <ul>
+                        <li><a href="https://blog.incidenthub.cloud/aws-cloudfront-outage-jul-16-2026" target="_blank" rel="noopener">IncidentHub: July 2026 AWS CloudFront / VPC Origins summary</a></li>
+                        <li><a href="https://www.techtimes.com/articles/320971/20260719/aws-cloudfront-took-down-canvas-blackboard-hugging-face-control-plane-failure.htm" target="_blank" rel="noopener">TechTimes: cascade impact and Frankfurt AZ control-plane notes</a></li>
+                        <li><a href="https://www.theregister.com/off-prem/2026/07/16/aws-cloudfront-outage-serves-errors-instead-of-websites/5272421" target="_blank" rel="noopener">The Register: AWS status wording and workaround notes</a></li>
+                        <li>Also cross-check AWS’s own Health Dashboard posts for the official “internal constraint” wording on the VPC Origins connection fleet.</li>
+                    </ul>
+
+                    <h3>How to model $ impact (ILLUSTRATIVE)</h3>
+                    <div class="edu-example">
+                        <p><strong>ILLUSTRATIVE assumptions only — not AWS’s loss, not your loss until you edit the numbers:</strong></p>
+                        <ul>
+                            <li>Revenue at risk: <strong>$10,000 / hour</strong></li>
+                            <li>Duration: <strong>3 h 33 m</strong> (match the reported window)</li>
+                            <li>Refund rate: <strong>5%</strong> · Conversion drop: <strong>10%</strong></li>
+                            <li>Affected employees: <strong>40</strong> at <strong>$55 / hour</strong></li>
+                            <li>Similar incidents / year for annualizing: <strong>4</strong> · Currency: <strong>USD</strong></li>
+                        </ul>
+                        <p>
+                            Open a ready scenario:
+                            <a href="../website-downtime-cost-calculator.html?rev=10000&amp;h=3&amp;m=33&amp;refund=5&amp;conv=10&amp;emp=40&amp;cost=55&amp;inc=4&amp;cur=USD">
+                                Downtime Cost Calculator (CloudFront-length scenario)
+                            </a>.
+                        </p>
+                        <p class="edu-note">
+                            Replace <code>rev</code>, <code>refund</code>, <code>conv</code>, <code>emp</code>, and <code>cost</code>
+                            with your values. Keep <code>h</code>/<code>m</code> if you want this incident’s length.
+                        </p>
+                    </div>
+
+                    <div class="formula-box">
+                        <p><strong>Quick check before you trust the total:</strong></p>
+                        <p>Revenue piece ≈ revenue_per_hour × (hours + minutes/60)</p>
+                        <p>Example: 10,000 × (3 + 33/60) ≈ 10,000 × 3.55 ≈ <strong>$35,500</strong> revenue line only — before refunds, conversion, and productivity.</p>
+                    </div>
+
+                    <p>
+                        Also map the time budget for your SLA month with the
+                        <a href="../allowed-downtime-calculator.html">Allowed Downtime Calculator</a>
+                        and compare recovery targets in the
+                        <a href="../rto-rpo-impact-calculator.html">RTO/RPO Impact Calculator</a>.
+                        If you sell uptime to customers, estimate credits in the
+                        <a href="../index.html#sla-calculator">SLA Penalty Calculator</a>.
+                    </p>
+                </section>
+
+                <section class="article-section" id="gcp-europe-west4">
+                    <h2>4. Google Cloud europe-west4-a — 15–16 Jul 2026</h2>
+
+                    <h3>What happened</h3>
+                    <p>
+                        Google Cloud reported a multi-hour disruption in <strong>europe-west4-a</strong> (Netherlands)
+                        after a <strong>power</strong> problem that led to a <strong>cooling</strong> failure.
+                        Ambient temperatures rose quickly; Google described a proactive shutdown of hosts, storage, and network
+                        gear to protect equipment and customer data. Public summaries put the zone-level impact at about
+                        <strong>14 hours 55 minutes</strong>.
+                    </p>
+                    <p>
+                        This was not “all of Google Cloud globally.” It was a zone / facility-class event with a focused
+                        product list — still painful for anyone who pinned critical workloads to a single AZ without a tested failover path.
+                    </p>
+
+                    <h3>Who felt it</h3>
+                    <p>
+                        Services commonly listed in the incident materials include
+                        <strong>Google Cloud VMware Engine (GCVE)</strong>,
+                        <strong>Bare Metal Solution</strong>, and
+                        <strong>Google Cloud NetApp Volumes</strong>.
+                        Teams running hybrid / VMware / bare-metal / NetApp-dependent storage in that zone saw the longest pain.
+                        Broader GCP products in other zones were not the same story — but multi-AZ assumptions only help if you actually tested failovers.
+                    </p>
+
+                    <h3>Sources</h3>
+                    <ul>
+                        <li><a href="https://status.cloud.google.com/incidents/3BvH3LVGcupoYqV6F4Nw" target="_blank" rel="noopener">Google Cloud incident 3BvH3LVGcupoYqV6F4Nw</a></li>
+                        <li><a href="https://www.datacenterdynamics.com/en/news/google-cloud-experiences-outage-after-power-and-cooling-failure-in-netherlands-data-center/" target="_blank" rel="noopener">Data Center Dynamics: Netherlands facility power + cooling (~14h 55m)</a></li>
+                        <li><a href="https://www.computing.co.uk/news/2026/datacentre/google-cloud-outage-exposes-datacentre-resilience-concerns" target="_blank" rel="noopener">Computing.co.uk: power/cooling and resilience context</a></li>
+                    </ul>
+
+                    <h3>How to model $ impact (ILLUSTRATIVE)</h3>
+                    <div class="edu-example">
+                        <p><strong>ILLUSTRATIVE assumptions only — not Google’s loss:</strong></p>
+                        <ul>
+                            <li>Same starter business inputs as above ($10k/hour, 5% refunds, 10% conversion drop, 40 staff @ $55/hour, 4 incidents/year)</li>
+                            <li>Duration set to <strong>14 h 55 m</strong> to match the widely reported window</li>
+                        </ul>
+                        <p>
+                            Open a ready scenario:
+                            <a href="../website-downtime-cost-calculator.html?rev=10000&amp;h=14&amp;m=55&amp;refund=5&amp;conv=10&amp;emp=40&amp;cost=55&amp;inc=4&amp;cur=USD">
+                                Downtime Cost Calculator (europe-west4-a-length scenario)
+                            </a>.
+                        </p>
+                        <p class="edu-note">
+                            Long outages change the story: overnight idle hours, partial restore waves, and data rebuild work.
+                            After the base revenue line, add overtime and restore labor separately if those were real for you.
+                        </p>
+                    </div>
+
+                    <div class="formula-box">
+                        <p><strong>Rough revenue line only:</strong> 10,000 × (14 + 55/60) ≈ 10,000 × 14.9167 ≈ <strong>$149,167</strong></p>
+                        <p>That is still only one slice. Storage rebuild, VMware recovery, and customer credits can dominate for GCVE / NetApp-heavy estates.</p>
+                    </div>
+
+                    <p>
+                        For recovery planning after a zone loss, pair the money model with
+                        <a href="rto-rpo-decision-matrix.html">RTO vs RPO decision matrix</a>
+                        and
+                        <a href="../rto-rpo-impact-calculator.html">RTO/RPO Impact Calculator</a>.
+                        Check whether your SLA month still has room using
+                        <a href="calendar-month-sla-downtime-tables.html">calendar-month downtime tables</a>
+                        and
+                        <a href="../allowed-downtime-calculator.html">Allowed Downtime</a>.
+                    </p>
+                </section>
+
+                <section class="article-section" id="meta-apps">
+                    <h2>5. Meta (Facebook / Instagram / WhatsApp) — 19 &amp; 22 Jul 2026</h2>
+
+                    <h3>What happened</h3>
+                    <p>
+                        On Wednesday afternoon <strong>22 July 2026 (GMT)</strong>, public outage trackers and news desks
+                        reported widespread user problems across Meta apps — Facebook, Instagram, and WhatsApp
+                        (and often Messenger in the same wave). Common symptoms in user reports included forced logouts,
+                        “account temporarily unavailable” style messages, failed feed refreshes, and messaging failures.
+                        Several outlets also described this as a <strong>second</strong> widespread interruption within about
+                        <strong>72 hours</strong> of a similar wave around <strong>19 July 2026</strong>.
+                    </p>
+                    <p>
+                        <strong>Duration is less certain than the cloud incidents above.</strong>
+                        Report spikes on 22 Jul clustered around early afternoon GMT (~13:00); recovery was gradual in public trackers.
+                        At the time of this brief, Meta had not published a clear, detailed post-mortem comparable to a cloud status incident page.
+                        Some analysts mentioned possible <strong>DNS-related</strong> symptoms; treat that as an unconfirmed hypothesis, not a settled root cause.
+                    </p>
+
+                    <h3>Who felt it — and why it matters for B2B teams</h3>
+                    <p>
+                        This is mainly a <strong>consumer blast-radius</strong> story. Still, many businesses depend on Meta surfaces for:
+                    </p>
+                    <ul>
+                        <li>Customer support and community replies</li>
+                        <li>Login / social identity shortcuts</li>
+                        <li>Ads and landing-page traffic</li>
+                        <li>WhatsApp Business messaging</li>
+                    </ul>
+                    <p>
+                        If your checkout stayed up but your ad traffic or WhatsApp support channel died, your “site uptime” graph can look healthy while revenue and support queues still suffer.
+                        That is dependency risk — the same class of lesson as an identity-provider cascade during the CloudFront event.
+                    </p>
+
+                    <h3>Sources</h3>
+                    <ul>
+                        <li><a href="https://www.manchestereveningnews.co.uk/news/uk-news/facebook-instagram-whatsapp-down-meta-34333482" target="_blank" rel="noopener">Manchester Evening News: afternoon GMT user reports (22 Jul)</a></li>
+                        <li><a href="https://www.geo.tv/latest/674282-facebook-instagram-whatsapp-down-heres-root-cause-behind-metas-global-outage" target="_blank" rel="noopener">Geo.tv: timeline notes and DNS hypothesis (unconfirmed)</a></li>
+                        <li><a href="https://www.techjuice.pk/second-meta-outage-in-72-hours-disrupts-facebook-instagram-and-whatsapp/" target="_blank" rel="noopener">TechJuice: second outage-in-72-hours framing</a></li>
+                        <li>Cross-check Downdetector-style trackers and Meta’s status page; do not invent a precise end time if Meta did not publish one.</li>
+                    </ul>
+
+                    <h3>How to model $ impact (ILLUSTRATIVE)</h3>
+                    <div class="edu-example">
+                        <p><strong>ILLUSTRATIVE — duration deliberately conservative because the public end time is fuzzy:</strong></p>
+                        <ul>
+                            <li>Model a <strong>1 h 30 m</strong> “core disruption” case for planning talks (not a claim of Meta’s official duration)</li>
+                            <li>Same starter money inputs: $10k/hour, 5% refunds, 10% conversion drop, 40 staff @ $55/hour, 4×/year</li>
+                            <li>If Meta is only an ads / support channel for you, reduce <code>rev</code> to the share of revenue that actually depends on those channels</li>
+                        </ul>
+                        <p>
+                            Open a ready scenario:
+                            <a href="../website-downtime-cost-calculator.html?rev=10000&amp;h=1&amp;m=30&amp;refund=5&amp;conv=10&amp;emp=40&amp;cost=55&amp;inc=4&amp;cur=USD">
+                                Downtime Cost Calculator (1h 30m illustrative Meta-dependency case)
+                            </a>.
+                        </p>
+                        <p class="edu-note">
+                            Run a second link with <code>h=3&amp;m=0</code> if you want a stress case.
+                            Write both results in the same slide: “core” vs “stress.” Do not pretend one number is official.
+                        </p>
+                    </div>
+
+                    <p>
+                        For teams that pause ads when landing pages fail, also see
+                        <a href="n8n-watchdog.html">n8n watchdog for landing pages</a>.
+                        For credit claims against <em>your</em> vendors (not Meta consumer apps), use
+                        <a href="how-to-file-sla-service-credit-claim.html">How to file an SLA service credit claim</a>.
+                    </p>
+                </section>
+
+                <section class="article-section" id="skipped">
+                    <h2>6. What we skipped this window</h2>
+                    <p>
+                        Not every status blip belongs in a money-planning brief. For this 14-day refresh we intentionally
+                        did <strong>not</strong> deep-dive:
+                    </p>
+                    <ul>
+                        <li>
+                            <strong>OpenAI / ChatGPT (around 22 Jul 2026):</strong> reports of elevated errors on file uploads
+                            and image generation. Useful if you ship AI features, but not a primary cloud-zone or CDN cascade lesson
+                            for most CTO/SRE money reviews this week.
+                        </li>
+                        <li>
+                            <strong>Twilio regional SMS/voice path issues:</strong> important for telephony-heavy products;
+                            too narrow for a general reliability-money snapshot unless WhatsApp/SMS is your checkout path.
+                        </li>
+                        <li>
+                            <strong>Routine CDN edge maintenance windows</strong> with traffic already rerouted — noise for this page.
+                        </li>
+                    </ul>
+                    <p>
+                        If your product depends on one of those paths, still model it: pick duration from the status page,
+                        set <code>rev</code> to the revenue share that uses that dependency, and open Downtime Cost.
+                    </p>
+                </section>
+
+                <section class="article-section edu-block" id="methodology">
+                    <div class="edu-inner">
+                        <h2>7. Methodology — what we do not claim</h2>
+                        <p>
+                            TechImpact.online does <strong>not</strong> claim official AWS, Google, Meta, or other vendor financial losses.
+                            We also do not invent a single “industry average cost per minute” and apply it to every reader.
+                        </p>
+                        <p>What we <em>do</em> show:</p>
+                        <ol class="ref-steps">
+                            <li>Public facts: timing, services, and linked sources.</li>
+                            <li>Honest uncertainty: when duration or root cause is unclear, we say so.</li>
+                            <li>A repeatable estimation method for <strong>your</strong> loss: revenue rate × duration, plus refunds, conversion effects, and productivity.</li>
+                            <li>Shareable calculator URLs so a team can debate the same scenario.</li>
+                        </ol>
+                        <div class="formula-box">
+                            <p><strong>Core downtime-cost idea (simplified):</strong></p>
+                            <p>total ≈ revenue_loss + refund_costs + productivity_loss + other labeled add-ons</p>
+                            <p>revenue_loss ≈ revenue_per_hour × duration_hours</p>
+                        </div>
+                        <p>
+                            Full open formulas live in the
+                            <a href="sla-uptime-downtime-reference.html">SLA uptime → downtime reference (methodology)</a>.
+                            Worked money examples live in
+                            <a href="downtime-cost-calculator-real-world-examples.html">real-world downtime cost examples</a>.
+                        </p>
+                        <p>
+                            SLA credits are a separate track. A vendor may owe a small invoice credit while your business loss is large — or the reverse, if you had little traffic during the window.
+                            Always model credit and business impact as two columns, not one blended fantasy number.
+                        </p>
+                    </div>
+                </section>
+
+                <section class="article-section" id="update-policy">
+                    <h2>8. Update policy</h2>
+                    <p>
+                        This is a <strong>living reference</strong>. We refresh it <strong>manually</strong> when a major outage
+                        offers a clear planning lesson (new cascade pattern, long zone failure, or wide consumer dependency shock).
+                        We do not promise daily scraping. The “last 14 days” framing is a practical window for on-call and exec reviews —
+                        not a guarantee that every small regional blip appears here.
+                    </p>
+                    <p>
+                        When we refresh, we update the article date, the snapshot table, and the illustrative calculator links.
+                        Older incidents may move into other guides (for example Starlink lessons in
+                        <a href="business-continuity-consulting-downtime-sla-rto.html">business continuity consulting</a>).
+                    </p>
+                    <p>
+                        Found an error in timing or a better primary source?
+                        <a href="../contact.html">Contact us</a> — we correct public mistakes.
+                    </p>
+                </section>
+
+                <section class="article-section" id="related-tools">
+                    <h2>9. Related tools (use after each incident review)</h2>
+                    <div class="calculator-list">
+                        <div class="calculator-item">
+                            <h3>Website Downtime Cost</h3>
+                            <p>Turn duration + revenue + staff impact into a shareable money estimate.</p>
+                            <p><a class="btn primary" href="../website-downtime-cost-calculator.html">Open calculator</a></p>
+                        </div>
+                        <div class="calculator-item">
+                            <h3>Allowed Downtime</h3>
+                            <p>See how many minutes your uptime % still allows this month.</p>
+                            <p><a class="btn secondary" href="../allowed-downtime-calculator.html">Open calculator</a></p>
+                        </div>
+                        <div class="calculator-item">
+                            <h3>Cost of Nines</h3>
+                            <p>Compare two availability targets before you buy another nine.</p>
+                            <p><a class="btn secondary" href="../nines-availability-cost-calculator.html">Open calculator</a></p>
+                        </div>
+                        <div class="calculator-item">
+                            <h3>RTO / RPO Impact</h3>
+                            <p>Price recovery time and data-loss targets after zone-class failures.</p>
+                            <p><a class="btn secondary" href="../rto-rpo-impact-calculator.html">Open calculator</a></p>
+                        </div>
+                        <div class="calculator-item">
+                            <h3>SLA Penalty</h3>
+                            <p>Estimate service credits when you (or your vendor) miss a promise.</p>
+                            <p><a class="btn secondary" href="../index.html#sla-calculator">Open calculator</a></p>
+                        </div>
+                    </div>
+                    <p>
+                        Suite hub:
+                        <a href="../reliability-money-toolkit.html">Reliability Money Toolkit</a>.
+                    </p>
+                </section>
+
+                <section class="article-section" id="faq">
+                    <h2>10. FAQ</h2>
+                    <div class="faq-list ref-faq">
+                        <div class="faq-item">
+                            <h3 class="faq-question">Does TechImpact claim official vendor losses?</h3>
+                            <div class="faq-answer active">
+                                <p>
+                                    No. We summarize public incident reports and show how a team estimates <em>its own</em> loss
+                                    with labeled illustrative assumptions.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="faq-item">
+                            <h3 class="faq-question">How often is this brief updated?</h3>
+                            <div class="faq-answer active">
+                                <p>
+                                    Manually, when a major outage is useful for planning lessons.
+                                    Check the “Updated” date at the top of the page.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="faq-item">
+                            <h3 class="faq-question">What should I change in the sample links?</h3>
+                            <div class="faq-answer active">
+                                <p>
+                                    Change revenue per hour, refund %, conversion drop, employee count, hourly staff cost,
+                                    and incidents per year. Keep duration close to the incident when that is the point of the exercise.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="faq-item">
+                            <h3 class="faq-question">Why include Meta next to cloud outages?</h3>
+                            <div class="faq-answer active">
+                                <p>
+                                    Because dependency risk is not only “our VPC.” Ads, login, and messaging can fail while your servers stay green.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="faq-item">
+                            <h3 class="faq-question">Is an SLA credit the same as downtime cost?</h3>
+                            <div class="faq-answer active">
+                                <p>
+                                    No. Credits are usually capped invoice reductions. Downtime cost is your business impact. Model them in two columns.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="faq-item">
+                            <h3 class="faq-question">Which tool should I open first?</h3>
+                            <div class="faq-answer active">
+                                <p>
+                                    Money impact → Downtime Cost. Time budget → Allowed Downtime / Cost of Nines.
+                                    Recovery targets → RTO/RPO. Credits → SLA Penalty. Overview →
+                                    <a href="../reliability-money-toolkit.html">Reliability Money Toolkit</a>.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="article-section ref-cta-block">
+                    <h2>Next step</h2>
+                    <p>
+                        <a class="btn primary" href="../reliability-money-toolkit.html">Reliability Money Toolkit</a>
+                        <a class="btn secondary" href="../website-downtime-cost-calculator.html">Downtime Cost Calculator</a>
+                        <a class="btn secondary" href="sla-uptime-downtime-reference.html">Open methodology</a>
+                        <a class="btn secondary" href="../guides.html">All guides</a>
+                    </p>
+                </section>
+            </article>
+        </div>
+    </main>
+
+    <div id="footer-placeholder"></div>
+    <script src="../js/includes.js"></script>
+</body>
+</html>

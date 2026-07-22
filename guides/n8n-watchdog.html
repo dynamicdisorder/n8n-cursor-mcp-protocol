@@ -1,0 +1,810 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="google-adsense-account" content="ca-pub-5341779159353455">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Build an n8n Watchdog to Monitor Landing Pages and Auto-Pause Ads | TechImpact.online</title>
+    <meta name="description" content="Learn how to build a practical n8n watchdog that monitors landing pages for errors, checks DOM elements, automatically pauses failing ads, and alerts your team with context and screenshots.">
+    <meta name="keywords" content="n8n watchdog, landing page monitoring, ad automation, DOM monitoring, automated ad pausing, n8n workflow, paid traffic protection, marketing automation">
+    <meta name="author" content="TechImpact.online">
+    <link rel="canonical" href="https://www.techimpact.online/guides/n8n-watchdog.html">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://www.techimpact.online/guides/n8n-watchdog.html">
+    <meta property="og:title" content="How to Build an n8n Watchdog to Monitor Landing Pages and Auto-Pause Ads">
+    <meta property="og:description" content="Learn how to build a practical n8n watchdog that monitors landing pages for errors, checks DOM elements, automatically pauses failing ads, and alerts your team.">
+    <meta property="og:image" content="https://www.techimpact.online/assets/og/n8n-watchdog-guide.jpg">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://www.techimpact.online/guides/n8n-watchdog.html">
+    <meta property="twitter:title" content="How to Build an n8n Watchdog to Monitor Landing Pages and Auto-Pause Ads">
+    <meta property="twitter:description" content="Learn how to build a practical n8n watchdog that monitors landing pages for errors, checks DOM elements, automatically pauses failing ads, and alerts your team.">
+    <meta property="twitter:image" content="https://www.techimpact.online/assets/og/n8n-watchdog-guide.jpg">
+
+    <!-- JSON-LD Schema -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "How to Build an n8n Watchdog to Monitor Landing Pages and Auto-Pause Ads",
+        "description": "Learn how to build a practical n8n watchdog that monitors landing pages for errors, checks DOM elements, automatically pauses failing ads, and alerts your team with context and screenshots.",
+        "url": "https://www.techimpact.online/guides/n8n-watchdog.html",
+        "image": "https://www.techimpact.online/assets/og/n8n-watchdog-guide.jpg",
+        "author": {
+            "@type": "Organization",
+            "name": "TechImpact.online",
+            "url": "https://www.techimpact.online/"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "TechImpact.online",
+            "url": "https://www.techimpact.online/"
+        },
+        "datePublished": "2025-09-19",
+        "dateModified": "2025-09-19",
+        "articleSection": "Marketing Automation",
+        "wordCount": "4800"
+    }
+    </script>
+
+    <!-- FAQ JSON-LD Schema -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {
+                "@type": "Question",
+                "name": "Does this replace QA?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "No. QA finds defects before launch. The watchdog is a production guardrail. It catches problems that surface only in real traffic conditions or variant routing."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Why not only rely on uptime?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Because 200 OK just means the server responded. It doesn't mean the page is healthy, the CTA is visible, or the layout renders correctly."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Is it safe to pause ads automatically?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Yes, with guardrails. Pause at the smallest scope possible. Store state. Require consecutive failures to pause and consecutive passes to resume. Keep a fail-safe: if mapping from URL to entity is unclear, do not pause, alert instead."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Can non-technical people maintain the list of URLs?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Yes. Move the Config list to a Google Sheet or a small database later. Keep the first version hardcoded so you can validate the flow quickly."
+                }
+            }
+        ]
+    }
+    </script>
+
+    <link rel="stylesheet" href="../styles.css">
+    <!-- Google AdSense -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5341779159353455"
+        crossorigin="anonymous"></script>    
+</head>
+<body>
+    <!-- Header Placeholder -->
+    <div id="header-placeholder"></div>
+
+    <!-- Main Content -->
+    <main class="guide-main">
+        <div class="container">
+            <article class="guide-article">
+                <!-- Breadcrumbs -->
+                <nav class="breadcrumbs">
+                    <a href="../../index.html">Home</a> > 
+                    <a href="../../guides.html">Guides</a> > 
+                    <span>n8n Watchdog</span>
+                </nav>
+
+                <!-- Article Header -->
+                <header class="article-header">
+                    <h1>How to build an n8n watchdog to monitor landing pages and auto-pause ads</h1>
+                    <div class="article-meta">
+                        <span class="article-category">Marketing Automation</span>
+                        <span class="article-read-time">18 min read</span>
+                        <span class="article-date">September 19, 2025</span>
+                    </div>
+                </header>
+
+                <!-- Article Content -->
+                <div class="article-content">
+                    <section class="article-section">
+                        <p>Broken landing pages happen. Big teams. Small teams. Doesn't matter. A bad template ships, PHP warnings leak into the DOM, or the CTA stops rendering. Uptime checks keep showing green because the server returns 200. Meanwhile your campaigns keep spending.</p>
+                        
+                        <p>This guide shows how to build a practical n8n watchdog that:</p>
+                        
+                        <ul>
+                            <li>loads your paid landing pages on a schedule,</li>
+                            <li>checks the DOM for red flags and for required elements,</li>
+                            <li>automatically pauses ads tied to the failing URL,</li>
+                            <li>alerts your team with context and a screenshot,</li>
+                            <li>and auto-resumes once the page is healthy.</li>
+                        </ul>
+                        
+                        <p>If you just want someone to help you plan guardrails for your stack, you can start a conversation here: <a href="https://dynamicdisorder.co/contact" target="_blank" rel="noopener">dynamicdisorder.co/contact</a>. That link is also at the bottom if you prefer to read first.</p>
+                    </section>
+
+                    <section class="article-section">
+                        <h2>Why standard uptime monitoring isn't enough</h2>
+                        
+                        <p>Traditional uptime says: server reachable, status code 200, latency acceptable. That's useful but incomplete. Plenty of breakages slip through:</p>
+                        
+                        <ul>
+                            <li><strong>Server-side warnings in HTML:</strong> Warning:, Notice:, Fatal error:. Page is still 200.</li>
+                            <li><strong>Client-side render failure:</strong> the script that mounts the hero or the checkout errors silently.</li>
+                            <li><strong>Consent wall or cookie modal</strong> that blocks the CTA in certain geo or language routes.</li>
+                            <li><strong>AB variant with a missing element</strong> that your test scripts don't cover.</li>
+                            <li><strong>Ad-specific paths:</strong> a UTM lands you in a slightly different template that no one smoke-tested.</li>
+                        </ul>
+                        
+                        <p>The fix is simple: watch what the user sees. Fetch the page with a headless browser, assert that bad strings are not present and key elements are present. If assertions fail, stop sending paid clicks there until it's fixed.</p>
+                    </section>
+
+                    <section class="article-section">
+                        <h2>The n8n watchdog pattern (overview)</h2>
+                        
+                        <div class="example-box">
+                            <p><strong>Flow</strong></p>
+                            <ul>
+                                <li><strong>Cron:</strong> run every 5–10 minutes.</li>
+                                <li><strong>Config:</strong> list of landing pages and ad entities to control.</li>
+                                <li><strong>Headless fetch:</strong> load the URL and get HTML (and optionally a screenshot).</li>
+                                <li><strong>Checks:</strong> negative text regex + positive selector checks.</li>
+                                <li><strong>State:</strong> track consecutive passes and failures.</li>
+                                <li><strong>Decision:</strong> after N failures, pause mapped ads; after K passes, resume.</li>
+                                <li><strong>Notify:</strong> Slack or Telegram with reason, IDs, and screenshot.</li>
+                            </ul>
+                        </div>
+                        
+                        <h3>Why n8n works well</h3>
+                        <p>You get a visual flow, versionable JSON, secrets in one place, easy scheduling, and native nodes for HTTP, Slack, DBs, and OAuth. You can keep it small or grow it into a full incident pipeline.</p>
+                        
+                        <h3>Guardrails, not heroics</h3>
+                        <p>This is not about blaming a developer or an agency. It is about building guardrails so that when things break, your budget and users are protected. Alerts should be actionable. Pauses should be scoped and reversible. Resumes should be automatic when the page is good again. Quiet and boring is the goal.</p>
+                    </section>
+
+                    <section class="article-section">
+                        <h2>Configuration: start simple, then evolve</h2>
+                        
+                        <h3>Option A: Static Config node (fastest)</h3>
+                        <p>Put a Function node called Config at the start and return an array of landing page objects:</p>
+                        
+                        <div class="code-block">
+                            <pre><code>return [
+  {
+    json: {
+      url: "https://example.com/lp1?utm_source=google",
+      platform: "google",
+      entityId: "1234567890",      // ad or adgroup id
+      selectorsRequired: ["&lt;h1&gt;", "Buy Now"], // simple contains checks
+      allowPatterns: []            // regex strings you accept on page
+    }
+  },
+  {
+    json: {
+      url: "https://example.com/lp2?utm_source=meta",
+      platform: "meta",
+      entityId: "9876543210",      // ad or adset id
+      selectorsRequired: [".hero-title", ".cta-button"],
+      allowPatterns: ["cookie"]    // e.g., allow "cookie" text
+    }
+  }
+];</code></pre>
+                        </div>
+                        
+                        <h3>Option B: Google Sheets</h3>
+                        <p>Create a sheet <strong>LandingPages</strong> with columns: url | platform | entityId | selectorsRequired | allowPatterns. Ops can edit without touching n8n.</p>
+                        
+                        <h3>Option C: Database (Supabase/Postgres)</h3>
+                        <p>Table <strong>landing_pages</strong>: id, url, platform, entity_id, selectors_required (text[]), allow_patterns (text[]). Add a state table to track passes/fails per URL. This is best when your list grows or when multiple teams collaborate.</p>
+                    </section>
+
+                    <section class="article-section">
+                        <h2>The checks: what to look for</h2>
+                        
+                        <h3>Negative text regex pack (start here)</h3>
+                        <p>These should not appear anywhere in the HTML:</p>
+                        
+                        <div class="code-block">
+                            <pre><code>Warning:\s|Notice:\s|Fatal error:|Parse error:|Undefined (array key|index|variable)|
+Exception in|Stack trace:|SQLSTATE\[|502 Bad Gateway|504 Gateway Time-out|
+Service Unavailable|Maintenance|Object not found|Unhandled exception</code></pre>
+                        </div>
+                        
+                        <p>Tune as needed. Support sites often include "Maintenance" in friendly messages. Add those to allowPatterns if you accept them during planned windows.</p>
+                        
+                        <h3>Positive selector checks</h3>
+                        <p>Confirm that critical elements are present. The simplest approach is string contains on HTML. For higher accuracy, parse the DOM or use a headless browser that can query selectors. Start pragmatic:</p>
+                        
+                        <ul>
+                            <li><strong>Header and nav markers:</strong> header, nav</li>
+                            <li><strong>Hero headline:</strong> .hero h1, or even just "&lt;h1&gt;"</li>
+                            <li><strong>Primary CTA:</strong> .cta, "Buy Now", form[action*="lead"]</li>
+                            <li><strong>Brand/logo:</strong> img[alt*="brand"], or a snippet of your SVG</li>
+                        </ul>
+                        
+                        <h3>Optional performance checks</h3>
+                        <ul>
+                            <li>Page size below X MB</li>
+                            <li>LCP element exists</li>
+                            <li>Response time within Y ms</li>
+                        </ul>
+                        
+                        <p>These are nice to have. The budget saver is the negative/positive checks.</p>
+                    </section>
+
+                    <section class="article-section">
+                        <h2>Hysteresis: stop flapping</h2>
+                        
+                        <p>Don't pause on the first blip. Require 2 consecutive failures to pause. Don't resume on the first pass. Require 2 consecutive passes to resume. Keep this state in a table keyed by URL and platform. That way the watchdog stays calm while still reacting quickly.</p>
+                        
+                        <div class="example-box">
+                            <p><strong>State fields</strong></p>
+                            <ul>
+                                <li>url, platform, entity_id</li>
+                                <li>paused (bool)</li>
+                                <li>consecutive_failures, consecutive_passes</li>
+                                <li>last_reason, last_screenshot_url</li>
+                                <li>last_change_at</li>
+                            </ul>
+                        </div>
+                    </section>
+
+                    <section class="article-section">
+                        <h2>Action scope: pause minimally, resume automatically</h2>
+                        
+                        <ul>
+                            <li><strong>Google Ads:</strong> pause the Ad that maps to the failing URL when possible. If multiple ads share a URL and you can't map cleanly, pause the Ad Group that contains those ads. Campaign-level pause only if you purposely tag those campaigns as safe to auto-pause.</li>
+                            <li><strong>Meta:</strong> if several ads share the same URL, pausing the Ad Set is often cleaner; otherwise pause the specific Ad.</li>
+                            <li><strong>Outbrain/Taboola:</strong> pause the creative or the campaign depending on your mapping.</li>
+                        </ul>
+                        
+                        <div class="example-box">
+                            <p><strong>Fail-safe rule:</strong> if your mapping from URL to ad entity is uncertain, do not pause. Alert a human at high severity.</p>
+                        </div>
+                    </section>
+
+                    <section class="article-section">
+                        <h2>The n8n workflow (node-by-node)</h2>
+                        
+                        <p>You can import the JSON you already have, or assemble it quickly:</p>
+                        
+                        <h3>Cron</h3>
+                        <p>Run every 5–10 minutes. Keep it predictable.</p>
+                        
+                        <h3>Config</h3>
+                        <p>Function node that returns your LP array (Option A), or a sheets/DB node.</p>
+                        
+                        <h3>Fetch Page</h3>
+                        <p>For a first version, an HTTP Request node that returns HTML is fine. If you need JS execution and screenshots, call a headless service (browserless, puppeteer-as-a-service) from the HTTP node and get both HTML and a base64 screenshot back.</p>
+                        
+                        <h3>Check Page (Function node)</h3>
+                        <p>Evaluate status code, negative regex, positive selectors. Produce a result object with statusFlag: PASS | FAIL and reason.</p>
+                        
+                        <div class="code-block">
+                            <pre><code>const html = $json.body || '';
+const status = $json.statusCode || 0;
+const neg = /(Warning:\s|Notice:\s|Fatal error:|SQLSTATE\[|502 Bad Gateway|504 Gateway Time-out|Service Unavailable|Unhandled exception)/i;
+
+let reasons = [];
+if (![200,301,302].includes(status)) reasons.push(`HTTP ${status}`);
+
+// allow patterns (optional)
+const allow = ($json.allowPatterns || []).some(p => new RegExp(p, 'i').test(html));
+
+// negative text
+if (neg.test(html) && !allow) reasons.push('Error text detected');
+
+// required selectors
+const required = $json.selectorsRequired || [];
+const missing = required.filter(sel => !html.includes(sel));
+if (missing.length) reasons.push('Missing selectors: ' + missing.join(', '));
+
+return [{
+  json: {
+    url: $json.url,
+    platform: $json.platform,
+    entityId: $json.entityId,
+    statusFlag: reasons.length ? 'FAIL' : 'PASS',
+    reason: reasons.join(' | ')
+  }
+}];</code></pre>
+                        </div>
+                        
+                        <h3>State Upsert</h3>
+                        <p>Use a DB node (Supabase/Postgres) to update consecutive_failures and consecutive_passes. If you want to keep it stateless at first, skip this and accept more noise.</p>
+                        
+                        <h3>If FAIL</h3>
+                        <p>If consecutive_failures >= 2 and paused = false, branch to pause.</p>
+                        
+                        <h3>Pause Ads</h3>
+                        <ul>
+                            <li><strong>Google Ads:</strong> HTTP Request with OAuth, set status of the ad (or ad group) to PAUSED.</li>
+                            <li><strong>Meta:</strong> Marketing API call to set ad or ad set status to PAUSED.</li>
+                            <li><strong>Outbrain:</strong> pause the campaign/creative.</li>
+                        </ul>
+                        
+                        <h3>Notify</h3>
+                        <p>Slack or Telegram with a short message, reason, and a screenshot URL if you captured one. Add buttons: "Resume now" and "Acknowledge".</p>
+                        
+                        <h3>If PASS</h3>
+                        <p>If consecutive_passes >= 2 and paused = true, resume the entity and notify.</p>
+                    </section>
+
+                    <section class="article-section">
+                        <h2>A minimal importable skeleton</h2>
+                        
+                        <p>Below is a small extract you can use as a starting point. It uses a Config node, fetches the page, checks for issues, and pauses a Google Ad. Add your credentials and extend it with state and resume logic when ready.</p>
+                        
+                        <div class="code-block">
+                            <pre><code>{
+  "name": "Landing Page Watchdog (Config Node)",
+  "nodes": [
+    {
+      "parameters": {
+        "triggerTimes": { "item": [ { "mode": "everyX", "value": 5, "unit": "minutes" } ] }
+      },
+      "id": "1",
+      "name": "Cron",
+      "type": "n8n-nodes-base.cron",
+      "typeVersion": 1,
+      "position": [250, 300]
+    },
+    {
+      "parameters": {
+        "functionCode": "return [ { json: { url: \"https://example.com/lp1?utm_source=google\", platform: \"google\", entityId: \"1234567890\", selectorsRequired: [\"&lt;h1&gt;\", \"Buy Now\"], allowPatterns: [] } }, { json: { url: \"https://example.com/lp2?utm_source=meta\", platform: \"meta\", entityId: \"9876543210\", selectorsRequired: [\"hero-title\", \"cta-button\"], allowPatterns: [\"cookie\"] } } ];"
+      },
+      "id": "2",
+      "name": "Config",
+      "type": "n8n-nodes-base.function",
+      "typeVersion": 1,
+      "position": [450, 300]
+    },
+    {
+      "parameters": {
+        "url": "={{$json[\"url\"]}}",
+        "responseFormat": "string",
+        "options": { "fullResponse": true }
+      },
+      "id": "3",
+      "name": "Fetch Page",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [650, 300]
+    },
+    {
+      "parameters": {
+        "functionCode": "const html = $json.body || ''; const status = $json.statusCode || 0; const neg = /(Warning:\\s|Notice:\\s|Fatal error:|SQLSTATE\\[|502 Bad Gateway|504 Gateway Time-out|Service Unavailable|Unhandled exception)/i; let reasons = []; if (![200,301,302].includes(status)) reasons.push(`HTTP ${status}`); const allow = ($json.allowPatterns || []).some(p => new RegExp(p, 'i').test(html)); if (neg.test(html) && !allow) reasons.push('Error text detected'); const required = $json.selectorsRequired || []; const missing = required.filter(sel => !html.includes(sel)); if (missing.length) reasons.push('Missing selectors: ' + missing.join(', ')); return [{ json: { url: $json.url, platform: $json.platform, entityId: $json.entityId, statusFlag: reasons.length ? 'FAIL' : 'PASS', reason: reasons.join(' | ') } }];"
+      },
+      "id": "4",
+      "name": "Check Page",
+      "type": "n8n-nodes-base.function",
+      "typeVersion": 1,
+      "position": [850, 300]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [ { "value1": "={{$json[\"statusFlag\"]}}", "operation": "equal", "value2": "FAIL" } ]
+        }
+      },
+      "id": "5",
+      "name": "If FAIL",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [1050, 300]
+    },
+    {
+      "parameters": { "functionCode": "return [{ json: { text: `🚨 LP failed: ${$json.url}\\nReason: ${$json.reason}` } }];" },
+      "id": "6",
+      "name": "Build Alert",
+      "type": "n8n-nodes-base.function",
+      "typeVersion": 1,
+      "position": [1250, 200]
+    },
+    {
+      "parameters": { "channel": "landing-alerts", "text": "={{$json[\"text\"]}}" },
+      "id": "7",
+      "name": "Send Slack",
+      "type": "n8n-nodes-base.slack",
+      "typeVersion": 1,
+      "position": [1450, 200],
+      "credentials": { "slackApi": "YOUR_SLACK_CREDENTIAL" }
+    },
+    {
+      "parameters": { "functionCode": "return [{ json: { action: 'pause', platform: $json.platform, entityId: $json.entityId } }];" },
+      "id": "8",
+      "name": "Prepare Pause",
+      "type": "n8n-nodes-base.function",
+      "typeVersion": 1,
+      "position": [1250, 400]
+    },
+    {
+      "parameters": {
+        "url": "https://googleads.googleapis.com/v13/customers/YOUR_CUSTOMER_ID/googleAds:mutate",
+        "method": "POST",
+        "authentication": "oAuth2",
+        "sendBody": true,
+        "jsonBody": "={ \"mutations\": [ { \"update\": { \"resourceName\": `customers/YOUR_CUSTOMER_ID/ads/${$json.entityId}`, \"status\": \"PAUSED\" }, \"updateMask\": \"status\" } ] }"
+      },
+      "id": "9",
+      "name": "Pause Google Ad",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [1450, 400],
+      "credentials": { "googleAdsOAuth2Api": "YOUR_GOOGLE_ADS_CREDENTIAL" }
+    }
+  ],
+  "connections": {
+    "Cron": { "main": [ [ { "node": "Config", "type": "main", "index": 0 } ] ] },
+    "Config": { "main": [ [ { "node": "Fetch Page", "type": "main", "index": 0 } ] ] },
+    "Fetch Page": { "main": [ [ { "node": "Check Page", "type": "main", "index": 0 } ] ] },
+    "Check Page": { "main": [ [ { "node": "If FAIL", "type": "main", "index": 0 } ] ] },
+    "If FAIL": {
+      "main": [
+        [ { "node": "Build Alert", "type": "main", "index": 0 } ],
+        [ { "node": "Prepare Pause", "type": "main", "index": 0 } ]
+      ]
+    },
+    "Build Alert": { "main": [ [ { "node": "Send Slack", "type": "main", "index": 0 } ] ] },
+    "Prepare Pause": { "main": [ [ { "node": "Pause Google Ad", "type": "main", "index": 0 } ] ] }
+  }
+}</code></pre>
+                        </div>
+                        
+                        <p>Extend it with:</p>
+                        <ul>
+                            <li>a DB Upsert node to maintain counters,</li>
+                            <li>an If PASS branch with Resume nodes,</li>
+                            <li>and optional screenshot storage.</li>
+                        </ul>
+                    </section>
+
+                    <section class="article-section">
+                        <h2>Implementation details that avoid surprises</h2>
+                        
+                        <ul>
+                            <li><strong>PHP in production:</strong> set display_errors=Off, log_errors=On. Guard array keys and nulls before using functions like trim(). These two changes alone remove most "leaked warnings."</li>
+                            <li><strong>Selectors per URL:</strong> a single global selector list will break with AB tests. Store selectors alongside each URL.</li>
+                            <li><strong>Consent banners:</strong> either accept them in the script, or add friendly strings to allowPatterns so their presence doesn't flag the page as broken.</li>
+                            <li><strong>CAPTCHAs:</strong> if the checker hits a CAPTCHA, switch to alert only to avoid false pauses.</li>
+                            <li><strong>Maintenance windows:</strong> add a flag on the URL row to skip checks during planned deploys.</li>
+                            <li><strong>Audit log:</strong> write "who paused what and why" in human language. It will save time in incident reviews.</li>
+                        </ul>
+                    </section>
+
+                    <section class="article-section">
+                        <h2>ROI: fast math that convinces the finance team</h2>
+                        
+                        <p>Say your cost per click is €0.60. You push 2,000 clicks per day into a key landing page. A bug goes live at 00:00 and no one sees it until 08:00. That is roughly €400 in wasted traffic for a single URL in one night. If three ad sets or two platforms feed that same page, losses climb fast. The watchdog usually pays for itself the first time it fires.</p>
+                    </section>
+
+                    <section class="article-section">
+                        <h2>Case study (anonymized)</h2>
+                        
+                        <p>A large telco ran paid traffic to a phone-offer page. The top of the page showed raw PHP warnings. The server returned 200. Uptime tools stayed green. The error was only visible in the rendered HTML.</p>
+                        
+                        <p>With this watchdog:</p>
+                        <ul>
+                            <li>The checker would have matched the negative regex within minutes.</li>
+                            <li>Slack alert would include the URL, platform entity IDs, and a screenshot of the leaked warnings.</li>
+                            <li>Ads mapped to that URL would pause after two consecutive fails.</li>
+                            <li>Once the fix deployed, two consecutive passes would auto-resume the paused entities.</li>
+                        </ul>
+                        
+                        <p>No drama. No finger-pointing. Budget protected.</p>
+                    </section>
+
+                    <section class="article-section">
+                        <h2>FAQ</h2>
+                        
+                        <div class="faq-section">
+                            <div class="faq-item">
+                                <h3>Does this replace QA?</h3>
+                                <p>No. QA finds defects before launch. The watchdog is a production guardrail. It catches problems that surface only in real traffic conditions or variant routing.</p>
+                            </div>
+                            
+                            <div class="faq-item">
+                                <h3>Why not only rely on uptime?</h3>
+                                <p>Because 200 OK just means the server responded. It doesn't mean the page is healthy, the CTA is visible, or the layout renders correctly.</p>
+                            </div>
+                            
+                            <div class="faq-item">
+                                <h3>Is it safe to pause ads automatically?</h3>
+                                <p>Yes, with guardrails. Pause at the smallest scope possible. Store state. Require consecutive failures to pause and consecutive passes to resume. Keep a fail-safe: if mapping from URL to entity is unclear, do not pause, alert instead.</p>
+                            </div>
+                            
+                            <div class="faq-item">
+                                <h3>Can non-technical people maintain the list of URLs?</h3>
+                                <p>Yes. Move the Config list to a Google Sheet or a small database later. Keep the first version hardcoded so you can validate the flow quickly.</p>
+                            </div>
+                            
+                            <div class="faq-item">
+                                <h3>Does it work across Google, Meta, and native networks?</h3>
+                                <p>Yes. You'll use different nodes or API calls per platform, but the pattern is identical: on failure, flip a status field to paused; on recovery, flip back to active.</p>
+                            </div>
+                            
+                            <div class="faq-item">
+                                <h3>What about pages behind geofenced content or heavy consent walls?</h3>
+                                <p>Run checks from the same region as your buyers and whitelist predictable consent strings. If a consent wall truly blocks the CTA in your legal setup, that is a real failure worth pausing for.</p>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="article-section">
+                        <h2>Conclusion</h2>
+                        
+                        <p>Shipping fast is not the problem. Shipping without guardrails is. A small n8n watchdog closes the gap between "server is up" and "page is healthy." It runs quietly, protects budget, and gives your team clean signals to act on. Start simple with a Config node and a couple of checks. Add state. Add auto-resume. Add screenshots. You can ship the first version in an afternoon and improve from there.</p>
+                        
+                        <p>If you want a second set of eyes on your plan or need help choosing the right checks for your stack, reach out: <a href="https://dynamicdisorder.co/contact" target="_blank" rel="noopener">dynamicdisorder.co/contact</a>.</p>
+                    </section>
+                </div>
+
+                <!-- CTA Section -->
+                <div class="article-cta">
+                    <h3>Need Help Building Your n8n Watchdog?</h3>
+                    <p>Get a second set of eyes on your plan or help choosing the right checks for your stack.</p>
+                    <a href="https://dynamicdisorder.co/contact" class="btn btn-primary" target="_blank" rel="noopener">Get Started</a>
+                </div>
+            </article>
+        </div>
+    </main>
+
+    <!-- Footer Placeholder -->
+    <div id="footer-placeholder"></div>
+
+    <style>
+        .guide-main {
+            padding: 2rem 0;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .guide-article {
+            background: #1a1a1a;
+            border-radius: 8px;
+            padding: 2rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+            border: 1px solid #333;
+        }
+
+        .breadcrumbs {
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+            color: #ccc;
+        }
+
+        .breadcrumbs a {
+            color: #4a9eff;
+            text-decoration: none;
+        }
+
+        .breadcrumbs a:hover {
+            color: #66b3ff;
+        }
+
+        .article-header h1 {
+            font-size: 2.5rem;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+            color: #ffffff;
+        }
+
+        .article-meta {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            font-size: 0.9rem;
+        }
+
+        .article-category {
+            background: #4a9eff;
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-weight: 500;
+        }
+
+        .article-read-time, .article-date {
+            color: #ccc;
+        }
+
+        .article-section {
+            margin-bottom: 3rem;
+        }
+
+        .article-section h2 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: #ffffff;
+            border-bottom: 2px solid #4a9eff;
+            padding-bottom: 0.5rem;
+        }
+
+        .article-section h3 {
+            font-size: 1.3rem;
+            margin: 1.5rem 0 1rem 0;
+            color: #f0f0f0;
+        }
+
+        .article-section p {
+            margin-bottom: 1rem;
+            line-height: 1.6;
+            color: #e0e0e0;
+        }
+
+        .article-section ul, .article-section ol {
+            margin-bottom: 1rem;
+            padding-left: 1.5rem;
+        }
+
+        .article-section li {
+            margin-bottom: 0.5rem;
+            line-height: 1.5;
+            color: #e0e0e0;
+        }
+
+        .article-section strong {
+            color: #ffffff;
+        }
+
+        .article-section a {
+            color: #4a9eff;
+            text-decoration: none;
+        }
+
+        .article-section a:hover {
+            color: #66b3ff;
+            text-decoration: underline;
+        }
+
+        .example-box {
+            background: #2a2a2a;
+            padding: 1.5rem;
+            border-radius: 6px;
+            margin: 1.5rem 0;
+            border-left: 4px solid #28a745;
+        }
+
+        .example-box p {
+            margin-bottom: 1rem;
+            color: #ffffff;
+        }
+
+        .example-box ul {
+            margin: 0;
+        }
+
+        .code-block {
+            background: #1e1e1e;
+            border: 1px solid #333;
+            border-radius: 6px;
+            margin: 1.5rem 0;
+            overflow-x: auto;
+        }
+
+        .code-block pre {
+            margin: 0;
+            padding: 1.5rem;
+            color: #f8f8f2;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            line-height: 1.4;
+        }
+
+        .code-block code {
+            background: none;
+            padding: 0;
+            border: none;
+        }
+
+        .faq-section {
+            margin-top: 2rem;
+        }
+
+        .faq-item {
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            background: #2a2a2a;
+            border-radius: 6px;
+            border-left: 4px solid #4a9eff;
+        }
+
+        .faq-item h3 {
+            color: #ffffff;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .faq-item p {
+            margin: 0;
+            color: #e0e0e0;
+        }
+
+        .article-cta {
+            background: #2a2a2a;
+            padding: 2rem;
+            border-radius: 8px;
+            text-align: center;
+            margin-top: 3rem;
+            border: 1px solid #444;
+        }
+
+        .article-cta h3 {
+            color: #ffffff;
+            margin-bottom: 1rem;
+        }
+
+        .article-cta p {
+            color: #e0e0e0;
+            margin-bottom: 1.5rem;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background: #4a9eff;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #66b3ff;
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 768px) {
+            .guide-main {
+                padding: 1rem;
+            }
+
+            .guide-article {
+                padding: 1rem;
+            }
+
+            .article-header h1 {
+                font-size: 2rem;
+            }
+
+            .article-meta {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+
+            .faq-item {
+                padding: 1rem;
+            }
+
+            .code-block pre {
+                padding: 1rem;
+                font-size: 0.8rem;
+            }
+        }
+    </style>
+
+    <!-- Include System -->
+    <script src="../js/includes.js"></script>
+</body>
+</html>

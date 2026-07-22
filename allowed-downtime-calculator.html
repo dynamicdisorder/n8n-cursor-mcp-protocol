@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="google-adsense-account" content="ca-pub-5341779159353455">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Allowed Downtime Calculator – Uptime % to Minutes | TechImpact.online</title>
+    <meta name="description" content="Convert SLA uptime (99%–99.999%) into allowed downtime in seconds, minutes, and hours. Also reverse: downtime minutes → achieved uptime %. Free browser tool.">
+    <meta name="keywords" content="allowed downtime calculator, uptime to downtime, SLA downtime minutes, 99.9 uptime, 99.99 downtime, availability calculator">
+    <meta name="author" content="TechImpact.online">
+    <meta name="robots" content="index,follow">
+
+    <meta property="og:title" content="Allowed Downtime Calculator – Uptime % to Minutes | TechImpact.online">
+    <meta property="og:description" content="Convert SLA uptime into allowed downtime in seconds, minutes, and hours. Free, runs in your browser.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.techimpact.online/allowed-downtime-calculator.html">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Allowed Downtime Calculator | TechImpact.online">
+    <meta name="twitter:description" content="Convert SLA uptime into allowed downtime. Also reverse: downtime → achieved uptime %.">
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "Allowed Downtime Calculator",
+        "description": "Convert SLA uptime percentages into allowed downtime in seconds, minutes, and hours, and reverse downtime minutes into achieved uptime.",
+        "url": "https://www.techimpact.online/allowed-downtime-calculator.html",
+        "applicationCategory": "BusinessApplication",
+        "operatingSystem": "Web Browser",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        },
+        "creator": {
+            "@type": "Organization",
+            "name": "TechImpact.online"
+        }
+    }
+    </script>
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {
+                "@type": "Question",
+                "name": "What is allowed downtime?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Allowed downtime is how much time a service can be offline and still meet an uptime target (SLA). Formula: allowed_minutes = days × 24 × 60 × (1 − uptime/100)."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "How much downtime does 99.9% allow in 30 days?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "43.2 minutes. That is 43,200 minutes × 0.001 = 43.2 minutes."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "How do I get uptime % from downtime minutes?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Uptime% = 100 × (1 − downtime_minutes / (days × 24 × 60)). Example: 60 minutes down in 30 days ≈ 99.861% uptime."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Is a month always 30 days?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "No. Many cloud SLAs use the real calendar month (28–31 days). This calculator lets you pick 28, 29, 30, 31, or a custom period."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Do small outages count toward the budget?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Usually yes, if they meet the contract’s definition of unavailability. Add every qualifying incident in the period, then compare the total to allowed downtime."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Should I use daily or monthly budgets for on-call?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Use the contract period for credits. Use shorter windows (day/week) as internal error budgets so one bad day does not surprise you at month end."
+                }
+            }
+        ]
+    }
+    </script>
+
+    <link rel="stylesheet" href="styles.css">
+    <link rel="canonical" href="https://www.techimpact.online/allowed-downtime-calculator.html">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5341779159353455"
+        crossorigin="anonymous"></script>
+</head>
+<body>
+    <div id="header-placeholder"></div>
+
+    <section class="hero">
+        <div class="container">
+            <h1 class="hero-title">
+                <span>Turn Uptime % Into</span>
+                <span class="gradient-text">Allowed Downtime</span>
+            </h1>
+            <p class="hero-subtitle">See how many seconds, minutes, or hours you can be offline and still hit your SLA. Also reverse: enter downtime and get the uptime you achieved.</p>
+            <div class="hero-actions">
+                <a href="#allowed-calculator" class="btn primary large">Try the Calculator</a>
+                <a href="guides/sla-uptime-downtime-reference.html" class="btn secondary large">Full Reference Tables</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="calculator-tabs">
+        <div class="container">
+            <div class="tab-nav">
+                <a href="index.html#sla-calculator" class="tab-link">SLA Penalty</a>
+                <a href="website-downtime-cost-calculator.html" class="tab-link">Downtime Cost</a>
+                <a href="rto-rpo-impact-calculator.html" class="tab-link">RTO/RPO Impact</a>
+                <a href="allowed-downtime-calculator.html" class="tab-link active">Allowed Downtime</a>
+                <a href="nines-availability-cost-calculator.html" class="tab-link">Cost of Nines</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="calculator-section" id="allowed-calculator">
+        <div class="container">
+            <div class="calculator-grid">
+                <div class="calculator-form">
+                    <div class="card">
+                        <h2 class="card-title">Uptime → Allowed Downtime</h2>
+                        <p class="input-hint" style="margin-bottom:1rem;">Pick a common SLA target, or enter a custom uptime and period.</p>
+
+                        <div class="form-group">
+                            <label for="uptime-preset">Uptime target (%)</label>
+                            <select id="uptime-preset" class="form-input">
+                                <option value="99">99%</option>
+                                <option value="99.5">99.5%</option>
+                                <option value="99.9" selected>99.9%</option>
+                                <option value="99.95">99.95%</option>
+                                <option value="99.99">99.99%</option>
+                                <option value="99.999">99.999%</option>
+                                <option value="custom">Custom…</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group" id="custom-uptime-group" hidden>
+                            <label for="uptime-custom">Custom uptime (%)</label>
+                            <input type="number" id="uptime-custom" class="form-input" value="99.9" min="0" max="100" step="0.001" placeholder="e.g. 99.97">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="period-preset">Period (days)</label>
+                            <select id="period-preset" class="form-input">
+                                <option value="1">1 day</option>
+                                <option value="7">7 days (week)</option>
+                                <option value="28">28 days</option>
+                                <option value="29">29 days</option>
+                                <option value="30" selected>30 days</option>
+                                <option value="31">31 days</option>
+                                <option value="365">365 days (year)</option>
+                                <option value="custom">Custom…</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group" id="custom-period-group" hidden>
+                            <label for="period-custom">Custom period (days)</label>
+                            <input type="number" id="period-custom" class="form-input" value="30" min="0.001" step="0.001" placeholder="e.g. 90">
+                        </div>
+
+                        <div class="form-actions">
+                            <button type="button" class="btn primary" id="calc-allowed-btn">Calculate</button>
+                            <button type="button" class="btn secondary" id="reset-allowed-btn">Reset</button>
+                            <button type="button" class="btn secondary" id="share-allowed-btn">Copy share link</button>
+                        </div>
+                    </div>
+
+                    <div class="card" style="margin-top:1.5rem;">
+                        <h2 class="card-title">Inverse: Downtime → Uptime %</h2>
+                        <p class="input-hint" style="margin-bottom:1rem;">You already know how long you were down. What uptime did you achieve?</p>
+
+                        <div class="form-group">
+                            <label for="inverse-downtime">Downtime (minutes)</label>
+                            <input type="number" id="inverse-downtime" class="form-input" value="43.2" min="0" step="0.1" placeholder="e.g. 60">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="inverse-period">Period (days)</label>
+                            <input type="number" id="inverse-period" class="form-input" value="30" min="0.001" step="0.001">
+                        </div>
+
+                        <div class="form-actions">
+                            <button type="button" class="btn primary" id="calc-inverse-btn">Calculate Uptime</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="calculator-results">
+                    <div class="card">
+                        <h2 class="card-title">Allowed Downtime</h2>
+                        <div class="result-main">
+                            <div class="annualized-loss">
+                                <span class="loss-amount" id="result-minutes">43.2 min</span>
+                                <span class="loss-label">Primary budget</span>
+                            </div>
+                        </div>
+
+                        <div class="cost-breakdown">
+                            <h4>Same budget in other units</h4>
+                            <div class="breakdown-item">
+                                <span class="breakdown-label">Seconds:</span>
+                                <span class="breakdown-value" id="result-seconds">2,592 s</span>
+                            </div>
+                            <div class="breakdown-item">
+                                <span class="breakdown-label">Minutes:</span>
+                                <span class="breakdown-value" id="result-minutes-detail">43.2 min</span>
+                            </div>
+                            <div class="breakdown-item">
+                                <span class="breakdown-label">Hours:</span>
+                                <span class="breakdown-value" id="result-hours">0.72 h</span>
+                            </div>
+                            <div class="breakdown-item breakdown-total">
+                                <span class="breakdown-label">Period length:</span>
+                                <span class="breakdown-value" id="result-period-minutes">43,200 min</span>
+                            </div>
+                        </div>
+
+                        <div class="formula-box" style="margin-top:1rem;">
+                            <p><strong>Formula used</strong></p>
+                            <p>allowed_minutes = days × 24 × 60 × (1 − uptime / 100)</p>
+                            <p id="result-formula-line" class="formula-sub">30 × 24 × 60 × (1 − 99.9 / 100) = 43.2</p>
+                        </div>
+                    </div>
+
+                    <div class="card" style="margin-top:1.5rem;">
+                        <h2 class="card-title">Achieved Uptime</h2>
+                        <div class="result-main">
+                            <div class="annualized-loss">
+                                <span class="loss-amount" id="inverse-uptime">99.900%</span>
+                                <span class="loss-label">From your downtime input</span>
+                            </div>
+                        </div>
+                        <div class="cost-breakdown">
+                            <div class="breakdown-item">
+                                <span class="breakdown-label">Downtime used:</span>
+                                <span class="breakdown-value" id="inverse-used">43.2 min</span>
+                            </div>
+                            <div class="breakdown-item">
+                                <span class="breakdown-label">Period:</span>
+                                <span class="breakdown-value" id="inverse-period-label">30 days</span>
+                            </div>
+                        </div>
+                        <div class="formula-box" style="margin-top:1rem;">
+                            <p>uptime% = 100 × (1 − downtime_minutes / period_minutes)</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="edu-block" id="learn-allowed">
+        <div class="container">
+            <div class="edu-inner">
+                <h2>What “allowed downtime” means</h2>
+                <p>
+                    An <strong>SLA</strong> (Service Level Agreement) often promises a target like “99.9% uptime.”
+                    That number is not magic. It is a budget: how much time the service can be offline and still meet the promise.
+                </p>
+                <p>
+                    <strong>Allowed downtime</strong> is that budget, written in time (seconds, minutes, or hours).
+                    If you stay inside the budget, you meet the uptime target.
+                    If you go over, your real uptime drops below the target.
+                </p>
+                <p>
+                    This tool uses one clear formula. It matches the method on our
+                    <a href="guides/sla-uptime-downtime-reference.html">SLA uptime → downtime reference</a>
+                    and the same math used in the
+                    <a href="index.html#sla-calculator">SLA Penalty Calculator</a>.
+                </p>
+
+                <div class="formula-box">
+                    <p><strong>Allowed downtime (minutes)</strong> = days × 24 × 60 × (1 − uptime / 100)</p>
+                    <p><strong>Achieved uptime (%)</strong> = 100 × (1 − downtime_minutes / (days × 24 × 60))</p>
+                </div>
+
+                <h3>Why teams use this calculator</h3>
+                <p>
+                    Managers often hear “three nines” or “four nines” and stop there.
+                    Engineers need the time budget. Finance needs the money risk.
+                    Allowed downtime is the bridge between the percentage and a real plan.
+                </p>
+                <ul>
+                    <li>Set on-call and recovery goals that fit the SLA budget.</li>
+                    <li>Compare vendors who sell different uptime numbers.</li>
+                    <li>Check if last month’s outages still left you inside the contract target.</li>
+                    <li>Explain risk to non-technical leaders in plain time units.</li>
+                </ul>
+
+                <h3>Worked examples</h3>
+                <div class="edu-example">
+                    <p><strong>Example A — 99.9% over 30 days</strong></p>
+                    <p>Period = 30 × 24 × 60 = 43,200 minutes.</p>
+                    <p>Allowed = 43,200 × (1 − 0.999) = 43,200 × 0.001 = <strong>43.2 minutes</strong>.</p>
+                    <p>That is 2,592 seconds, or 0.72 hours. One longer outage can use the whole month’s budget.</p>
+                </div>
+                <div class="edu-example">
+                    <p><strong>Example B — 99.99% over 30 days</strong></p>
+                    <p>Allowed = 43,200 × 0.0001 = <strong>4.32 minutes</strong> (about 259 seconds).</p>
+                    <p>Four nines sounds close to three nines. The budget is about <strong>10× smaller</strong>.</p>
+                </div>
+                <div class="edu-example">
+                    <p><strong>Example C — Inverse check</strong></p>
+                    <p>You had 60 minutes of downtime in a 30-day month.</p>
+                    <p>Uptime = 100 × (1 − 60 / 43,200) ≈ <strong>99.861%</strong>.</p>
+                    <p>That misses a 99.9% promise (budget was only 43.2 minutes).</p>
+                </div>
+                <div class="edu-example">
+                    <p><strong>Example D — Calendar month length matters</strong></p>
+                    <p>Same 99.9% target in a 31-day month: 31 × 24 × 60 = 44,640 minutes.</p>
+                    <p>Allowed = 44,640 × 0.001 = <strong>44.64 minutes</strong> — a bit more than the 30-day figure.</p>
+                    <p>Always match the period your contract uses.</p>
+                </div>
+                <div class="edu-example">
+                    <p><strong>Example E — February (28 days) at 99.9%</strong></p>
+                    <p>Period = 28 × 24 × 60 = 40,320 minutes.</p>
+                    <p>Allowed = 40,320 × 0.001 = <strong>40.32 minutes</strong>.</p>
+                    <p>
+                        That is almost three minutes less than a 30-day model.
+                        If your vendor uses calendar months, do not copy a “30-day blog number” into a February credit claim.
+                    </p>
+                </div>
+                <div class="edu-example">
+                    <p><strong>Example F — Several short outages add up</strong></p>
+                    <p>You had four incidents of 12 minutes each in a 30-day month → 48 minutes total.</p>
+                    <p>Against a 99.9% budget of 43.2 minutes, you are over by 4.8 minutes.</p>
+                    <p>
+                        Achieved uptime = 100 × (1 − 48 / 43,200) ≈ <strong>99.889%</strong>.
+                        Many teams only remember the “big” outage and forget the small ones.
+                        Sum them first, then use the inverse calculator.
+                    </p>
+                </div>
+                <div class="edu-example">
+                    <p><strong>Example G — 99.95% over a week</strong></p>
+                    <p>Period = 7 × 24 × 60 = 10,080 minutes.</p>
+                    <p>Allowed = 10,080 × (1 − 0.9995) = 10,080 × 0.0005 = <strong>5.04 minutes</strong>.</p>
+                    <p>
+                        Weekly budgets are tight. A single bad deploy on Monday can spend the whole week’s allowance.
+                        Use weekly views for error budgets; use monthly views when the contract is monthly.
+                    </p>
+                </div>
+                <div class="edu-example">
+                    <p><strong>Example H — Year view for planning</strong></p>
+                    <p>99.9% over 365 days: 365 × 24 × 60 = 525,600 minutes.</p>
+                    <p>Allowed = 525,600 × 0.001 = <strong>525.6 minutes</strong> (~8.76 hours).</p>
+                    <p>
+                        Year numbers help finance and capacity planning.
+                        Credit claims still follow the period in your contract (often a calendar month).
+                    </p>
+                </div>
+
+                <h3>Calendar month tip</h3>
+                <p>
+                    Many cloud vendors measure availability over the <strong>real calendar month</strong>
+                    (28, 29, 30, or 31 days), not a fixed “30-day slab.”
+                </p>
+                <ul>
+                    <li>Pick 28 / 29 / 30 / 31 in this calculator to match the month you are reviewing.</li>
+                    <li>For leap years, February is 29 days — the budget grows slightly versus a normal February.</li>
+                    <li>
+                        Keep a small table for your top SLAs, or use our
+                        <a href="guides/calendar-month-sla-downtime-tables.html">calendar-month SLA downtime tables</a>.
+                    </li>
+                    <li>
+                        When you file a credit claim, quote the same day count the vendor uses.
+                        See
+                        <a href="guides/how-to-file-sla-service-credit-claim.html">How to file an SLA service credit claim</a>.
+                    </li>
+                </ul>
+                <p>
+                    Tip in one line: <em>wrong period length → wrong allowed minutes → weak credit math.</em>
+                </p>
+
+                <h3>Monitoring tip</h3>
+                <p>
+                    Allowed downtime is only useful if you know how long you were actually down.
+                    Weak monitoring creates false comfort.
+                </p>
+                <ul>
+                    <li>
+                        <strong>Measure from the user’s path.</strong>
+                        A green CPU graph can hide a broken checkout. Prefer synthetic checks on real URLs.
+                    </li>
+                    <li>
+                        <strong>Agree what “down” means.</strong>
+                        Some contracts need failed health checks from multiple regions.
+                        Align your monitors with that definition before you argue about minutes.
+                    </li>
+                    <li>
+                        <strong>Log start and end times in UTC.</strong>
+                        Ambiguous local times cause credit disputes.
+                    </li>
+                    <li>
+                        <strong>Separate brownouts from hard downs.</strong>
+                        Partial degradation may still burn revenue even if uptime “looks fine.”
+                        Pair this tool with the
+                        <a href="website-downtime-cost-calculator.html">downtime cost calculator</a>.
+                    </li>
+                    <li>
+                        <strong>Review the month before it closes.</strong>
+                        If you have already used 35 of 43.2 minutes by day 20, slow risky changes.
+                    </li>
+                </ul>
+
+                <h3>Common mistakes</h3>
+                <ul>
+                    <li>
+                        <strong>Mixing day and month budgets.</strong>
+                        Daily and monthly numbers are not the same thing. A short daily outage can still burn a monthly budget if it happens often.
+                    </li>
+                    <li>
+                        <strong>Ignoring exclusions.</strong>
+                        Contracts often exclude planned maintenance, customer-caused issues, or third-party networks.
+                        Allowed downtime is only the math budget — not always the credit rule.
+                    </li>
+                    <li>
+                        <strong>Treating 99.9 and 99.99 as “almost the same.”</strong>
+                        One more nine cuts the downtime budget by about 10×. Cost and engineering effort rise fast.
+                    </li>
+                    <li>
+                        <strong>Using 30 days when the SLA uses calendar months.</strong>
+                        February and 31-day months change the minutes. Use the period your provider defines.
+                    </li>
+                    <li>
+                        <strong>Confusing uptime with user happiness.</strong>
+                        You can meet the SLA and still hurt customers if outages hit peak sales hours.
+                        Pair this tool with the
+                        <a href="website-downtime-cost-calculator.html">downtime cost calculator</a>.
+                    </li>
+                </ul>
+
+                <h3>How this fits with money and penalties</h3>
+                <p>
+                    Allowed downtime answers “how much time can we lose?”
+                    It does not answer “how much money do we lose?” or “what credit do we owe?”
+                </p>
+                <p>
+                    For money impact of an outage, use
+                    <a href="website-downtime-cost-calculator.html">Website Downtime Cost</a>.
+                    For contract credits when you miss a target, use
+                    <a href="index.html#sla-calculator">SLA Penalty Calculator</a>.
+                    To compare the cost of buying a higher “nine,” use
+                    <a href="nines-availability-cost-calculator.html">Cost of Extra Nines</a>.
+                </p>
+
+                <h3>Quick mental map of common nines</h3>
+                <p>Over a standard 30-day month (43,200 minutes):</p>
+                <ul>
+                    <li><strong>99%</strong> → 7.2 hours allowed</li>
+                    <li><strong>99.5%</strong> → 3.6 hours allowed</li>
+                    <li><strong>99.9%</strong> → 43.2 minutes allowed</li>
+                    <li><strong>99.95%</strong> → 21.6 minutes allowed</li>
+                    <li><strong>99.99%</strong> → 4.32 minutes allowed</li>
+                    <li><strong>99.999%</strong> → 0.432 minutes (about 26 seconds)</li>
+                </ul>
+                <p>
+                    Full day / week / month / year tables live on the
+                    <a href="guides/sla-uptime-downtime-reference.html">reference guide</a>.
+                    This page is the interactive version of that same formula.
+                </p>
+
+                <h3>Limits (honest notes)</h3>
+                <p>
+                    These are estimates for planning. Real contracts define “unavailable” in their own words
+                    (health checks, region scope, multi-AZ rules, and more).
+                    Numbers here do not replace legal review. They help you ask better questions.
+                </p>
+                <p>
+                    Calculations run in your browser. We do not store the values you type.
+                    See our <a href="privacy-policy.html">Privacy Policy</a> for details.
+                </p>
+
+                <h3>Useful next steps</h3>
+                <p>
+                    <a href="guides/sla-uptime-downtime-reference.html">SLA uptime → downtime reference</a>
+                    ·
+                    <a href="index.html#sla-calculator">SLA Penalty Calculator</a>
+                    ·
+                    <a href="nines-availability-cost-calculator.html">Cost of Extra Nines</a>
+                    ·
+                    <a href="website-downtime-cost-calculator.html">Downtime Cost Calculator</a>
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section class="faq">
+        <div class="container">
+            <h2 class="section-title">Frequently Asked Questions</h2>
+            <div class="faq-list">
+                <div class="faq-item">
+                    <div class="faq-question">What is allowed downtime?</div>
+                    <div class="faq-answer">Allowed downtime is how much time a service can be offline and still meet an uptime target. Formula: days × 24 × 60 × (1 − uptime/100).</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">How much downtime does 99.9% allow in 30 days?</div>
+                    <div class="faq-answer">43.2 minutes. That is 43,200 × 0.001 = 43.2 minutes (2,592 seconds, or 0.72 hours).</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">How do I get uptime % from downtime minutes?</div>
+                    <div class="faq-answer">Uptime% = 100 × (1 − downtime_minutes / (days × 24 × 60)). Example: 60 minutes down in 30 days ≈ 99.861% uptime.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">Is a month always 30 days?</div>
+                    <div class="faq-answer">No. Many cloud SLAs use the real calendar month (28–31 days). Pick the period that matches your contract.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">Do small outages count toward the budget?</div>
+                    <div class="faq-answer">Usually yes, if they meet the contract’s definition of unavailability. Add every qualifying incident in the period, then compare the total to allowed downtime.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">Should I use daily or monthly budgets for on-call?</div>
+                    <div class="faq-answer">Use the contract period for credits. Use shorter windows (day/week) as internal error budgets so one bad day does not surprise you at month end.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">What if monitoring missed part of an outage?</div>
+                    <div class="faq-answer">Your credit case gets weaker. Improve external checks and keep UTC timestamps. Guessing minutes after the fact is hard to defend.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">Does meeting allowed downtime mean customers were happy?</div>
+                    <div class="faq-answer">Not always. Outages in peak sales hours can hurt more than the same minutes at 3 a.m. Use downtime cost tools for business impact.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div id="ad-slot-bottom" class="ad-slot"></div>
+    <div id="footer-placeholder"></div>
+
+    <script src="js/includes.js"></script>
+    <script src="utils/scenarioUrl.js"></script>
+    <script>
+(function () {
+    var scenarioMap = {
+        up: 'uptime-preset',
+        upc: 'uptime-custom',
+        pd: 'period-preset',
+        pdc: 'period-custom',
+        idt: 'inverse-downtime',
+        ipd: 'inverse-period'
+    };
+
+    function formatNumber(n, digits) {
+        if (!isFinite(n)) return '—';
+        var d = (digits == null) ? 3 : digits;
+        var s = n.toFixed(d);
+        s = s.replace(/\.?0+$/, '');
+        return s;
+    }
+
+    function formatWithCommas(n, digits) {
+        var base = formatNumber(n, digits);
+        var parts = base.split('.');
+        parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+        return parts.join('.');
+    }
+
+    function getUptime() {
+        var preset = document.getElementById('uptime-preset').value;
+        if (preset === 'custom') {
+            return parseFloat(document.getElementById('uptime-custom').value);
+        }
+        return parseFloat(preset);
+    }
+
+    function getPeriodDays() {
+        var preset = document.getElementById('period-preset').value;
+        if (preset === 'custom') {
+            return parseFloat(document.getElementById('period-custom').value);
+        }
+        return parseFloat(preset);
+    }
+
+    function toggleCustomFields() {
+        var uptimeCustom = document.getElementById('uptime-preset').value === 'custom';
+        var periodCustom = document.getElementById('period-preset').value === 'custom';
+        document.getElementById('custom-uptime-group').hidden = !uptimeCustom;
+        document.getElementById('custom-period-group').hidden = !periodCustom;
+    }
+
+    function calculateAllowed() {
+        var uptime = getUptime();
+        var days = getPeriodDays();
+
+        if (!isFinite(uptime) || uptime < 0 || uptime > 100 || !isFinite(days) || days <= 0) {
+            document.getElementById('result-minutes').textContent = 'Invalid input';
+            return;
+        }
+
+        var periodMinutes = days * 24 * 60;
+        var allowedMinutes = periodMinutes * (1 - uptime / 100);
+        var allowedSeconds = allowedMinutes * 60;
+        var allowedHours = allowedMinutes / 60;
+
+        document.getElementById('result-minutes').textContent = formatNumber(allowedMinutes, 4) + ' min';
+        document.getElementById('result-seconds').textContent = formatWithCommas(allowedSeconds, 2) + ' s';
+        document.getElementById('result-minutes-detail').textContent = formatNumber(allowedMinutes, 4) + ' min';
+        document.getElementById('result-hours').textContent = formatNumber(allowedHours, 4) + ' h';
+        document.getElementById('result-period-minutes').textContent = formatWithCommas(periodMinutes, 2) + ' min';
+        document.getElementById('result-formula-line').textContent =
+            formatNumber(days, 4) + ' × 24 × 60 × (1 − ' + formatNumber(uptime, 4) + ' / 100) = ' + formatNumber(allowedMinutes, 4);
+    }
+
+    function calculateInverse() {
+        var downtime = parseFloat(document.getElementById('inverse-downtime').value);
+        var days = parseFloat(document.getElementById('inverse-period').value);
+
+        if (!isFinite(downtime) || downtime < 0 || !isFinite(days) || days <= 0) {
+            document.getElementById('inverse-uptime').textContent = 'Invalid input';
+            return;
+        }
+
+        var periodMinutes = days * 24 * 60;
+        var uptime = Math.max(0, 100 * (1 - downtime / periodMinutes));
+
+        document.getElementById('inverse-uptime').textContent = formatNumber(uptime, 6) + '%';
+        document.getElementById('inverse-used').textContent = formatNumber(downtime, 4) + ' min';
+        document.getElementById('inverse-period-label').textContent = formatNumber(days, 4) + ' days';
+    }
+
+    function resetAllowed() {
+        document.getElementById('uptime-preset').value = '99.9';
+        document.getElementById('period-preset').value = '30';
+        document.getElementById('uptime-custom').value = '99.9';
+        document.getElementById('period-custom').value = '30';
+        toggleCustomFields();
+        calculateAllowed();
+    }
+
+    function syncScenarioUrl() {
+        if (window.ScenarioUrl) {
+            ScenarioUrl.writeFromForm(scenarioMap, { clearHash: true });
+        }
+    }
+
+    function runAllowed() {
+        calculateAllowed();
+        syncScenarioUrl();
+    }
+
+    function runInverse() {
+        calculateInverse();
+        syncScenarioUrl();
+    }
+
+    document.getElementById('uptime-preset').addEventListener('change', function () {
+        toggleCustomFields();
+        runAllowed();
+    });
+    document.getElementById('period-preset').addEventListener('change', function () {
+        toggleCustomFields();
+        runAllowed();
+    });
+    document.getElementById('uptime-custom').addEventListener('input', runAllowed);
+    document.getElementById('period-custom').addEventListener('input', runAllowed);
+    document.getElementById('calc-allowed-btn').addEventListener('click', runAllowed);
+    document.getElementById('reset-allowed-btn').addEventListener('click', function () {
+        resetAllowed();
+        syncScenarioUrl();
+    });
+    document.getElementById('calc-inverse-btn').addEventListener('click', runInverse);
+    document.getElementById('inverse-downtime').addEventListener('input', runInverse);
+    document.getElementById('inverse-period').addEventListener('input', runInverse);
+    document.getElementById('share-allowed-btn').addEventListener('click', async function () {
+        var btn = document.getElementById('share-allowed-btn');
+        if (!window.ScenarioUrl) return;
+        var ok = await ScenarioUrl.copyShareUrl(scenarioMap);
+        btn.textContent = ok ? 'Link copied!' : 'Copy failed';
+        setTimeout(function () { btn.textContent = 'Copy share link'; }, 2000);
+    });
+
+    if (window.ScenarioUrl) {
+        ScenarioUrl.applyFromLocation(scenarioMap);
+    }
+    toggleCustomFields();
+    calculateAllowed();
+    calculateInverse();
+    syncScenarioUrl();
+})();
+    </script>
+</body>
+</html>

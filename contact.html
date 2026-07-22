@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="google-adsense-account" content="ca-pub-5341779159353455">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact TechImpact.online – Email &amp; Message Form</title>
+    <meta name="description" content="Contact TechImpact.online at contact@techimpact.online. Use our simple mailto form (no server backend). Response expectations, privacy link, and what to ask about.">
+    <meta name="keywords" content="contact TechImpact.online, contact@techimpact.online, support, feedback">
+    <meta name="author" content="TechImpact.online">
+    <meta name="robots" content="index,follow">
+    <link rel="canonical" href="https://www.techimpact.online/contact.html">
+
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.techimpact.online/contact.html">
+    <meta property="og:title" content="Contact TechImpact.online">
+    <meta property="og:description" content="Email contact@techimpact.online or use our simple mailto form. No backend — your mail app sends the message.">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Contact TechImpact.online">
+    <meta name="twitter:description" content="Reach us at contact@techimpact.online. Simple English, honest response times.">
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "ContactPage",
+        "name": "Contact TechImpact.online",
+        "description": "Contact page for TechImpact.online with email and a mailto-based form.",
+        "url": "https://www.techimpact.online/contact.html",
+        "mainEntity": {
+            "@type": "Organization",
+            "name": "TechImpact.online",
+            "url": "https://www.techimpact.online/",
+            "email": "contact@techimpact.online",
+            "contactPoint": {
+                "@type": "ContactPoint",
+                "email": "contact@techimpact.online",
+                "contactType": "customer support",
+                "availableLanguage": ["English", "Spanish"]
+            }
+        }
+    }
+    </script>
+
+    <link rel="stylesheet" href="styles.css">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5341779159353455"
+        crossorigin="anonymous"></script>
+</head>
+<body>
+    <div id="header-placeholder"></div>
+
+    <section class="hero">
+        <div class="container">
+            <h1 class="hero-title">
+                <span>Contact</span>
+                <span class="gradient-text">TechImpact.online</span>
+            </h1>
+            <p class="hero-subtitle">Email us directly, or fill the short form below. There is no chat bot and no ticket server — your email app sends the message. Read the notes below for what to ask, how fast we reply, and what not to send.</p>
+            <div class="hero-actions">
+                <a href="mailto:contact@techimpact.online" class="btn primary large">contact@techimpact.online</a>
+                <a href="about.html" class="btn secondary large">About Us</a>
+            </div>
+        </div>
+    </section>
+
+    <main class="legal-main">
+        <div class="container">
+            <article class="legal-article">
+                <nav class="breadcrumbs">
+                    <a href="index.html">Home</a> &gt;
+                    <span>Contact</span>
+                </nav>
+
+                <div class="article-content">
+                    <section class="article-section">
+                        <h2>Email</h2>
+                        <p>
+                            Primary address:
+                            <a href="mailto:contact@techimpact.online"><strong>contact@techimpact.online</strong></a>
+                        </p>
+                        <p>
+                            Studio site:
+                            <a href="https://dynamicdisorder.co" target="_blank" rel="noopener">DynamicDisorder.co</a>
+                        </p>
+                        <p>
+                            TechImpact.online is a small public toolkit for SLA, downtime, and recovery math.
+                            We built it so CTOs, DevOps, and SaaS teams can run numbers without a sales call.
+                            This page is how you reach the people who maintain the calculators and guides.
+                        </p>
+                    </section>
+
+                    <section class="article-section">
+                        <h2>Before you write</h2>
+                        <p>
+                            Many answers already live on the site.
+                            Checking these first often saves a round of email:
+                        </p>
+                        <ul>
+                            <li><a href="about.html">About</a> — who we are and why the tools exist.</li>
+                            <li><a href="privacy-policy.html">Privacy Policy</a> — what we collect and what stays in your browser.</li>
+                            <li><a href="start-trial.html">Pricing / waitlist</a> — what is free today vs planned for Pro.</li>
+                            <li><a href="guides.html">Guides</a> — SLA tables, credit claims, RTO/RPO, downtime cost explainers.</li>
+                            <li>The calculator pages themselves — formulas are shown next to the results.</li>
+                        </ul>
+                        <p>
+                            If those pages do not cover your case, email us.
+                            A specific question with a URL beats a vague “need help with SLA.”
+                        </p>
+                    </section>
+
+                    <section class="article-section" id="contact-form">
+                        <h2>Short message form</h2>
+                        <div class="edu-example">
+                            <p><strong>Honest note:</strong> This form does <em>not</em> post to a server.
+                            When you click “Open in email app,” your device opens a mailto link with the subject and body filled in.
+                            You send the email yourself from your mail client. If no mail app is set up, copy the address and write us manually.</p>
+                        </div>
+
+                        <div class="card" style="max-width:36rem; margin-top:1.25rem;">
+                            <form id="mailto-form" novalidate>
+                                <div class="form-group">
+                                    <label for="contact-name">Your name</label>
+                                    <input type="text" id="contact-name" class="form-input" name="name" autocomplete="name" placeholder="Optional">
+                                </div>
+                                <div class="form-group">
+                                    <label for="contact-email">Your email</label>
+                                    <input type="email" id="contact-email" class="form-input" name="email" autocomplete="email" placeholder="So we can reply" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="contact-topic">Topic</label>
+                                    <select id="contact-topic" class="form-input" name="topic">
+                                        <option value="General question">General question</option>
+                                        <option value="Calculator feedback">Calculator feedback</option>
+                                        <option value="Bug or wrong number">Bug or wrong number</option>
+                                        <option value="Partnership">Partnership</option>
+                                        <option value="Pro / pricing">Pro / pricing</option>
+                                        <option value="Other">Other</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="contact-message">Message</label>
+                                    <textarea id="contact-message" class="form-input" name="message" rows="6" required placeholder="What do you need help with?"></textarea>
+                                </div>
+                                <div class="form-actions">
+                                    <button type="submit" class="btn primary">Open in email app</button>
+                                    <a class="btn secondary" href="mailto:contact@techimpact.online">Blank email instead</a>
+                                </div>
+                                <p class="input-hint" id="form-status" style="margin-top:0.75rem;" role="status"></p>
+                            </form>
+                        </div>
+                    </section>
+
+                    <section class="article-section">
+                        <h2>What to email about</h2>
+                        <p>
+                            This inbox is for product and content questions about TechImpact.online.
+                            Clear subjects help us reply faster.
+                        </p>
+                        <p>Good topics include:</p>
+                        <ul>
+                            <li>
+                                <strong>Calculator feedback.</strong>
+                                Tell us which page, what felt confusing, and what you expected.
+                                Include the page URL.
+                            </li>
+                            <li>
+                                <strong>Suspected math error.</strong>
+                                Share the inputs you used, the result you saw, and the result you expected.
+                                A short screenshot helps.
+                            </li>
+                            <li>
+                                <strong>Guide improvements.</strong>
+                                Point to a paragraph that is unclear, outdated, or missing an example.
+                            </li>
+                            <li>
+                                <strong>Pro / pricing waitlist questions.</strong>
+                                Ask what is free today versus planned.
+                                See also <a href="start-trial.html">Pricing / waitlist</a>.
+                            </li>
+                            <li>
+                                <strong>Partnership or content ideas</strong>
+                                with <a href="https://dynamicdisorder.co" target="_blank" rel="noopener">DynamicDisorder.co</a>
+                                (the studio behind this site).
+                            </li>
+                            <li>
+                                <strong>Privacy or terms questions.</strong>
+                                Start with our
+                                <a href="privacy-policy.html">Privacy Policy</a>
+                                and
+                                <a href="terms-of-service.html">Terms of Service</a>,
+                                then email if something is still unclear.
+                            </li>
+                            <li>
+                                <strong>Accessibility or language.</strong>
+                                Tell us if a page is hard to read or use on your device.
+                            </li>
+                        </ul>
+                        <p>Topics that usually do <em>not</em> fit this inbox:</p>
+                        <ul>
+                            <li>Live production outages at your company (use your vendor and on-call process).</li>
+                            <li>Requests for formal legal advice on your contracts.</li>
+                            <li>Generic SEO link swaps or bulk marketing pitches.</li>
+                            <li>Support for products we did not build.</li>
+                        </ul>
+                        <p>
+                            We can explain the public formulas on this site and how to use the tools.
+                            We cannot review your full vendor MSA as a law firm would.
+                        </p>
+                    </section>
+
+                    <section class="article-section">
+                        <h2>How to write a useful message</h2>
+                        <p>Short messages are fine. A useful structure looks like this:</p>
+                        <ol>
+                            <li>One-line goal (“I think Allowed Downtime is wrong for 31 days”).</li>
+                            <li>Page URL.</li>
+                            <li>Inputs and result (or a paste of the numbers).</li>
+                            <li>Your timezone or language preference if it matters for a call (we usually stay on email).</li>
+                        </ol>
+                        <div class="edu-example">
+                            <p><strong>Example subject:</strong> Bug or wrong number — Cost of Nines</p>
+                            <p><strong>Example body:</strong> “On nines-availability-cost-calculator.html I set SLA A 99.9, SLA B 99.99, revenue €4,000/hour. Yearly delta showed X. I expected about Y because …”</p>
+                        </div>
+                    </section>
+
+                    <section class="article-section">
+                        <h2>Response expectations</h2>
+                        <p>
+                            We are a small team. We read every real message we can.
+                            We do not run 24/7 chat support.
+                        </p>
+                        <ul>
+                            <li>We aim to reply within a few business days for clear product questions.</li>
+                            <li>Complex partnership or legal-style questions may take longer.</li>
+                            <li>Urgent outages should go to your vendor status page and your own on-call process — not this inbox.</li>
+                            <li>Spam and unrelated marketing pitches may get no reply.</li>
+                            <li>If your mail app fails to open from the form, write us directly at
+                                <a href="mailto:contact@techimpact.online">contact@techimpact.online</a>.</li>
+                        </ul>
+                        <p>
+                            We may reply in English or Spanish when that matches your message.
+                            Other languages: we will do our best, but English is safest for technical detail.
+                        </p>
+                    </section>
+
+                    <section class="article-section">
+                        <h2>Security: do not send secrets by email</h2>
+                        <p>
+                            Email is not a secure vault.
+                            Please do <strong>not</strong> send passwords, API keys, private keys, customer databases, full contract scans with sensitive pricing you cannot share, or personal data you would not put in a normal business email.
+                        </p>
+                        <ul>
+                            <li>Use made-up or rounded numbers when you only need formula help.</li>
+                            <li>Redact customer names from screenshots.</li>
+                            <li>Never paste production credentials “so we can debug.”</li>
+                            <li>If you think you sent a secret by mistake, rotate that secret on your side and tell us to delete the message.</li>
+                        </ul>
+                        <p>
+                            Calculator pages keep math in your browser unless you copy values into an email yourself.
+                            That is intentional. See <a href="privacy-policy.html">Privacy Policy</a> for how contact data is handled.
+                        </p>
+                    </section>
+
+                    <section class="article-section">
+                        <h2>Privacy and who we are</h2>
+                        <p>
+                            When you email us, we use your message to respond and to improve the site.
+                            We do not sell your inbox contents.
+                        </p>
+                        <p>
+                            Want the short company story first?
+                            Read <a href="about.html">About TechImpact.online</a>.
+                            For data practices, read the
+                            <a href="privacy-policy.html">Privacy Policy</a>.
+                            For use of the tools and content, see
+                            <a href="terms-of-service.html">Terms of Service</a>.
+                        </p>
+                    </section>
+
+                    <section class="article-section">
+                        <h2>Partnerships and press</h2>
+                        <p>
+                            For content collaboration, tool integrations, or studio work, say so in the subject line
+                            (“Partnership” or “Press”).
+                            Include your site, what you propose, and a realistic timeline.
+                            We cannot join every affiliate scheme; we prefer clear, useful overlaps with reliability and SaaS operations topics.
+                        </p>
+                        <p>
+                            If you found a math error that affects many readers, mark the subject as urgent-for-accuracy.
+                            That is different from a production outage at your company — we still cannot pager-duty your stack,
+                            but we will prioritize fixing public calculator bugs.
+                        </p>
+                    </section>
+
+                    <section class="article-section">
+                        <h2>What happens after you send</h2>
+                        <ol>
+                            <li>Your mail client sends the message to contact@techimpact.online.</li>
+                            <li>We read it and reply from that address (or explain if we need more detail).</li>
+                            <li>If the issue is a site bug, we may fix the page and reply with a short note when it is live.</li>
+                            <li>We do not open a public ticket portal. Email is the record.</li>
+                        </ol>
+                        <p>
+                            Please keep the thread in email if you add more detail later.
+                            New threads without the old context slow us down.
+                        </p>
+                    </section>
+
+                    <section class="article-section">
+                        <h2>FAQ</h2>
+                        <div class="faq-list">
+                            <div class="faq-item">
+                                <div class="faq-question">Is there a phone number or live chat?</div>
+                                <div class="faq-answer">No. Email is the contact channel. The form only opens your mail app with a filled message.</div>
+                            </div>
+                            <div class="faq-item">
+                                <div class="faq-question">Does the form upload my message to your server?</div>
+                                <div class="faq-answer">No. It builds a mailto link. Your email client sends the message. If nothing opens, email contact@techimpact.online yourself.</div>
+                            </div>
+                            <div class="faq-item">
+                                <div class="faq-question">Can you review my SLA contract?</div>
+                                <div class="faq-answer">We can help you understand the public calculators and guides. We cannot give formal legal advice on your signed vendor agreement.</div>
+                            </div>
+                            <div class="faq-item">
+                                <div class="faq-question">How fast will I get a reply?</div>
+                                <div class="faq-answer">Usually within a few business days. We are a small team. Outages at your company should use your vendor and on-call process.</div>
+                            </div>
+                            <div class="faq-item">
+                                <div class="faq-question">Where do I learn about free vs Pro?</div>
+                                <div class="faq-answer">See the Pricing / waitlist page. Free calculators work without signup. Pro features are planned, not all shipped.</div>
+                            </div>
+                            <div class="faq-item">
+                                <div class="faq-question">What should I never email?</div>
+                                <div class="faq-answer">Passwords, API keys, private keys, and other secrets. Use redacted or sample numbers when asking about formulas.</div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="article-section">
+                        <h2>More links</h2>
+                        <p>
+                            <a href="about.html">About TechImpact.online</a>
+                            ·
+                            <a href="privacy-policy.html">Privacy Policy</a>
+                            ·
+                            <a href="index.html">Home / calculators</a>
+                            ·
+                            <a href="guides.html">Guides</a>
+                            ·
+                            <a href="start-trial.html">Pricing</a>
+                        </p>
+                    </section>
+                </div>
+            </article>
+        </div>
+    </main>
+
+    <div id="ad-slot-bottom" class="ad-slot"></div>
+    <div id="footer-placeholder"></div>
+
+    <script src="js/includes.js"></script>
+    <script>
+(function () {
+    var form = document.getElementById('mailto-form');
+    var statusEl = document.getElementById('form-status');
+
+    form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        var name = document.getElementById('contact-name').value.trim();
+        var email = document.getElementById('contact-email').value.trim();
+        var topic = document.getElementById('contact-topic').value;
+        var message = document.getElementById('contact-message').value.trim();
+
+        if (!email || !message) {
+            statusEl.textContent = 'Please add your email and a message.';
+            return;
+        }
+
+        var subject = '[TechImpact] ' + topic;
+        var body = '';
+        if (name) body += 'Name: ' + name + '\n';
+        body += 'Reply-to: ' + email + '\n';
+        body += 'Topic: ' + topic + '\n\n';
+        body += message + '\n';
+
+        var mailto = 'mailto:contact@techimpact.online'
+            + '?subject=' + encodeURIComponent(subject)
+            + '&body=' + encodeURIComponent(body);
+
+        statusEl.textContent = 'Opening your email app… If nothing opens, email contact@techimpact.online manually.';
+        window.location.href = mailto;
+    });
+})();
+    </script>
+</body>
+</html>

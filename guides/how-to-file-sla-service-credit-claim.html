@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="google-adsense-account" content="ca-pub-5341779159353455">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to File an SLA Service Credit Claim (Step by Step) | TechImpact.online</title>
+    <meta name="description" content="Simple English guide to filing an SLA service credit claim: gather logs, check exclusions, calculate shortfall, meet deadlines, build an evidence pack, and escalate. Includes a worked example.">
+    <meta name="keywords" content="SLA service credit claim, how to claim SLA credit, downtime evidence pack, SLA exclusions, SLA claim deadline, calculate uptime shortfall">
+    <meta name="author" content="TechImpact.online">
+    <meta name="robots" content="index,follow,max-snippet:-1,max-image-preview:large">
+    <link rel="canonical" href="https://www.techimpact.online/guides/how-to-file-sla-service-credit-claim.html">
+
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://www.techimpact.online/guides/how-to-file-sla-service-credit-claim.html">
+    <meta property="og:title" content="How to File an SLA Service Credit Claim (Step by Step)">
+    <meta property="og:description" content="Gather logs, check exclusions, calculate shortfall, meet deadlines, and escalate — with a clear worked example.">
+
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:title" content="How to File an SLA Service Credit Claim (Step by Step)">
+    <meta property="twitter:description" content="A practical, simple-English checklist for SLA service credit claims.">
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "TechArticle",
+        "headline": "How to File an SLA Service Credit Claim (Step by Step)",
+        "description": "Simple English guide to filing an SLA service credit claim: gather logs, check exclusions, calculate shortfall, meet deadlines, build an evidence pack, and escalate.",
+        "url": "https://www.techimpact.online/guides/how-to-file-sla-service-credit-claim.html",
+        "datePublished": "2026-07-23",
+        "dateModified": "2026-07-23",
+        "author": {
+            "@type": "Organization",
+            "name": "TechImpact.online",
+            "url": "https://www.techimpact.online/"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "TechImpact.online",
+            "url": "https://www.techimpact.online/"
+        },
+        "mainEntityOfPage": "https://www.techimpact.online/guides/how-to-file-sla-service-credit-claim.html",
+        "about": ["Service Level Agreement", "Service Credits", "Downtime", "Uptime"]
+    }
+    </script>
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {
+                "@type": "Question",
+                "name": "What is an SLA service credit?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "A service credit is usually a reduction on a future invoice when the provider misses the promised uptime. It is often not a cash refund. The exact rules are in your contract."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "What evidence do I need for an SLA credit claim?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Typically: incident timeline, monitoring graphs or logs, ticket IDs, the calendar month and minute total you used, your uptime math, and a short note on exclusions you already removed."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "How do I calculate the uptime shortfall?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Compute actual uptime% = 100 × (1 − downtime_minutes / period_minutes). Shortfall = max(0, promised% − actual%). Then map the shortfall to your vendor’s credit tier table."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Do all outages count toward SLA downtime?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "No. Many SLAs exclude planned maintenance, customer-caused issues, third-party network problems, and force majeure. Always apply exclusions before you compute uptime."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "When should I escalate a denied SLA credit claim?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Escalate when your math and evidence are clear, you filed on time, and the denial conflicts with the written SLA definitions. Escalate with account management or contract owners, not only the first-line ticket."
+                }
+            }
+        ]
+    }
+    </script>
+
+    <link rel="stylesheet" href="../styles.css">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5341779159353455"
+        crossorigin="anonymous"></script>
+</head>
+<body>
+    <div id="header-placeholder"></div>
+
+    <main class="guide-main ref-main">
+        <div class="container">
+            <article class="guide-article ref-article">
+                <nav class="breadcrumbs">
+                    <a href="../index.html">Home</a> &gt;
+                    <a href="../guides.html">Guides</a> &gt;
+                    <span>File an SLA Credit Claim</span>
+                </nav>
+
+                <header class="article-header">
+                    <h1>How to File an SLA Service Credit Claim (Step by Step)</h1>
+                    <div class="article-meta">
+                        <span class="article-category">SLA Management</span>
+                        <span class="article-read-time">12 min read</span>
+                        <span class="article-date">Published July 23, 2026</span>
+                    </div>
+                    <p class="ref-lede">
+                        A clear checklist for requesting service credits when uptime falls short of the promise.
+                        Simple English. Open math. No black box.
+                        Use this with the
+                        <a href="../index.html#sla-calculator">SLA Penalty Calculator</a>
+                        and the
+                        <a href="sla-uptime-downtime-reference.html">SLA uptime → downtime reference</a>.
+                    </p>
+                </header>
+
+                <nav class="ref-toc" aria-label="Table of contents">
+                    <strong>On this page</strong>
+                    <ol>
+                        <li><a href="#what-is-credit">What a service credit is</a></li>
+                        <li><a href="#before-you-start">Before you start</a></li>
+                        <li><a href="#step-logs">Gather logs and timeline</a></li>
+                        <li><a href="#step-exclusions">Check exclusions</a></li>
+                        <li><a href="#step-shortfall">Calculate the shortfall</a></li>
+                        <li><a href="#step-deadlines">Meet the deadline</a></li>
+                        <li><a href="#step-evidence">Build the evidence pack</a></li>
+                        <li><a href="#step-file">File the claim</a></li>
+                        <li><a href="#step-escalate">Escalate if needed</a></li>
+                        <li><a href="#example">Worked example</a></li>
+                        <li><a href="#faq">FAQ</a></li>
+                    </ol>
+                </nav>
+
+                <section class="article-section" id="what-is-credit">
+                    <h2>1. What a service credit is (and is not)</h2>
+                    <p>
+                        An <strong>SLA</strong> (Service Level Agreement) is a written promise about service quality — often uptime.
+                        If the provider misses that promise, many contracts offer a <strong>service credit</strong>.
+                    </p>
+                    <p>
+                        In simple terms: a credit is usually money off a <em>future invoice</em>, not cash back to your bank account.
+                        The size often depends on how far below the target you fell (credit “tiers”).
+                        Some contracts also set a monthly maximum.
+                    </p>
+                    <ul>
+                        <li><strong>Is:</strong> a contractual remedy described in the SLA or MSA.</li>
+                        <li><strong>Is not:</strong> automatic compensation for every bad day, unless the contract says so.</li>
+                        <li><strong>Is not:</strong> a replacement for measuring business loss. Credits and downtime cost are different topics.</li>
+                    </ul>
+                    <p>
+                        This guide helps you prepare a clean claim. It is planning help — not legal advice.
+                        Always follow the exact text of <em>your</em> vendor agreement.
+                    </p>
+                </section>
+
+                <section class="article-section" id="before-you-start">
+                    <h2>2. Before you start</h2>
+                    <p>Collect these facts first. Missing one of them wastes time later:</p>
+                    <ol class="ref-steps">
+                        <li>Provider name and product / service ID (subscription, project, account).</li>
+                        <li>The promised uptime % (for example 99.9% or 99.95%).</li>
+                        <li>The measurement period (often a calendar month — 28 to 31 days).</li>
+                        <li>Where claims are filed (support portal form, email alias, account team).</li>
+                        <li>The claim deadline (for example “within 30 days after the month ends”).</li>
+                    </ol>
+                    <p>
+                        If you do not know the day count for the month, open
+                        <a href="calendar-month-sla-downtime-tables.html">calendar-month SLA downtime tables</a>.
+                        If you need allowed downtime for day/week/year comparison, use the
+                        <a href="sla-uptime-downtime-reference.html">uptime reference</a>.
+                    </p>
+                </section>
+
+                <section class="article-section" id="step-logs">
+                    <h2>3. Gather logs and a clear timeline</h2>
+                    <p>
+                        Good claims start with a timeline a stranger can understand in two minutes.
+                        Write events in order. Use one timezone (UTC is often safest) and say which timezone you used.
+                    </p>
+                    <ul>
+                        <li>Start and end times for each outage window.</li>
+                        <li>Monitoring screenshots or exported metrics (availability, error rate, latency if relevant).</li>
+                        <li>Vendor status-page links or incident IDs, if any.</li>
+                        <li>Your internal incident ticket IDs.</li>
+                        <li>Customer impact notes (optional but helpful): who could not work, which regions, which features).</li>
+                    </ul>
+                    <p>
+                        Tip: export raw data when you can. Screenshots help, but CSV or monitoring export makes math easier to defend.
+                    </p>
+                    <div class="edu-example">
+                        <p><strong>Timeline sketch:</strong></p>
+                        <p>2026-03-12 09:14–09:41 UTC — API 5xx spike; synthetic checks failing in eu-west.</p>
+                        <p>2026-03-12 09:41 UTC — recovered; error rate back to baseline.</p>
+                        <p>Total counted downtime this window: 27 minutes (before exclusions review).</p>
+                    </div>
+                </section>
+
+                <section class="article-section" id="step-exclusions">
+                    <h2>4. Check exclusions (do this before the math)</h2>
+                    <p>
+                        Many SLAs say some downtime does <em>not</em> count.
+                        If you skip this step, your shortfall may look larger than the vendor will accept — and the claim may be denied.
+                    </p>
+                    <p>Common exclusion themes (wording differs by vendor):</p>
+                    <ul>
+                        <li>Scheduled maintenance announced in advance.</li>
+                        <li>Problems caused by your configuration, code, or credentials.</li>
+                        <li>Failures outside the provider’s control (sometimes including upstream internet paths).</li>
+                        <li>Beta / preview features not covered by the paid SLA.</li>
+                        <li>Force majeure events, when the contract lists them.</li>
+                    </ul>
+                    <p>
+                        Make a short table: “minutes removed” and “why.”
+                        Honest exclusions make your claim stronger, not weaker.
+                    </p>
+                </section>
+
+                <section class="article-section" id="step-shortfall">
+                    <h2>5. Calculate the shortfall (open math)</h2>
+                    <p>
+                        Use the same formulas as our reference pages.
+                        Keep units consistent (minutes).
+                    </p>
+                    <div class="formula-box">
+                        <p><strong>period_minutes</strong> = days × 24 × 60</p>
+                        <p><strong>actual_uptime%</strong> = 100 × (1 − downtime_minutes / period_minutes)</p>
+                        <p><strong>shortfall_pp</strong> = max(0, promised% − actual%)</p>
+                    </div>
+                    <p>
+                        Then open your vendor’s credit tier table.
+                        Map the shortfall (or the achieved uptime band) to a credit percent of eligible charges.
+                    </p>
+                    <div class="formula-box">
+                        <p><strong>estimated_credit</strong> ≈ eligible_charges × (credit_tier% / 100)</p>
+                    </div>
+                    <p>
+                        For a quick planning estimate, use the
+                        <a href="../index.html#sla-calculator">SLA Penalty Calculator</a>.
+                        Remember: the calculator is an estimate. Your contract tiers win.
+                    </p>
+                </section>
+
+                <section class="article-section" id="step-deadlines">
+                    <h2>6. Deadlines — do not miss the window</h2>
+                    <p>
+                        Most providers require you to claim within a fixed time after the month (or after the incident).
+                        If you file late, they can deny a valid shortfall.
+                    </p>
+                    <ul>
+                        <li>Find the deadline sentence in the SLA and put it on your calendar.</li>
+                        <li>File early enough to fix missing attachments if support asks for more data.</li>
+                        <li>If the portal is down, keep proof you tried (email to the published claims address, ticket screenshot).</li>
+                    </ul>
+                    <p>
+                        Tip: start the evidence pack during the outage week, not on the last day of the claim window.
+                    </p>
+                </section>
+
+                <section class="article-section" id="step-evidence">
+                    <h2>7. Build the evidence pack</h2>
+                    <p>
+                        Package materials so a support agent can approve without a long chat.
+                        One folder (or one PDF) with clear names works well.
+                    </p>
+                    <ol class="ref-steps">
+                        <li><strong>Cover note (half page):</strong> account ID, month, promised %, actual %, shortfall, requested credit %, and estimated amount.</li>
+                        <li><strong>Math appendix:</strong> period days, period minutes, downtime minutes after exclusions, formulas used.</li>
+                        <li><strong>Timeline:</strong> dated outage windows in one timezone.</li>
+                        <li><strong>Monitoring exports / screenshots:</strong> labeled with the same times.</li>
+                        <li><strong>Exclusion log:</strong> minutes removed and reasons.</li>
+                        <li><strong>Contract citations:</strong> quote the uptime promise and credit tier section (page or clause IDs).</li>
+                    </ol>
+                    <p>
+                        Optional: link to how you computed allowed downtime using
+                        <a href="sla-uptime-downtime-reference.html">TechImpact’s open methodology</a>
+                        — useful when you need a shared language with non-engineers.
+                    </p>
+                </section>
+
+                <section class="article-section" id="step-file">
+                    <h2>8. File the claim</h2>
+                    <p>Use the channel the contract names. Typical paths:</p>
+                    <ul>
+                        <li>Cloud console → Support → “Request service credit” (or similar).</li>
+                        <li>Named account manager email, with the ticket CC’d.</li>
+                        <li>A web form linked from the SLA document.</li>
+                    </ul>
+                    <p>
+                        Keep the first message short. Put detail in attachments.
+                        Ask for a written confirmation number.
+                        Store that number with your finance team so the credit is not forgotten next invoice.
+                    </p>
+                </section>
+
+                <section class="article-section" id="step-escalate">
+                    <h2>9. Escalate if needed</h2>
+                    <p>
+                        Denials happen. Escalate when your package is complete and the denial conflicts with the written SLA —
+                        not when you are still missing timelines or exclusions.
+                    </p>
+                    <ul>
+                        <li>Reply once with clarifications and the exact clause you rely on.</li>
+                        <li>If stuck, involve your account manager or commercial owner.</li>
+                        <li>Track days in queue; some contracts have dispute timelines too.</li>
+                        <li>Separate “we disagree on facts” from “we disagree on contract reading.” Ask which one it is.</li>
+                    </ul>
+                    <p>
+                        If the credit is small but the outage was large for your business, still document it.
+                        Pattern evidence helps renewals and architecture decisions even when the credit is capped.
+                    </p>
+                </section>
+
+                <section class="article-section" id="example">
+                    <h2>10. Worked example</h2>
+                    <div class="edu-example">
+                        <p><strong>Setup:</strong> SaaS vendor promises <strong>99.9%</strong> monthly uptime. Month = March (31 days). Eligible monthly charges = <strong>$20,000</strong>.</p>
+                        <p><strong>Period minutes:</strong> 31 × 1,440 = <strong>44,640</strong>.</p>
+                        <p><strong>Raw downtime from monitoring:</strong> 62 minutes across two incidents.</p>
+                        <p><strong>Exclusions:</strong> 10 minutes of announced maintenance removed → counted downtime = <strong>52 minutes</strong>.</p>
+                        <p><strong>Actual uptime:</strong> 100 × (1 − 52 / 44,640) ≈ <strong>99.8835%</strong>.</p>
+                        <p><strong>Shortfall:</strong> 99.9 − 99.8835 ≈ <strong>0.0165 percentage points</strong> (you are below target).</p>
+                        <p><strong>Allowed budget for comparison:</strong> 44,640 × 0.001 = <strong>44.64 minutes</strong>. You used 52 minutes, so you are over budget by 7.36 minutes.</p>
+                        <p><strong>Vendor tier (example only):</strong> if uptime &lt; 99.9% but ≥ 99.0% → 10% credit.</p>
+                        <p><strong>Estimated credit:</strong> $20,000 × 10% = <strong>$2,000</strong> off a future invoice (if the claim is accepted).</p>
+                        <p class="edu-note">
+                            Your real tiers may differ. Re-run the estimate in the
+                            <a href="../index.html#sla-calculator">SLA Penalty Calculator</a>
+                            with your contract numbers.
+                        </p>
+                    </div>
+                    <p>
+                        In the evidence pack for this example you would attach: March day count proof, the 52-minute downtime sum,
+                        the 10-minute exclusion note, graphs for both incidents, and a quote of the 10% tier clause.
+                    </p>
+                </section>
+
+                <section class="article-section" id="faq">
+                    <h2>11. FAQ</h2>
+                    <div class="faq-list ref-faq">
+                        <div class="faq-item">
+                            <h3 class="faq-question">What is an SLA service credit?</h3>
+                            <div class="faq-answer active">
+                                <p>
+                                    Usually a reduction on a future invoice when the provider misses the promised uptime.
+                                    It is often not a cash refund. Read your contract for the exact rule.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="faq-item">
+                            <h3 class="faq-question">What evidence do I need?</h3>
+                            <div class="faq-answer active">
+                                <p>
+                                    Timeline, monitoring proof, account/service IDs, period length, uptime math, exclusion notes, and the credit tier you are requesting.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="faq-item">
+                            <h3 class="faq-question">Do all outages count?</h3>
+                            <div class="faq-answer active">
+                                <p>
+                                    No. Apply exclusions first. Maintenance, customer-caused issues, and other listed cases may not count.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="faq-item">
+                            <h3 class="faq-question">How do I calculate shortfall?</h3>
+                            <div class="faq-answer active">
+                                <p>
+                                    actual_uptime% = 100 × (1 − downtime_minutes / period_minutes).
+                                    shortfall = max(0, promised% − actual%). Details:
+                                    <a href="sla-uptime-downtime-reference.html">SLA uptime reference</a>.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="faq-item">
+                            <h3 class="faq-question">When should I escalate?</h3>
+                            <div class="faq-answer active">
+                                <p>
+                                    When you filed on time with clear evidence and the denial conflicts with the written SLA.
+                                    Escalate through account or contract owners with clause citations.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="faq-item">
+                            <h3 class="faq-question">Can TechImpact file the claim for me?</h3>
+                            <div class="faq-answer active">
+                                <p>
+                                    No. Our tools and guides help you estimate and organize.
+                                    You (or your vendor account team process) must submit the claim through the provider’s channel.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="article-section ref-cta-block">
+                    <h2>Related tools</h2>
+                    <p>
+                        <a class="btn primary" href="../index.html#sla-calculator">SLA Penalty Calculator</a>
+                        <a class="btn secondary" href="sla-uptime-downtime-reference.html">SLA Uptime Reference</a>
+                        <a class="btn secondary" href="calendar-month-sla-downtime-tables.html">Calendar Month Tables</a>
+                        <a class="btn secondary" href="../allowed-downtime-calculator.html">Allowed Downtime Calculator</a>
+                    </p>
+                </section>
+            </article>
+        </div>
+    </main>
+
+    <div id="footer-placeholder"></div>
+    <script src="../js/includes.js"></script>
+</body>
+</html>

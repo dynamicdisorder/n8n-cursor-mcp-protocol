@@ -1,0 +1,711 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="google-adsense-account" content="ca-pub-5341779159353455">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SLA Penalty Calculator – Service Credit Estimator | TechImpact.online</title>
+    <meta name="description" content="Calculate SLA penalties and service credits with our precision calculator. Assess financial impact of downtime, uptime breaches, and recovery strategies for CTOs and developers.">
+    <meta name="keywords" content="SLA breach calculator, uptime penalties, service level agreement, downtime cost calculator, SLA penalty calculator, service credits, uptime calculator">
+    <meta name="author" content="TechImpact.online">
+    <meta name="robots" content="index,follow">
+    <link rel="canonical" href="https://www.techimpact.online/">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.techimpact.online/">
+    <meta property="og:title" content="SLA Penalty Calculator – Service Credit Estimator | TechImpact.online">
+    <meta property="og:description" content="Calculate SLA penalties and service credits with our precision calculator. Assess financial impact of downtime and uptime breaches.">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://www.techimpact.online/">
+    <meta property="twitter:title" content="SLA Penalty Calculator – Service Credit Estimator | TechImpact.online">
+    <meta property="twitter:description" content="Calculate SLA penalties and service credits with our precision calculator. Assess financial impact of downtime and uptime breaches.">
+    
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "SLA Penalty Calculator",
+        "description": "Calculate SLA penalties and service credits with precision. Assess financial impact of downtime and uptime breaches.",
+        "url": "https://www.techimpact.online/",
+        "applicationCategory": "BusinessApplication",
+        "operatingSystem": "Web Browser",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        },
+        "author": {
+            "@type": "Organization",
+            "name": "TechImpact.online"
+        }
+    }
+    </script>
+    
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {
+                "@type": "Question",
+                "name": "How does the SLA Penalty Calculator work?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Our SLA Penalty Calculator works by taking your contract value, promised uptime percentage, and actual downtime duration to calculate the financial penalty based on your SLA agreement. You can customize penalty tiers to match your specific contract terms."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "What factors influence website downtime costs?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Website downtime costs are influenced by factors such as lost revenue (e.g., e-commerce sales), decreased employee productivity, potential SLA penalties, and long-term reputational damage. Our calculator considers these factors to provide a comprehensive cost estimate."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Can I customize the penalty tiers and other assumptions?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Yes, you can fully customize penalty tiers, contract values, uptime percentages, and other parameters to match your specific SLA agreement and business requirements."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Is my data secure?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Yes, all calculations are performed locally in your browser. We don't store or transmit any of your sensitive contract or business data to our servers."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "What is an SLA shortfall in simple words?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Shortfall is the gap between the uptime the vendor promised and the uptime you actually got. Example: promise 99.95%, actual 99.79%. The shortfall is about 0.16 percentage points. Your contract then maps that gap to a credit percent."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Do I need monitoring logs to claim an SLA credit?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Almost always yes. Vendors ask for proof with start and end times, often in UTC. Export checks from an external monitor, remove excluded minutes, and file inside the claim window written in the SLA."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Is an SLA service credit the same as insurance?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "No. An SLA credit is usually money off a future invoice from that vendor and is often much smaller than your real business loss. Insurance is a separate product with its own rules and deductibles."
+                }
+            }
+        ]
+    }
+    </script>
+    
+    <link rel="stylesheet" href="styles.css">
+    <!-- Google AdSense -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5341779159353455"
+        crossorigin="anonymous"></script>
+</head>
+<body>
+    <!-- Header Placeholder -->
+    <div id="header-placeholder"></div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1 class="hero-title">
+                <span data-i18n="hero.title1">Empower Your Tech Decisions with</span>
+                <span class="gradient-text" data-i18n="hero.title2">Precision Calculators</span>
+            </h1>
+            <p class="hero-subtitle" data-i18n="hero.subtitle">
+                Techimpact.online provides CTOs & developers with essential calculators to assess the financial impact of downtime, SLA penalties, and recovery strategies. Make informed decisions with confidence.
+            </p>
+            <div class="hero-actions">
+                <a href="#sla-calculator" class="btn primary large" data-i18n="hero.start-trial">Try the Calculator</a>
+                <a href="start-trial.html" class="btn secondary large" data-i18n="hero.request-demo">View Plans</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Calculator Tabs -->
+    <section class="calculator-tabs">
+        <div class="container">
+            <div class="tab-nav">
+                <a href="index.html" class="tab-link active" data-i18n="tabs.sla">SLA Penalty</a>
+                <a href="website-downtime-cost-calculator.html" class="tab-link" data-i18n="tabs.downtime">Downtime Cost</a>
+                <a href="rto-rpo-impact-calculator.html" class="tab-link" data-i18n="tabs.rto-rpo">RTO/RPO</a>
+                <a href="allowed-downtime-calculator.html" class="tab-link">Allowed Downtime</a>
+                <a href="nines-availability-cost-calculator.html" class="tab-link">Cost of Nines</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Calculator Section -->
+    <section class="calculator-section" id="sla-calculator">
+        <div class="container">
+            <div class="calculator-grid">
+                <!-- Calculator Form -->
+                <div class="calculator-form">
+                    <div class="card">
+                        <h2 class="card-title" data-i18n="form.title">SLA Penalty Calculator</h2>
+                        
+                        <div class="form-group">
+                            <label for="contract-value" data-i18n="form.contract-value">Contract Value</label>
+                            <div class="input-group">
+                                <select id="currency" class="currency-select">
+                                    <option value="USD">USD</option>
+                                    <option value="EUR">EUR</option>
+                                </select>
+                                <input type="number" id="contract-value" class="form-input" value="1000000" min="0" step="1000">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="promised-uptime" data-i18n="form.promised-uptime">Promised Uptime (%)
+                                <span class="tooltip-trigger" data-tooltip="Uptime you guarantee (e.g., 99.95%)">ℹ️</span>
+                            </label>
+                            <input type="number" id="promised-uptime" class="form-input" value="99.95" min="0" max="100" step="0.01">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="period-selector" data-i18n="form.period">Measurement Period</label>
+                            <select id="period-selector" class="form-input">
+                                <option value="28">28 days</option>
+                                <option value="29">29 days</option>
+                                <option value="30" selected>30 days (default)</option>
+                                <option value="31">31 days</option>
+                                <option value="custom">Custom days</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group custom-period-group" id="custom-period-group" style="display: none;">
+                            <label for="custom-period-days">Custom Period (days)</label>
+                            <input type="number" id="custom-period-days" class="form-input" value="30" min="1" max="365" step="1">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="downtime-input" data-i18n="form.actual-downtime">Actual Downtime (minutes)
+                                <span class="tooltip-trigger" data-tooltip="Total minutes unavailable in the period">ℹ️</span>
+                            </label>
+                            <input type="number" id="downtime-input" class="form-input" value="0" min="0" step="1">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="uptime-input" data-i18n="form.achieved-uptime">Or Achieved Uptime (%)</label>
+                            <input type="number" id="uptime-input" class="form-input" value="100.00" min="0" max="100" step="0.01">
+                        </div>
+
+                        <!-- Allowed Downtime Information -->
+                        <div class="allowed-downtime-info" id="allowed-downtime-info">
+                            <div class="info-card">
+                                <h4>Allowed downtime for this SLA & period</h4>
+                                <div class="allowed-downtime-value" id="allowed-downtime-value">21.6 minutes</div>
+                                <div class="downtime-status" id="downtime-status">Within allowance by 21.6 min</div>
+                            </div>
+                        </div>
+
+                        <div class="penalty-scheme">
+                            <h3 data-i18n="form.penalty-scheme">Penalty Scheme (Editable)
+                                <span class="tooltip-trigger" data-tooltip="Shortfall = Promised − Actual; each tier applies % of contract">ℹ️</span>
+                            </h3>
+                            <div class="penalty-tiers" id="penalty-tiers">
+                                <div class="penalty-tier">
+                                    <input type="text" class="tier-threshold" value="< 0.09%" placeholder="Threshold">
+                                    <input type="number" class="tier-penalty" value="5" min="0" max="100" step="0.1" placeholder="Penalty %">
+                                    <button class="remove-tier" type="button">×</button>
+                                </div>
+                                <div class="penalty-tier">
+                                    <input type="text" class="tier-threshold" value="0.1% - 0.5%" placeholder="Threshold">
+                                    <input type="number" class="tier-penalty" value="10" min="0" max="100" step="0.1" placeholder="Penalty %">
+                                    <button class="remove-tier" type="button">×</button>
+                                </div>
+                                <div class="penalty-tier">
+                                    <input type="text" class="tier-threshold" value="> 0.5%" placeholder="Threshold">
+                                    <input type="number" class="tier-penalty" value="25" min="0" max="100" step="0.1" placeholder="Penalty %">
+                                    <button class="remove-tier" type="button">×</button>
+                                </div>
+                            </div>
+                            <button class="add-tier-btn" type="button" data-i18n="form.add-tier">+ Add Tier</button>
+                            
+                            <!-- Tier Validation Messages -->
+                            <div class="tier-validation" id="tier-validation" style="display: none;">
+                                <div class="validation-error" id="tier-errors"></div>
+                                <div class="validation-warning" id="tier-warnings"></div>
+                            </div>
+                            
+                            <!-- Example Hint -->
+                            <div class="tier-example">
+                                <p><strong>Example:</strong> If shortfall = 0.23%, Tier 2 (10%) → $100,000 on $1,000,000.</p>
+                            </div>
+                        </div>
+
+                        <div class="form-actions">
+                            <button class="btn primary" id="calculate-btn" data-i18n="form.calculate">Calculate Penalty</button>
+                            <button class="btn secondary" id="reset-btn" data-i18n="form.reset">Reset</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Results -->
+                <div class="calculator-results">
+                    <div class="card">
+                        <h2 class="card-title" data-i18n="results.title">Result</h2>
+                        
+                        <div class="result-main">
+                            <div class="total-penalty">
+                                <span class="penalty-amount" id="penalty-amount">$0</span>
+                                <span class="penalty-label" data-i18n="results.total-penalty">Total SLA Penalty</span>
+                            </div>
+                            <div class="penalty-badge badge-success" id="penalty-badge">
+                                <span>No penalty</span>
+                            </div>
+                        </div>
+
+                        <!-- Traffic Light Tier Visualization -->
+                        <div class="traffic-light-container">
+                            <div class="traffic-light-bar">
+                                <div class="tier-segment tier-no-penalty" data-tier="No penalty" data-threshold="0">
+                                    <span class="tier-label">No penalty</span>
+                                </div>
+                                <div class="tier-segment tier-1" data-tier="Tier 1" data-threshold="0.1">
+                                    <span class="tier-label">Tier 1<br>&lt;0.1%</span>
+                                </div>
+                                <div class="tier-segment tier-2" data-tier="Tier 2" data-threshold="0.5">
+                                    <span class="tier-label">Tier 2<br>0.1-0.5%</span>
+                                </div>
+                                <div class="tier-segment tier-3" data-tier="Tier 3" data-threshold="2">
+                                    <span class="tier-label">Tier 3<br>&gt;0.5%</span>
+                                </div>
+                                <div class="tier-marker" id="tier-marker" style="left: 5%;">
+                                    <div class="marker-dot"></div>
+                                    <div class="marker-value" id="marker-value">0.00%</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Explanation List -->
+                        <div class="explanation-container">
+                            <h4>Calculation Breakdown</h4>
+                            <ul class="explanation-list" id="explanation-list">
+                                <li>Promised uptime: 99.95%</li>
+                                <li>Actual uptime: 100.00%</li>
+                                <li>Shortfall: 0.00%</li>
+                                <li>Reason: Met or exceeded SLA. No penalty applies.</li>
+                            </ul>
+                        </div>
+
+                        <div class="result-details">
+                            <div class="detail-item">
+                                <span class="detail-label" data-i18n="results.actual-uptime">Actual Uptime:</span>
+                                <span class="detail-value" id="actual-uptime">100.00%</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label" data-i18n="results.uptime-below">Shortfall:</span>
+                                <span class="detail-value" id="uptime-below">0.00%</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label" data-i18n="results.applied-penalty">Applied Penalty:</span>
+                                <span class="detail-value" id="applied-penalty">0%</span>
+                            </div>
+                        </div>
+
+                        <button class="btn secondary" id="export-btn">
+                            <span class="btn-icon">📷</span>
+                            <span data-i18n="results.export">Export Summary as PNG</span>
+                        </button>
+                        <button class="btn secondary" id="share-scenario-btn" type="button" style="margin-top:0.75rem;">
+                            Copy shareable scenario link
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section class="how-it-works">
+        <div class="container">
+            <h2 class="section-title" data-i18n="how-it-works.title">How It Works</h2>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3 class="step-title" data-i18n="how-it-works.step1.title">Input Your Variables</h3>
+                    <p class="step-description" data-i18n="how-it-works.step1.description">Enter contract details, downtime duration, and other relevant metrics into our intuitive forms.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3 class="step-title" data-i18n="how-it-works.step2.title">Customize the Model</h3>
+                    <p class="step-description" data-i18n="how-it-works.step2.description">Adjust penalty tiers, revenue models, or recovery costs to match your specific scenario.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3 class="step-title" data-i18n="how-it-works.step3.title">Calculate the Impact</h3>
+                    <p class="step-description" data-i18n="how-it-works.step3.description">Get instant, precise calculations of financial impact based on your inputs.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <h3 class="step-title" data-i18n="how-it-works.step4.title">Export and Share</h3>
+                    <p class="step-description" data-i18n="how-it-works.step4.description">Generate a clean summary report as a PNG to share with stakeholders.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="edu-block" id="learn-sla">
+        <div class="container">
+            <div class="edu-inner">
+                <h2>What is an SLA penalty? (simple explanation)</h2>
+                <p>An <strong>SLA</strong> is a Service Level Agreement. It is a promise about how available a service should be. For example, a vendor may promise <strong>99.95% uptime</strong>.</p>
+                <p>If the service is down more than the allowed time, the vendor may owe you a <strong>service credit</strong>. A service credit usually reduces a future invoice. It is often not cash.</p>
+                <p>This calculator helps you estimate that credit. It uses your contract value, your promised uptime, your real downtime, and your penalty tiers.</p>
+
+                <h3>The basic idea in three steps</h3>
+                <ol>
+                    <li>Find how much downtime your SLA allows.</li>
+                    <li>Compare that to your real downtime.</li>
+                    <li>If you are over the limit, apply the matching penalty percent to the contract value.</li>
+                </ol>
+
+                <h3>Worked example (easy numbers)</h3>
+                <div class="edu-example">
+                    <p><strong>Contract value:</strong> $1,000,000 per month</p>
+                    <p><strong>Promised uptime:</strong> 99.95%</p>
+                    <p><strong>Period:</strong> 30 days</p>
+                    <p><strong>Allowed downtime:</strong> 21.6 minutes</p>
+                    <p><strong>Real downtime:</strong> 90 minutes</p>
+                    <p>Your uptime is below the promise. The shortfall is about 0.16 percentage points. If your tier for that shortfall is <strong>10%</strong>, the estimated credit is <strong>$100,000</strong>.</p>
+                    <p class="edu-note">Always check your real contract. Vendor rules can be different.</p>
+                </div>
+
+                <h3>Common mistakes</h3>
+                <ul>
+                    <li>Using a 30-day month when your SLA uses a calendar month (28–31 days).</li>
+                    <li>Counting maintenance windows that the contract excludes.</li>
+                    <li>Forgetting that credits often need a claim with logs and a deadline.</li>
+                    <li>Treating estimates as a legal claim. This tool is for planning and negotiation support.</li>
+                </ul>
+
+                <h3>Useful links</h3>
+                <p>
+                    See the full downtime tables:
+                    <a href="guides/sla-uptime-downtime-reference.html">SLA uptime → downtime reference</a>.
+                    Or convert any SLA with the
+                    <a href="allowed-downtime-calculator.html">Allowed Downtime Calculator</a>.
+                </p>
+
+                <h3>Words you will see in contracts</h3>
+                <ul>
+                    <li><strong>Uptime</strong> — the percent of time the service should work.</li>
+                    <li><strong>Downtime</strong> — the time the service does not work.</li>
+                    <li><strong>Service credit</strong> — money off a future bill, not always cash back.</li>
+                    <li><strong>Measurement period</strong> — usually one month. Some contracts use 28–31 calendar days.</li>
+                    <li><strong>Exclusion</strong> — events that do not count as downtime (for example planned maintenance).</li>
+                </ul>
+
+                <h3>How to use this calculator well</h3>
+                <ol>
+                    <li>Open your SLA PDF and copy the uptime promise (for example 99.9%).</li>
+                    <li>Copy the credit table (for example 10% credit below 99.0%).</li>
+                    <li>Enter your monthly fee as contract value.</li>
+                    <li>Enter real downtime from monitoring tools (minutes).</li>
+                    <li>Adjust the penalty tiers so they match your contract.</li>
+                    <li>Export the PNG summary and share it with your team before you open a claim.</li>
+                </ol>
+
+                <h3>Who this helps</h3>
+                <p>CTOs, DevOps engineers, SRE teams, procurement, and founders who buy cloud or SaaS services. You do not need to be a lawyer. You only need clear numbers for a discussion.</p>
+                <p>If English is not your first language, keep the example simple: one contract value, one uptime target, one downtime number. Then change one input at a time.</p>
+
+                <h3>Second worked example (EUR)</h3>
+                <p>Here is the same idea with euros. Many European contracts use EUR and calendar months. The math does not change. Only the currency symbol changes.</p>
+                <div class="edu-example">
+                    <p><strong>Contract value:</strong> €40,000 per month (your SaaS or cloud fee)</p>
+                    <p><strong>Promised uptime:</strong> 99.9%</p>
+                    <p><strong>Period:</strong> 30 days (43,200 minutes)</p>
+                    <p><strong>Allowed downtime:</strong> 0.1% of 43,200 = <strong>43.2 minutes</strong></p>
+                    <p><strong>Real downtime:</strong> 120 minutes (from your monitoring tool)</p>
+                    <p>You used 120 minutes. The SLA only allowed 43.2 minutes. You are over the limit.</p>
+                    <p>Suppose your contract says: if monthly uptime falls below 99.9% but stays at or above 99.0%, you get a <strong>15% service credit</strong>.</p>
+                    <p>Estimated credit ≈ 15% × €40,000 = <strong>€6,000</strong> off a future invoice.</p>
+                    <p class="edu-note">This is a planning estimate. Your vendor may round differently, exclude maintenance, or require a claim form within a fixed number of days.</p>
+                </div>
+                <p>Try the calculator with €40,000, 99.9%, and 120 minutes. Then change only one input. For example, try 90 minutes instead of 120. You will see how credits move when downtime changes.</p>
+
+                <h3>What “shortfall” means (tiny table)</h3>
+                <p><strong>Shortfall</strong> means how far you missed the uptime promise. It is not the same as total downtime minutes. First you convert downtime into an uptime percent. Then you compare that percent to the promise.</p>
+                <p>Simple idea:</p>
+                <ul>
+                    <li><strong>Promised uptime</strong> — what the vendor said (example: 99.95%).</li>
+                    <li><strong>Actual uptime</strong> — what really happened (example: 99.79%).</li>
+                    <li><strong>Shortfall</strong> — the gap between them (example: 0.16 percentage points).</li>
+                </ul>
+                <div class="edu-example">
+                    <p><strong>Example shortfall table (30-day month)</strong></p>
+                    <table class="ref-table">
+                        <thead>
+                            <tr>
+                                <th>Real downtime</th>
+                                <th>Actual uptime</th>
+                                <th>Promise</th>
+                                <th>Shortfall</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>21.6 min</td>
+                                <td>99.95%</td>
+                                <td>99.95%</td>
+                                <td>0 (on target)</td>
+                            </tr>
+                            <tr>
+                                <td>43.2 min</td>
+                                <td>99.90%</td>
+                                <td>99.95%</td>
+                                <td>0.05 pp</td>
+                            </tr>
+                            <tr>
+                                <td>90 min</td>
+                                <td>~99.79%</td>
+                                <td>99.95%</td>
+                                <td>~0.16 pp</td>
+                            </tr>
+                            <tr>
+                                <td>216 min</td>
+                                <td>99.50%</td>
+                                <td>99.95%</td>
+                                <td>0.45 pp</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <p class="edu-note">“pp” means percentage points. A drop from 99.95% to 99.79% is a shortfall of 0.16 percentage points — not “0.16% of the fee” by itself. The fee percent comes from your credit tiers.</p>
+                </div>
+                <p>Vendors often map shortfall bands to credit percents. Example: 0–0.1 pp shortfall → 10% credit; larger shortfall → 25% credit. Always copy the bands from your PDF. Do not invent them.</p>
+
+                <h3>How monitoring proves downtime</h3>
+                <p>A claim needs evidence. “We felt the site was slow” is not enough. Good proof comes from systems that watch the service from the outside and from the inside.</p>
+                <p><strong>External monitoring</strong> checks your URL or API from the public internet. It records when the check fails. Many teams use tools that ping every 1 or 5 minutes.</p>
+                <p><strong>Internal monitoring</strong> watches servers, queues, and error rates inside your stack. It helps explain <em>why</em> something failed. Vendors still care a lot about customer-visible downtime.</p>
+                <p>To support an SLA claim, collect:</p>
+                <ul>
+                    <li>Start time and end time of each outage (with time zone, usually UTC).</li>
+                    <li>Which endpoints or regions failed.</li>
+                    <li>HTTP status codes or timeout errors from the monitor.</li>
+                    <li>A short timeline: detect → diagnose → recover.</li>
+                    <li>Links or exports from the monitoring dashboard (CSV, PDF, or screenshots with timestamps).</li>
+                </ul>
+                <p>Be careful with false alarms. A monitor in one city can fail while users in other cities are fine. Your contract may define downtime as “unavailable for all users” or “failed health checks from two regions.” Read that line. Then match your proof to that definition.</p>
+                <p>Also separate <strong>degraded</strong> service from <strong>down</strong> service. Slow pages may hurt revenue, but they may not count as SLA downtime unless the contract says so. Write that difference in your notes before you open a claim.</p>
+
+                <h3>Claim checklist (before you email the vendor)</h3>
+                <ol>
+                    <li>Find the SLA section in the signed contract (not only the marketing page).</li>
+                    <li>Confirm the measurement period (calendar month vs fixed 30 days).</li>
+                    <li>List exclusions: planned maintenance, your own code bugs, third-party DNS, force majeure, and similar.</li>
+                    <li>Remove excluded minutes from your downtime total.</li>
+                    <li>Calculate actual uptime and shortfall with the same method the contract uses.</li>
+                    <li>Match the shortfall to the correct credit tier.</li>
+                    <li>Attach monitoring exports with clear timestamps.</li>
+                    <li>Note the claim deadline (often 15–30 days after the month ends).</li>
+                    <li>Send the claim through the channel the contract names (support ticket, account manager, or portal form).</li>
+                    <li>Keep a copy of what you sent and when you sent it.</li>
+                </ol>
+                <p>This calculator helps with steps 5 and 6. It does not replace your contract text or your evidence pack.</p>
+
+                <h3>SLA credit vs insurance (important difference)</h3>
+                <p>People sometimes mix these two ideas. They are not the same.</p>
+                <ul>
+                    <li><strong>SLA service credit</strong> — usually a discount on a future bill from the same vendor. Cap is often a percent of that month’s fees. It rarely pays your full business loss.</li>
+                    <li><strong>Cyber / business interruption insurance</strong> — a separate policy. It may cover larger losses after a deductible and claim process. It is not automatic when uptime drops.</li>
+                </ul>
+                <p>Example: your outage costs the business €50,000 in lost sales. The SLA credit might be only €6,000. Insurance might cover more, but only if the event matches the policy and you filed correctly.</p>
+                <p>Use this calculator for vendor credit estimates. Use a downtime cost calculator for business loss estimates. Talk to your insurer (or broker) for insurance questions. Do not treat an SLA credit as full insurance.</p>
+
+                <h3>When NOT to use this calculator</h3>
+                <ul>
+                    <li>You do not have the real credit tiers from the contract (guessing tiers creates fake confidence).</li>
+                    <li>The outage is still open and minutes are still growing.</li>
+                    <li>You only have “user complaints” and no monitoring timestamps.</li>
+                    <li>The dispute is mainly legal (termination rights, liability caps, negligence). Those need counsel, not a web form.</li>
+                    <li>Your “downtime” is only a partial feature failure and the SLA defines availability differently.</li>
+                    <li>You need exact invoice wording for finance. Export the estimate, then confirm with procurement or legal.</li>
+                </ul>
+                <p>In those cases, pause. Gather facts first. Or use a simpler tool to convert uptime into allowed minutes, then come back.</p>
+
+                <h3>More guides and related tools</h3>
+                <p>
+                    Full minute tables by uptime target:
+                    <a href="guides/sla-uptime-downtime-reference.html">SLA uptime → downtime reference</a>.
+                </p>
+                <p>
+                    Tables for 28-, 29-, 30-, and 31-day months:
+                    <a href="guides/calendar-month-sla-downtime-tables.html">Calendar-month SLA downtime tables</a>.
+                </p>
+                <p>
+                    Convert any percent into allowed minutes yourself:
+                    <a href="allowed-downtime-calculator.html">Allowed Downtime Calculator</a>.
+                </p>
+                <p>
+                    Longer reading on credits and negotiation:
+                    <a href="guides/ultimate-guide-to-sla-penalties.html">Ultimate guide to SLA penalties</a>.
+                </p>
+                <p>Remember: unique numbers beat generic averages. Your contract, your monitors, and your month length are the three inputs that matter most.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Crawlable internal links (in raw HTML so Google does not depend on JS-loaded header/footer) -->
+    <section class="how-it-works" id="explore-site" aria-label="Explore TechImpact.online">
+        <div class="container">
+            <h2 class="section-title">Explore the suite</h2>
+            <div class="steps" style="grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); text-align: left;">
+                <div class="step">
+                    <h3 class="step-title">Calculators</h3>
+                    <p class="step-description">
+                        <a href="/index.html#sla-calculator">SLA Penalty Calculator</a><br>
+                        <a href="/website-downtime-cost-calculator.html">Website Downtime Cost</a><br>
+                        <a href="/rto-rpo-impact-calculator.html">RTO/RPO Impact</a><br>
+                        <a href="/allowed-downtime-calculator.html">Allowed Downtime</a><br>
+                        <a href="/nines-availability-cost-calculator.html">Cost of Extra Nines</a>
+                    </p>
+                </div>
+                <div class="step">
+                    <h3 class="step-title">Learn</h3>
+                    <p class="step-description">
+                        <a href="/reliability-money-toolkit.html">Reliability Money Toolkit</a><br>
+                        <a href="/guides/recent-outages-cost-brief.html">Recent outages → money impact</a><br>
+                        <a href="/guides.html">All guides</a><br>
+                        <a href="/guides/sla-uptime-downtime-reference.html">SLA uptime → downtime tables</a><br>
+                        <a href="/guides/calendar-month-sla-downtime-tables.html">Calendar-month SLA tables</a><br>
+                        <a href="/guides/how-to-file-sla-service-credit-claim.html">How to file an SLA credit claim</a><br>
+                        <a href="/guides/rto-rpo-decision-matrix.html">RTO/RPO decision matrix</a><br>
+                        <a href="/guides/ultimate-guide-to-sla-penalties.html">SLA penalties guide</a><br>
+                        <a href="/guides/disaster-recovery-basics-rto-vs-rpo.html">RTO vs RPO basics</a><br>
+                        <a href="/guides/downtime-cost-calculator-real-world-examples.html">Real downtime cost examples</a>
+                    </p>
+                </div>
+                <div class="step">
+                    <h3 class="step-title">Company</h3>
+                    <p class="step-description">
+                        <a href="/product.html">Product overview</a><br>
+                        <a href="/about.html">About</a><br>
+                        <a href="/contact.html">Contact</a><br>
+                        <a href="/resources.html">Resources</a><br>
+                        <a href="/start-trial.html">Pricing</a><br>
+                        <a href="/site-map.html">Full site map</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Value props (no fabricated usage metrics) -->
+    <section class="statistics">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-number">5</div>
+                    <div class="stat-label" data-i18n="stats.calculations">Specialized Calculators</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">USD/EUR</div>
+                    <div class="stat-label" data-i18n="stats.users">Supported Currencies</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">Local</div>
+                    <div class="stat-label" data-i18n="stats.reports">Runs in Your Browser</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">Free</div>
+                    <div class="stat-label" data-i18n="stats.rating">Core Tools, No Signup</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq">
+        <div class="container">
+            <h2 class="section-title" data-i18n="faq.title">Frequently Asked Questions</h2>
+            <div class="faq-list">
+                <div class="faq-item">
+                    <button class="faq-question" data-i18n="faq.q1">How does the SLA Penalty Calculator work?</button>
+                    <div class="faq-answer">
+                        <p data-i18n="faq.a1">Our SLA Penalty Calculator works by taking your contract value, promised uptime percentage, and actual downtime duration to calculate the financial penalty based on your SLA agreement. You can customize penalty tiers to match your specific contract terms.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question" data-i18n="faq.q2">What factors influence website downtime costs?</button>
+                    <div class="faq-answer active">
+                        <p data-i18n="faq.a2">Website downtime costs are influenced by factors such as lost revenue (e.g., e-commerce sales), decreased employee productivity, potential SLA penalties, and long-term reputational damage. Our calculator considers these factors to provide a comprehensive cost estimate.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question" data-i18n="faq.q3">Can I customize the penalty tiers and other assumptions?</button>
+                    <div class="faq-answer">
+                        <p data-i18n="faq.a3">Yes, you can fully customize penalty tiers, contract values, uptime percentages, and other parameters to match your specific SLA agreement and business requirements.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question" data-i18n="faq.q4">Is my data secure?</button>
+                    <div class="faq-answer">
+                        <p data-i18n="faq.a4">Yes, all calculations are performed locally in your browser. We don't store or transmit any of your sensitive contract or business data to our servers.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question" data-i18n="faq.q5">What currencies are supported?</button>
+                    <div class="faq-answer">
+                        <p data-i18n="faq.a5">Currently, we support USD and EUR currencies. More currencies will be added based on user demand.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">What is an SLA shortfall in simple words?</button>
+                    <div class="faq-answer">
+                        <p>Shortfall is the gap between the uptime the vendor promised and the uptime you actually got. Example: promise 99.95%, actual 99.79%. The shortfall is about 0.16 percentage points. Your contract then maps that gap to a credit percent (for example 10% of the monthly fee). Shortfall is not the same as “total minutes down.” Minutes matter, but the credit table usually keys off the uptime percent or the size of the miss.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">Do I need monitoring logs to claim an SLA credit?</button>
+                    <div class="faq-answer">
+                        <p>Almost always yes. Vendors ask for proof with start and end times, often in UTC. Export checks from an external monitor, note which URLs failed, and remove minutes the contract excludes (such as announced maintenance). File inside the claim window written in the SLA — many contracts give only 15–30 days after the month ends. This calculator estimates the money. Your logs prove the downtime.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">Is an SLA service credit the same as insurance?</button>
+                    <div class="faq-answer">
+                        <p>No. An SLA credit is usually money off a future invoice from that vendor. It is capped and often much smaller than your real business loss. Insurance is a separate product that may cover larger interruption losses after its own rules and deductibles. Use this tool for credit estimates. Use a downtime cost estimate for business impact. Ask your insurer about policy cover. Do not assume a 10% invoice credit will make you whole.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Ad Slot - Bottom -->
+    <div id="ad-slot-bottom" class="ad-slot">
+        <!-- Ad content will be inserted here -->
+    </div>
+
+    <!-- Footer Placeholder -->
+    <div id="footer-placeholder"></div>
+
+    <!-- Include System -->
+    <script src="js/includes.js"></script>
+    
+    <!-- Utility Modules -->
+    <script src="utils/slaMath.js"></script>
+    <script src="utils/format.js"></script>
+    <script src="utils/scenarioUrl.js"></script>
+    <script src="utils/tests.js"></script>
+    
+    <!-- Main Application Script -->
+    <script src="script.js"></script>
+</body>
+</html>

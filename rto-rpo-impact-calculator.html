@@ -1,0 +1,585 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="google-adsense-account" content="ca-pub-5341779159353455">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RTO/RPO Impact Calculator – Disaster Recovery | TechImpact.online</title>
+    <meta name="description" content="Calculate the financial impact of RTO and RPO targets on disaster recovery. Assess risk levels and get recommendations for improving recovery strategies.">
+    <meta name="keywords" content="RTO calculator, RPO impact tool, disaster recovery estimator, recovery time objective, recovery point objective, business continuity planning">
+    <meta name="author" content="TechImpact.online">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="RTO/RPO Impact Calculator – Disaster Recovery | TechImpact.online">
+    <meta property="og:description" content="Calculate the financial impact of RTO and RPO targets on disaster recovery. Assess risk levels and get recommendations.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.techimpact.online/rto-rpo-impact-calculator.html">
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="RTO/RPO Impact Calculator – Disaster Recovery | TechImpact.online">
+    <meta name="twitter:description" content="Calculate the financial impact of RTO and RPO targets on disaster recovery.">
+    
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "RTO/RPO Impact Calculator",
+        "description": "Calculate the financial impact of RTO and RPO targets on disaster recovery",
+        "url": "https://www.techimpact.online/rto-rpo-impact-calculator.html",
+        "applicationCategory": "BusinessApplication",
+        "operatingSystem": "Web Browser",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        },
+        "creator": {
+            "@type": "Organization",
+            "name": "TechImpact.online"
+        }
+    }
+    </script>
+    
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {
+                "@type": "Question",
+                "name": "What is the difference between RTO and RPO?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "RTO (Recovery Time Objective) is the maximum acceptable time to restore service after a disaster. RPO (Recovery Point Objective) is the maximum acceptable data loss measured in time."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Why do RTO and RPO matter for business continuity?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "RTO and RPO directly impact business continuity costs. Longer RTO means more downtime and revenue loss. Longer RPO means more data loss and recovery costs."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "What are good RTO and RPO targets?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Targets depend on business criticality. Critical systems: RTO <1 hour, RPO <15 minutes. Important systems: RTO <4 hours, RPO <1 hour. Standard systems: RTO <24 hours, RPO <4 hours."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "What is the difference between backup and replication?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "A backup is a copy saved on a schedule that you restore later. Replication keeps a second copy updated so you can fail over faster. Many teams use both: replication for speed and backups to go back in time."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Why do disaster recovery drills cost money — and why run them?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Drills use engineer time and sometimes extra cloud resources, but they are usually cheaper than discovering during a real outage that restore steps fail. Untested RTO targets are only hopes."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "What does a bad RTO look like during a real incident?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Bad RTO shows up as slow, confused recovery: unclear ownership, missing restore keys, outdated runbooks, late customer updates, and downtime cost rising while the team rediscovers basic steps."
+                }
+            }
+        ]
+    }
+    </script>
+    
+    <link rel="stylesheet" href="styles.css">
+    <link rel="canonical" href="https://www.techimpact.online/rto-rpo-impact-calculator.html">
+    <!-- Google AdSense -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5341779159353455"
+        crossorigin="anonymous"></script>
+</head>
+<body>
+    <!-- Header Placeholder -->
+    <div id="header-placeholder"></div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1 class="hero-title">
+                <span data-i18n="hero.title1">Assess Your Disaster Recovery</span>
+                <span class="gradient-text" data-i18n="hero.title2">RTO/RPO Impact</span>
+            </h1>
+            <p class="hero-subtitle" data-i18n="hero.subtitle">Calculate the financial impact of your Recovery Time and Recovery Point objectives. Evaluate risk levels and get actionable recommendations to optimize your disaster recovery strategy.</p>
+            <div class="hero-actions">
+                <a href="start-trial.html" class="btn primary large" data-i18n="hero.start-trial">Start Free Trial</a>
+                <a href="start-trial.html" class="btn secondary large" data-i18n="hero.request-demo">Request Demo</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Language Toggle -->
+    <div class="language-toggle-container">
+        <div class="language-toggle">
+            <button class="lang-btn active" data-lang="en">EN</button>
+            <button class="lang-btn" data-lang="es">ES</button>
+        </div>
+    </div>
+
+    <!-- Calculator Tabs -->
+    <section class="calculator-tabs">
+        <div class="container">
+            <div class="tab-nav">
+                <a href="index.html" class="tab-link" data-i18n="tabs.sla">SLA Penalty</a>
+                <a href="website-downtime-cost-calculator.html" class="tab-link" data-i18n="tabs.downtime">Downtime Cost</a>
+                <a href="rto-rpo-impact-calculator.html" class="tab-link active" data-i18n="tabs.rto-rpo">RTO/RPO</a>
+                <a href="allowed-downtime-calculator.html" class="tab-link">Allowed Downtime</a>
+                <a href="nines-availability-cost-calculator.html" class="tab-link">Cost of Nines</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Calculator Section -->
+    <section class="calculator-section" id="rto-calculator">
+        <div class="container">
+            <div class="calculator-grid">
+                <!-- Calculator Form -->
+                <div class="calculator-form">
+                    <div class="card">
+                        <h2 class="card-title" data-i18n="form.title">RTO/RPO Impact Calculator</h2>
+                        
+                        <div class="form-group">
+                            <label for="rto-target" data-i18n="form.rto-target">RTO Target (hours)</label>
+                            <input type="number" id="rto-target" class="form-input" value="4" min="0.1" step="0.1" placeholder="Target recovery time">
+                            <span class="input-hint" data-i18n="form.rto-hint">Maximum acceptable downtime</span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="rpo-target" data-i18n="form.rpo-target">RPO Target (hours)</label>
+                            <input type="number" id="rpo-target" class="form-input" value="1" min="0.1" step="0.1" placeholder="Target data loss">
+                            <span class="input-hint" data-i18n="form.rpo-hint">Maximum acceptable data loss</span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="incident-frequency" data-i18n="form.incident-frequency">Incident Frequency (per year)</label>
+                            <input type="number" id="incident-frequency" class="form-input" value="2" min="0.1" step="0.1" placeholder="Expected incidents">
+                            <span class="input-hint" data-i18n="form.frequency-hint">How many disasters per year</span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="revenue-per-hour" data-i18n="form.revenue-per-hour">Revenue per Hour</label>
+                            <div class="input-group">
+                                <select id="currency" class="currency-select">
+                                    <option value="USD">USD</option>
+                                    <option value="EUR">EUR</option>
+                                </select>
+                                <input type="number" id="revenue-per-hour" class="form-input" value="10000" min="0" step="100">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="data-recreation-cost" data-i18n="form.data-recreation-cost">Data Recreation Cost per Hour (optional)</label>
+                            <div class="input-group">
+                                <select id="data-currency" class="currency-select">
+                                    <option value="USD">USD</option>
+                                    <option value="EUR">EUR</option>
+                                </select>
+                                <input type="number" id="data-recreation-cost" class="form-input" value="0" min="0" step="100">
+                            </div>
+                            <span class="input-hint" data-i18n="form.data-recreation-hint">Cost to recreate lost data</span>
+                        </div>
+
+                        <div class="form-actions">
+                            <button class="btn primary" id="calculate-btn" data-i18n="form.calculate">Calculate Risk</button>
+                            <button class="btn secondary" id="reset-btn" data-i18n="form.reset">Reset</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Results -->
+                <div class="calculator-results">
+                    <div class="card">
+                        <h2 class="card-title" data-i18n="results.title">Impact Analysis</h2>
+                        
+                        <div class="result-main">
+                            <div class="annualized-loss">
+                                <span class="loss-amount" id="annualized-loss-amount">$80,000</span>
+                                <span class="loss-label" data-i18n="results.annualized-loss">Annualized Loss</span>
+                            </div>
+                        </div>
+
+                        <!-- Cost Breakdown -->
+                        <div class="cost-breakdown">
+                            <h4 data-i18n="results.cost-breakdown">Cost Breakdown</h4>
+                            <div class="breakdown-item">
+                                <span class="breakdown-label" data-i18n="results.rto-loss">RTO Loss:</span>
+                                <span class="breakdown-value" id="rto-loss">$80,000</span>
+                            </div>
+                            <div class="breakdown-item">
+                                <span class="breakdown-label" data-i18n="results.rpo-cost">RPO Cost:</span>
+                                <span class="breakdown-value" id="rpo-cost">$0</span>
+                            </div>
+                            <div class="breakdown-item breakdown-total">
+                                <span class="breakdown-label" data-i18n="results.total-impact">Total Impact:</span>
+                                <span class="breakdown-value" id="total-impact">$80,000</span>
+                            </div>
+                        </div>
+
+                        <!-- RTO/RPO Comparison Bars -->
+                        <div class="comparison-section">
+                            <h4 data-i18n="results.comparison">Target vs Risk Assessment</h4>
+                            
+                            <div class="comparison-item">
+                                <div class="comparison-label">
+                                    <span data-i18n="results.rto-comparison">RTO</span>
+                                    <span class="comparison-value" id="rto-comparison">4h target</span>
+                                </div>
+                                <div class="comparison-bar">
+                                    <div class="target-line" id="rto-target-line"></div>
+                                    <div class="risk-indicator" id="rto-risk-indicator"></div>
+                                </div>
+                            </div>
+
+                            <div class="comparison-item">
+                                <div class="comparison-label">
+                                    <span data-i18n="results.rpo-comparison">RPO</span>
+                                    <span class="comparison-value" id="rpo-comparison">1h target</span>
+                                </div>
+                                <div class="comparison-bar">
+                                    <div class="target-line" id="rpo-target-line"></div>
+                                    <div class="risk-indicator" id="rpo-risk-indicator"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="risk-assessment">
+                            <div class="risk-badge-container">
+                                <span class="risk-label" data-i18n="results.risk-level">Risk Level:</span>
+                                <span class="risk-badge" id="risk-badge">Medium</span>
+                            </div>
+                            <div class="risk-explanation" id="risk-explanation">
+                                <p class="risk-explanation-text" data-i18n="results.risk-explanation">Risk is assessed based on RTO and RPO targets compared to industry standards.</p>
+                            </div>
+                        </div>
+
+                        <div class="recommendations">
+                            <h4 data-i18n="results.recommendations">Recommendations</h4>
+                            <div class="recommendations-content" id="recommendations-content">
+                                <p data-i18n="results.default-recommendation">Enter your RTO and RPO targets to get personalized recommendations for improving your disaster recovery strategy.</p>
+                            </div>
+                        </div>
+
+                        <div class="result-actions">
+                            <button class="btn secondary" id="copy-summary-btn">
+                                <span class="btn-icon">📋</span>
+                                <span data-i18n="results.copy-summary">Copy Summary</span>
+                            </button>
+                            <button class="btn secondary" id="download-csv-btn">
+                                <span class="btn-icon">📊</span>
+                                <span data-i18n="results.download-csv">Download CSV</span>
+                            </button>
+                            <button class="btn secondary" id="share-link-btn" type="button">
+                                <span class="btn-icon">🔗</span>
+                                <span>Share Link</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section class="how-it-works">
+        <div class="container">
+            <h2 class="section-title" data-i18n="how-it-works.title">How It Works</h2>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3 class="step-title" data-i18n="how-it-works.step1.title">Define Your Targets</h3>
+                    <p class="step-description" data-i18n="how-it-works.step1.description">Set your RTO and RPO targets based on business requirements and enter your revenue per hour and incident frequency.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3 class="step-title" data-i18n="how-it-works.step2.title">Calculate Impact</h3>
+                    <p class="step-description" data-i18n="how-it-works.step2.description">We calculate the annualized financial impact based on your targets and assess the risk level of your current strategy.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3 class="step-title" data-i18n="how-it-works.step3.title">Visualize Risk</h3>
+                    <p class="step-description" data-i18n="how-it-works.step3.description">Compare your targets against industry standards and see visual indicators of your risk exposure.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <h3 class="step-title" data-i18n="how-it-works.step4.title">Get Recommendations</h3>
+                    <p class="step-description" data-i18n="how-it-works.step4.description">Receive actionable recommendations to improve your disaster recovery strategy and reduce business risk.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="edu-block" id="learn-rto">
+        <div class="container">
+            <div class="edu-inner">
+                <h2>RTO and RPO in plain language</h2>
+                <p><strong>RTO</strong> means Recovery Time Objective. It answers: “How long can we be down?”</p>
+                <p><strong>RPO</strong> means Recovery Point Objective. It answers: “How much data can we lose?” (measured in time since the last good backup or copy).</p>
+                <p>Example: RTO = 4 hours means you aim to restore service within 4 hours. RPO = 15 minutes means you accept losing up to 15 minutes of data.</p>
+
+                <h3>Why money matters</h3>
+                <p>Longer RTO usually means more downtime cost. Longer RPO usually means more rebuild or data-recovery cost. This calculator turns those targets into a yearly estimate.</p>
+
+                <div class="edu-example">
+                    <p><strong>Simple yearly formulas</strong></p>
+                    <p>RTO cost/year ≈ RTO hours × incidents per year × revenue per hour</p>
+                    <p>RPO cost/year ≈ RPO hours × incidents per year × data rebuild cost per hour</p>
+                    <p>Total ≈ RTO cost + RPO cost</p>
+                </div>
+
+                <h3>Worked example</h3>
+                <div class="edu-example">
+                    <p>RTO = 2 hours. You expect 3 major incidents per year. Revenue = $5,000/hour.</p>
+                    <p>RTO yearly impact ≈ 2 × 3 × 5,000 = <strong>$30,000</strong>.</p>
+                    <p>RPO = 1 hour. Rebuild cost = $2,000/hour.</p>
+                    <p>RPO yearly impact ≈ 1 × 3 × 2,000 = <strong>$6,000</strong>.</p>
+                    <p><strong>Combined estimate:</strong> $36,000 per year for these targets.</p>
+                </div>
+
+                <h3>Useful next reads</h3>
+                <p>
+                    <a href="guides/rto-rpo-decision-matrix.html">RTO vs RPO decision matrix</a>
+                    ·
+                    <a href="guides/disaster-recovery-basics-rto-vs-rpo.html">Disaster recovery basics</a>
+                    ·
+                    <a href="nines-availability-cost-calculator.html">Cost of extra nines</a>
+                </p>
+
+                <h3>How to pick starting targets</h3>
+                <ul>
+                    <li><strong>Payments / checkout:</strong> short RTO and short RPO (often minutes).</li>
+                    <li><strong>Internal wiki:</strong> longer RTO is often fine (hours).</li>
+                    <li><strong>Analytics:</strong> RPO can be longer if you can rebuild reports.</li>
+                    <li><strong>Customer data systems:</strong> protect RPO carefully — lost data is hard to explain.</li>
+                </ul>
+
+                <h3>What this calculator does not do</h3>
+                <p>It does not design your backup system. It does not test failover. It only helps you talk about money risk. After you choose targets, you still need engineering work: backups, replicas, runbooks, and drills.</p>
+
+                <h3>Tip for international teams</h3>
+                <p>Write RTO and RPO in hours or minutes, not only in “nines.” Many people understand “2 hours to recover” faster than “99.99%.” Share both if you can.</p>
+
+                <h3>Backup vs replication (plain English)</h3>
+                <p>These two words appear in every disaster-recovery meeting. They are related. They are not the same.</p>
+                <p><strong>Backup</strong> means you copy data to safe storage on a schedule. Example: a full copy every night, plus smaller copies every hour. To use a backup, you usually <em>restore</em> it to a server. That restore takes time. Backups are great against deletes, ransomware, and “oops” mistakes. They are often weaker when you need the service back in minutes.</p>
+                <p><strong>Replication</strong> means you keep a second live (or nearly live) copy of data or systems, often in another place. When the primary fails, you can fail over to the copy. Replication helps short RTO and short RPO. It costs more money and more care. It does not always protect you from bad data: if you delete a row on the primary, the delete can copy to the replica too. That is why many teams still keep backups even when they replicate.</p>
+                <div class="edu-example">
+                    <p><strong>Quick comparison</strong></p>
+                    <ul>
+                        <li>Nightly backup only → RPO often many hours; RTO often many hours.</li>
+                        <li>Hourly backup → better RPO; restore time still limits RTO.</li>
+                        <li>Continuous replication + failover drill → minutes-level RPO/RTO is possible.</li>
+                        <li>Replication + separate backups → fast recovery <em>and</em> protection from bad writes.</li>
+                    </ul>
+                    <p class="edu-note">Pick technology after you pick targets. Do not buy a tool first and invent RTO/RPO later.</p>
+                </div>
+
+                <h3>Sample targets by system type</h3>
+                <p>Targets are business choices. The table below is a starting point for discussion, not a law. Adjust for your industry and risk.</p>
+                <div class="edu-example">
+                    <p><strong>Sample RTO / RPO starting points</strong></p>
+                    <table class="ref-table">
+                        <thead>
+                            <tr>
+                                <th>System type</th>
+                                <th>Sample RTO</th>
+                                <th>Sample RPO</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Payments / checkout</td>
+                                <td>15–60 minutes</td>
+                                <td>0–5 minutes</td>
+                            </tr>
+                            <tr>
+                                <td>Customer login / core SaaS app</td>
+                                <td>1–4 hours</td>
+                                <td>5–60 minutes</td>
+                            </tr>
+                            <tr>
+                                <td>Internal CRM / email</td>
+                                <td>4–12 hours</td>
+                                <td>1–4 hours</td>
+                            </tr>
+                            <tr>
+                                <td>Analytics / BI warehouse</td>
+                                <td>12–48 hours</td>
+                                <td>4–24 hours</td>
+                            </tr>
+                            <tr>
+                                <td>Wiki / static docs</td>
+                                <td>24–72 hours</td>
+                                <td>24 hours</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <p class="edu-note">If two systems share a database, the stricter target usually wins for that shared data store.</p>
+                </div>
+                <p>Write owners next to each row: who can accept the risk, and who builds the recovery path. A target without an owner is only a wish.</p>
+
+                <h3>Cost of drills (why practice is part of the budget)</h3>
+                <p>A <strong>drill</strong> is a practice recovery. You pretend the system failed. You follow the runbook. You measure how long restore or failover really takes.</p>
+                <p>Drills cost money: engineer time, maybe cloud resources, maybe a short planned risk window. Skipping drills also costs money — you discover broken backups during a real incident.</p>
+                <div class="edu-example">
+                    <p><strong>Simple drill cost sketch</strong></p>
+                    <p>4 engineers × 3 hours × $80/hour fully loaded = <strong>$960</strong> staff cost.</p>
+                    <p>Extra cloud restore environment for one day ≈ <strong>$200</strong>.</p>
+                    <p>One quarterly drill ≈ about <strong>$1,160</strong>. Four drills/year ≈ about <strong>$4,640</strong>.</p>
+                    <p>Compare that to one unplanned incident that misses RTO by a full workday.</p>
+                </div>
+                <p>Put drill cost in the same planning conversation as backup storage and replica servers. Recovery that was never tested is not a real RTO.</p>
+
+                <h3>What bad RTO looks like in an incident</h3>
+                <p>Bad RTO is not only “the number was wrong on a slide.” You feel it in the room.</p>
+                <ul>
+                    <li>Nobody knows who is in charge in the first 15 minutes.</li>
+                    <li>The backup password or restore key is missing.</li>
+                    <li>The runbook says “fail over,” but DNS or certificates still point to the dead site.</li>
+                    <li>Status updates to customers start late, so support is flooded.</li>
+                    <li>You restore old data, then spend hours re-entering transactions (RPO pain on top of RTO pain).</li>
+                    <li>Leadership asks for ETAs every five minutes because there is no measured progress board.</li>
+                </ul>
+                <p>When RTO is bad, downtime cost grows minute by minute. This calculator shows the money side. Your incident review should list the process side: what slowed restore, and which drill would have caught it.</p>
+                <p>A useful review question: “Which step took longer than our RTO budget, and why?” Answer with times, not blame.</p>
+
+                <h3>How this ties back to the calculator</h3>
+                <p>Enter your RTO hours, RPO hours, incidents per year, revenue per hour, and rebuild cost per hour. The tool annualizes the risk. If the yearly number is high, you can justify replication, faster backups, or more drills. If the number is low, you may accept longer targets for that system and spend money elsewhere.</p>
+                <p>Change one input at a time. Example: cut RTO from 8 hours to 2 hours and watch the yearly RTO cost drop. Then ask engineering what that cut would require in real life.</p>
+
+                <h3>RPO mistakes that surprise teams</h3>
+                <p>People often focus only on “how fast we are back.” That is RTO. RPO is the quiet twin. A system can be online again in one hour and still have lost a full day of orders if the last good copy was from yesterday.</p>
+                <p>Common RPO mistakes:</p>
+                <ul>
+                    <li>Calling a nightly backup “near zero data loss” when it is not.</li>
+                    <li>Forgetting databases that sit outside the main app backup job.</li>
+                    <li>Assuming cloud snapshots are tested restores (a snapshot you never restored is unproven).</li>
+                    <li>Mixing “we replicate” with “we can roll back a bad deploy.” Replication is not always a time machine.</li>
+                </ul>
+                <p>When you present calculator results, say both numbers out loud: “We plan to be back in X hours, and we may lose up to Y minutes of data.” That sentence prevents false comfort.</p>
+
+                <h3>Related guides</h3>
+                <p>
+                    Choose targets with a structured view:
+                    <a href="guides/rto-rpo-decision-matrix.html">RTO/RPO decision matrix</a>.
+                </p>
+                <p>
+                    Basics in longer form:
+                    <a href="guides/disaster-recovery-basics-rto-vs-rpo.html">Disaster recovery basics — RTO vs RPO</a>.
+                </p>
+                <p>
+                    Turn downtime hours into money for one incident:
+                    <a href="website-downtime-cost-calculator.html">Website Downtime Cost Calculator</a>.
+                </p>
+                <p>
+                    Uptime budgets in minutes:
+                    <a href="guides/sla-uptime-downtime-reference.html">SLA uptime → downtime reference</a>
+                    ·
+                    <a href="nines-availability-cost-calculator.html">Cost of extra nines</a>.
+                </p>
+                <p>Keep English simple in documents you share across countries: define RTO, define RPO, give one example, then show the yearly estimate. Clear words prevent expensive misunderstandings.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="statistics">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-number">Free</div>
+                    <div class="stat-label">Open tool</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">Local</div>
+                    <div class="stat-label">Private by design</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">RTO+RPO</div>
+                    <div class="stat-label">Two risk views</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">Yearly</div>
+                    <div class="stat-label">Annualized impact</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq">
+        <div class="container">
+            <h2 class="section-title" data-i18n="faq.title">Frequently Asked Questions</h2>
+            <div class="faq-list">
+                <div class="faq-item">
+                    <div class="faq-question" data-i18n="faq.q1.question">What is the difference between RTO and RPO?</div>
+                    <div class="faq-answer" data-i18n="faq.q1.answer">RTO (Recovery Time Objective) is the maximum acceptable time to restore service after a disaster. RPO (Recovery Point Objective) is the maximum acceptable data loss measured in time before the incident.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" data-i18n="faq.q2.question">Why do RTO and RPO matter for business continuity?</div>
+                    <div class="faq-answer" data-i18n="faq.q2.answer">RTO and RPO directly impact business continuity costs. Longer RTO means more downtime and revenue loss. Longer RPO means more data loss and recovery costs.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" data-i18n="faq.q3.question">What are good RTO and RPO targets?</div>
+                    <div class="faq-answer" data-i18n="faq.q3.answer">Targets depend on business criticality. Critical systems: RTO <1 hour, RPO <15 minutes. Important systems: RTO <4 hours, RPO <1 hour. Standard systems: RTO <24 hours, RPO <4 hours.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" data-i18n="faq.q4.question">How do I reduce my RTO and RPO?</div>
+                    <div class="faq-answer" data-i18n="faq.q4.answer">Improve infrastructure redundancy, implement automated failover, use real-time replication, optimize backup strategies, and invest in disaster recovery testing and training.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" data-i18n="faq.q5.question">What's the cost of achieving lower RTO/RPO?</div>
+                    <div class="faq-answer" data-i18n="faq.q5.answer">Lower RTO/RPO requires more investment in infrastructure, redundancy, and technology. The cost increases exponentially as targets get more aggressive, but so does business protection.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">What is the difference between backup and replication?</div>
+                    <div class="faq-answer">A backup is a copy saved on a schedule. You restore it when something goes wrong. Restore time often makes RTO longer. Replication keeps a second copy updated continuously or nearly continuously so you can fail over faster. Replication helps short RTO and short RPO, but bad deletes can copy to the replica too. Many teams use both: replication for speed, backups for “go back in time” protection.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">Why do disaster recovery drills cost money — and why run them?</div>
+                    <div class="faq-answer">Drills use engineer time and sometimes extra cloud resources. A small quarterly drill might cost about a thousand dollars in staff and environment fees. That is usually cheaper than learning during a real outage that the backup password is missing or the failover DNS step was never tested. If you never drill, your written RTO is only a hope. Include drill cost in the same budget conversation as storage and replicas.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">What does a bad RTO look like during a real incident?</div>
+                    <div class="faq-answer">Bad RTO shows up as slow, confused recovery: unclear ownership, missing restore keys, runbooks that do not match production, late customer updates, and long periods with no measured progress. Downtime cost keeps rising while the team rediscovers basic steps. Afterward, compare each major step’s duration to the RTO budget and schedule a drill that practices the slowest step.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Ad Slot - Bottom -->
+    <div id="ad-slot-bottom" class="ad-slot">
+        <!-- Ad content will be inserted here -->
+    </div>
+
+    <!-- Footer Placeholder -->
+    <div id="footer-placeholder"></div>
+
+    <!-- Include System -->
+    <script src="js/includes.js"></script>
+
+    <!-- Utility Modules -->
+    <script src="utils/rtoMath.js"></script>
+    <script src="utils/format.js"></script>
+    <script src="utils/scenarioUrl.js"></script>
+    <script src="utils/rtoTests.js"></script>
+    
+    <!-- Main Application Script -->
+    <script src="rto-rpo-calculator.js"></script>
+</body>
+</html>
