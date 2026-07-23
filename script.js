@@ -1,4 +1,4 @@
-// SLA Penalty Calculator - TechImpact.online
+// SLA Penalty Calculator - TechImpact.online - by dynamicdisorder.co
 class SLAPenaltyCalculator {
     constructor() {
         this.currentLanguage = 'en';

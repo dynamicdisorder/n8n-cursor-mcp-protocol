@@ -1,4 +1,4 @@
-// RTO/RPO Impact Calculator - TechImpact.online
+// RTO/RPO Impact Calculator - TechImpact.online - by dynamicdisorder.co
 class RTORPOCalculator {
     constructor() {
         this.currentLanguage = 'en';
